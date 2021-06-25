@@ -18,7 +18,7 @@
   <meta name="author" content="Mingda">
   <meta name="keywords" content="">
   
-  <title>SpringBoot注解 - Mingda&#39;s Life</title>
+  <title>情绪海洋 - Mingda&#39;s Life</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,9 +163,9 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="SpringBoot注解">
+            <span class="h2" id="subtitle" title="情绪海洋">
               
-                SpringBoot注解
+                情绪海洋
               
             </span>
 
@@ -175,8 +175,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-05-30 13:52" pubdate>
-        2021年5月30日 下午
+      <time datetime="2021-06-25 23:40" pubdate>
+        2021年6月25日 晚上
       </time>
     </span>
   
@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      815 字
+      1.1k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      11
        分钟
     </span>
   
@@ -227,52 +227,46 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SpringBoot注解</h1>
+            <h1 style="display: none">情绪海洋</h1>
             
             <div class="markdown-body">
-              <h2 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h2><p><code>@RequestMapping</code>是用于处理请求地址映射的注解，请求地址为类地址和方法地址的拼接（如果类上没有该注解则直接为方法地址）。</p>
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ol>
-<li><code>value</code>：指定请求的实际地址，指定的地址可以是URI Template 模式；</li>
-<li><code>method</code>： 指定请求的method类型， GET、POST、PUT、DELETE等；</li>
-<li><code>consumes</code>： 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;</li>
-<li><code>produces</code>: 指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；</li>
-<li><code>params</code>： 指定request中<strong>必须</strong>包含某些参数值时，才让该方法处理。</li>
-<li><code>headers</code>： 指定request中<strong>必须</strong>包含某些指定的header值，才能让该方法处理请求。</li>
-</ol>
+              <h2 id="活着"><a href="#活着" class="headerlink" title="活着"></a>活着</h2><p>人怎么才算活着？</p>
+<p>有点意义地讲，但又不上升到多高的价值，你是怎么觉得的？</p>
+<p>最近看到一句话，引起了我的注意。</p>
 <blockquote>
-<p>在设置<code>value</code>参数的时候，可能涉及的相关注解为：<a href="#PathVariable">@PathVariable</a>；<br>在设置<code>params</code>参数的时候，可能涉及的相关注解为：<a href="#RequestParam">@RequestParam</a>；</p>
+<p>“到目前为止，我仍很激动地活着。” —— 卢川纯</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// value可以是一个具体的URI，也可以是含有变量的URI（URI Template Patterns with Path Variables–restful风格）。</span><br><span class="hljs-meta">@RequestMapping(&quot;/testPathVariable/&#123;id&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testPathVariable</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> Integer id2)</span> </span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;testPathVariable: &quot;</span> + id2);<br>    <span class="hljs-keyword">return</span> SUCCESS;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/J080624/article/details/55193269">参考</a></p>
-<h2 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a>@PathVariable</h2><p><code>@PathVariable</code>用来获得请求url中的动态参数，一般修饰于方法中的入参。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestController</span> </span>&#123;  <br><br>     <span class="hljs-meta">@RequestMapping(value=&quot;/user/&#123;userId&#125;/roles/&#123;roleId&#125;&quot;,method = RequestMethod.GET)</span>  <br>     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getLogin</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;userId&quot;)</span> String userId,  </span></span><br><span class="hljs-function"><span class="hljs-params">         <span class="hljs-meta">@PathVariable(&quot;roleId&quot;)</span> String roleId)</span></span>&#123;<br>           <br>         System.out.println(<span class="hljs-string">&quot;User Id : &quot;</span> + userId);  <br>         System.out.println(<span class="hljs-string">&quot;Role Id : &quot;</span> + roleId);  <br>         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello&quot;</span>;  <br>     <br>     &#125;  <br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-
-<h2 id="RequestParam"><a href="#RequestParam" class="headerlink" title="@RequestParam"></a>@RequestParam</h2><p><code>@RequestParam</code>用于获取request请求的参数值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;CopperVO&gt; <span class="hljs-title">getOpList</span><span class="hljs-params">(HttpServletRequest request,</span></span><br><span class="hljs-function"><span class="hljs-params">                                   <span class="hljs-meta">@RequestParam(value = &quot;pageIndex&quot;, required = false)</span> Integer pageIndex,</span></span><br><span class="hljs-function"><span class="hljs-params">                                   <span class="hljs-meta">@RequestParam(value = &quot;pageSize&quot;, required = false)</span> Integer pageSize)</span> </span>&#123;<br><br> &#125;<br><br></code></pre></td></tr></table></figure>
-
-<h2 id="ResponseBody-amp-RequestBody"><a href="#ResponseBody-amp-RequestBody" class="headerlink" title="@ResponseBody &amp; @RequestBody"></a>@ResponseBody &amp; @RequestBody</h2><p><code>@ResponseBody</code>用于将Controller的方法返回的对象，根据HTTP Request Header的Accept的内容,通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。</p>
-<p><code>@ResponseBody</code>使用在返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用.</p>
-<p><code>@RequestBody</code>用于将Controller的方法参数，根据HTTP Request Header的content-Type的内容,通过适当的HttpMessageConverter转换为JAVA类</p>
-<p><code>@RequestBody</code>使用在POST或者PUT的数据是JSON格式或者XML格式,而不是普通的键值对形式.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/testRequestBody&quot;, method= RequestMethod.POST)</span><br>    <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Person <span class="hljs-title">testRequestBody</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> Person p)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;creating a employee:&quot;</span> + p);<br>        <span class="hljs-keyword">return</span> p;<br>    &#125;   <br></code></pre></td></tr></table></figure>
-<p><img src="/img/2021/@ResponseBody&@RequestBody%E4%BD%BF%E7%94%A8.png" srcset="/img/loading.gif" lazyload alt="数据的格式的转换过程"></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7097fea8ce3f">参考</a></p>
-<h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><p><code>@RestController</code>和<code>@ResponseBody</code>注解都会处理返回的数据格式，使用了该类型注解后返回的不再是视图，不会进行转跳，而是返回json或xml数据格式，输出在页面上。</p>
-<p>二者的区别在于：<code>@ResponseBody</code>，一般是使用在单独的方法上的，需要哪个方法返回json数据格式，就在哪个方法上使用，具有针对性；<code>@RestController</code>，一般是使用在类上的，它表示的意思其实就是结合了<code>@Controller</code>和<code>@ResponseBody</code>两个注解，如果哪个类下的所有方法需要返回json数据格式的，就在哪个类上使用该注解，具有统一性；</p>
-<p>使用了<code>@RestController</code>注解之后，其本质相当于在该类的所有方法上都统一使用了@ResponseBody注解，所以该类下的所有方法都会返回json数据格式，输出在页面上，而不会再返回视图。</p>
+<p>我不知道对她来说，如果不能激动地活着，是否就意味着已经死去。我也不清楚，她是否认为，当她决定要激动地活着的时候，她才算真正开始活着。</p>
+<p>激动在每个人的定义和理解的方式都可能是不同的，或者干脆把激动换成别的什么词，也不是不可以。</p>
+<p>但我想无论你把它换成什么其他的词，在这个语义下，它都逃不出情绪这个概念。</p>
+<p>是的，我是说，人只有带着情绪的时候，才算是在活着。</p>
+<h2 id="妖魔化的情绪"><a href="#妖魔化的情绪" class="headerlink" title="妖魔化的情绪"></a>妖魔化的情绪</h2><p>情绪是有主动和被动之分的，生命也是有主动选择地活着和被动牵引地活着。</p>
+<p>事情本身不会有太明确的分割线，但直觉地判断是：</p>
+<p>愤怒是主动的情绪，抱怨就是被动的情绪；<br>满足是主动的情绪，欲望就是被动的情绪；<br>快乐是主动的情绪，爽就是被动的情绪；</p>
+<p>诸如此类……</p>
+<p>不过在现在，情绪好像不是什么好的词。</p>
+<p>正能量大行其道，情绪化就带有了贬义色彩。于是市面上出现了很多正能量满满的情绪管理类书籍。</p>
+<p>这些书只是“术”的层面，还没到“道”的层面。</p>
+<p>最烂的鸡汤文，直接告诉你不要这样，不要那样。讲了那么多白水文，还不如告诉读者直接把情绪发泄到最开始定义和传教“道德”的人身上。</p>
+<p>稍微动了点脑子的作者，旨在告诉读者如何做一个聪明人，他来给你计算利益得失，让原本就愚钝的你在似乎的大彻大悟之后继续聪明不起来。</p>
+<p>真正的情绪管理，不是去情绪化，而是尽可能由内而外地将被动的情绪转化为积极的情绪。毕竟这样修为出来的人，才是真实可爱的。</p>
+<h2 id="情绪海洋"><a href="#情绪海洋" class="headerlink" title="情绪海洋"></a>情绪海洋</h2><p>一个偶然的灵感让我模拟了这样一个概念：</p>
+<p>在我们的内心有一片情绪海洋，在没有外界往里注入刺激的时候，这片海洋对外表现出的是相对平和的无情绪化特质。</p>
+<p>一个负能量的人内心的情绪海洋可能只是一湾小溪，外界稍一刺激，它表面下的泥土就开始翻土，它对外就开始表现的浑浊。</p>
+<p>一个正能量的人内心的情绪海洋才真的是一片海洋，外界往里注入什么酸性碱性的溶液，都能在极短暂的时间内被中和，外界那些小事根本掀不起这片海洋的什么风浪来。</p>
+<p>正能量人内心的海洋始终平静吗？</p>
+<p>正能量人内心的情绪海洋总是暗涌，只有小溪那浅薄的表层才是真的平静。</p>
+<p>因为小溪清晰与浑浊的太另我们清晰可见了，事实上，它里面什么都没有，涓涓细流，有什么？又容的下什么呢？</p>
+<p>海洋虽然看起来让我们觉得平静，但在它的海平面之下却总是在涌动之中。因为它装载的泥泞实在太多了，可爱的海豚在里面，臭鱼烂虾也在里面，正是因为他内心的鲸鱼在不断地吞食这些鱼虾，他的海洋才能在日光的照射下如你所见的这般蔚蓝。</p>
+<p>人们总是在向往着自由，却在追求自由的路上，发现痛苦才是人生的本质。</p>
+<p>人们不想表现负面情绪，却在不断地自我和解中发现，只有消化掉大量的痛苦，才能呈现出表面的平和。</p>
+<p>空是最高级的修行，无才是真正的没有穷尽。</p>
+<p>人世间不允许你生来那般纯澈，死亦不能带你回归最初的本原。理想主义者只能高举他们手中的完美旗帜，朝着远方的太阳和大地，不停地移步向前，向前。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
-                    
-                  </div>
                 
                 
               </div>
@@ -282,18 +276,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/30/thought/%E3%80%8A%E6%B2%89%E6%80%9D%E5%BD%95%E3%80%8B%EF%BD%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">《沉思录》｜读书笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/05/29/tech/Java%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/">
-                        <span class="hidden-mobile">Java异常机制代码执行顺序</span>
+                      <a href="/2021/06/20/thought/%E2%80%9C%E6%AF%95%E4%B8%9A%E5%90%8E%E6%88%91%E4%BB%AC%E4%BC%9A%E6%88%90%E4%B8%BA%E8%87%AA%E5%B7%B1%E8%AE%A8%E5%8E%8C%E7%9A%84%E6%A0%B7%E5%AD%90%E5%90%97%EF%BC%9F%E2%80%9D%EF%BD%9CB%E7%AB%99%E2%80%94%E2%80%94%E5%B0%8F%E8%8B%8F%E5%AF%B9%E8%AF%9D%E7%BD%97%E7%BF%94/">
+                        <span class="hidden-mobile">“毕业后我们会成为自己讨厌的样子吗？”｜B站——小苏对话罗翔</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
