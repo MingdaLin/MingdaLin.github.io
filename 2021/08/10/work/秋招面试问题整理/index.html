@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>秋招面试问题整理 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="秋招面试问题整理">
+              
+                秋招面试问题整理
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-10 12:14" pubdate>
+        2021年8月10日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">秋招面试问题整理</h1>
+            
+            <div class="markdown-body">
+              <h1 id="华为数通提前批"><a href="#华为数通提前批" class="headerlink" title="华为数通提前批"></a>华为数通提前批</h1><h2 id="一面（2021-08-09-15-00-16-30）"><a href="#一面（2021-08-09-15-00-16-30）" class="headerlink" title="一面（2021-08-09 15:00 - 16:30）"></a>一面（2021-08-09 15:00 - 16:30）</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ol>
+<li>面向对象有哪些特性？分别在java里是如何体现的，举例说明？</li>
+<li>你在开发过程中用的Java的哪个版本？Java8有哪些新特性？在实践中你是如何运用的？</li>
+<li>Map容器，输入c:1,a:2,b:3，按输入顺序输出，用什么类型的Map？（LinkedHashMap）</li>
+<li>HashMap是线程安全的吗？Java是如何保证线程安全的？synchronized的工作原理？（AQS的工作原理没问）</li>
+<li>HashMap的key是唯一的吗？Java如何比较两个key是否唯一？</li>
+<li>以排序为例，如何用泛型重写？</li>
+<li>定义一个泛型的步骤是怎样的？</li>
+<li>为什么要用泛型？</li>
+<li>用过反射吗？怎么用的？</li>
+<li>Spring 是怎么实现AOP的？</li>
+</ol>
+<h3 id="工程实践"><a href="#工程实践" class="headerlink" title="工程实践"></a>工程实践</h3><ol>
+<li>前后端分离的项目中，前后端都分别是部署在哪的？</li>
+<li>前端（Vue框架）是如何给后端发送数据的？</li>
+<li>后端部署远程服务的时候，用的jar包还是source code？maven对这两种方式是如何部署的？</li>
+</ol>
+<h3 id="手撕代码"><a href="#手撕代码" class="headerlink" title="手撕代码"></a>手撕代码</h3><p> <em><strong>题目</strong></em></p>
+<p> 两个岛屿间的最短路径</p>
+<p> 是lc中的岛屿数量问题的变形，该题中限制一个二维矩阵中有且只有两个岛屿，试返回两个岛屿之间的最短路径？</p>
+<p> <em><strong>面试记录</strong></em></p>
+<p> 考虑到返回的最小值的两个岛可能来自同一片岛屿，所以一上来要对每个岛所属的岛屿类型进行明确；</p>
+<p> step1. 对二维矩阵进行遍历，用dfs算法为同一个岛屿上的岛进行类型标记；</p>
+<p> step2. 再对二维矩阵进行遍历，如果当前格子是一个岛，分别对其上下左右进行dfs，如果旁边的格子也是岛，说明它们来自同一片岛，不进入dfs，如果不是岛，则进入dfs；</p>
+<p> step3. dfs函数中，先对i, j做边界校验；然后对当前各自做校验，如果当前格子是一个岛，判断岛的类型，并与最初的岛的类型做比较，不同的话，更新最小值。如果当前格子不是一个岛，再对它的上下左右进行dfs。</p>
+<h3 id="反思总结"><a href="#反思总结" class="headerlink" title="反思总结"></a>反思总结</h3><p> 一面总体感觉，面试官更侧重对Java基础和工程经验的考察。然后第一部分准备的不够充分，第二部分是目前的短板，需要后续准备中分别补齐。</p>
+<p> 问的内容比较全面，但在深度上不是很深，只要对相关知识点，做下准备，能把问的问题接住就行，不需要过多的展开。</p>
+<h2 id="二面（2021-08-09-16-30-18-00）"><a href="#二面（2021-08-09-16-30-18-00）" class="headerlink" title="二面（2021-08-09 16:30 - 18:00）"></a>二面（2021-08-09 16:30 - 18:00）</h2><h3 id="实习项目"><a href="#实习项目" class="headerlink" title="实习项目"></a>实习项目</h3><ol>
+<li>数据封装的时候，可选字段是如何处理的？有没有校验机制？</li>
+<li>用过哪几种线程池，在实际开发中，什么场景下使用的？</li>
+<li>数据库中一张表很大的时候，是如何处理的？</li>
+</ol>
+<h3 id="基础知识-1"><a href="#基础知识-1" class="headerlink" title="基础知识"></a>基础知识</h3><ol>
+<li>Spring 的IoC 和 AOP？</li>
+<li>Spring容器初始化时是如何装载Bean的？Application Contest|Bean Factory（Bean的生命周期）?</li>
+<li>JVM Java堆的内存是如何划分的？（新生代 老年代）</li>
+<li>JVM 新生代和老年代的比例一般是多少？</li>
+<li>JVM 调优经验？</li>
+</ol>
+<h3 id="手撕代码-1"><a href="#手撕代码-1" class="headerlink" title="手撕代码"></a>手撕代码</h3><p> <em><strong>题目</strong></em></p>
+<p> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a></p>
+<p> <em><strong>面试记录</strong></em></p>
+<p> 这道题之前做过，思路上还是很快就知道解法的。但是好久没刷了，在实现的时候遇到了巨大的阻碍。好在面试官给了积极的提示，但是在最初给出提示之后，后来在我实现卡住的时候，也没有继续提示。</p>
+<p> 当时心态很爆炸，想直接放弃的。但一想从面试官给提示的感觉来看，他还是希望我能做出来的，如果放弃了，很可能因为这一点把我pass掉。</p>
+<p> 这个时候我静下心重新捋了下过程，根据dfs的入参，和递归调用的特性，把整个代码写出来了。</p>
+<h3 id="反思总结-1"><a href="#反思总结-1" class="headerlink" title="反思总结"></a>反思总结</h3><p> 手撕代码环节面试官给出了一个非常宝贵的建议：一定要养成面向接口编程的好习惯。一个问题拿来，先对问题进行步骤拆解，具体实现的时候，一定要分清代码层次。</p>
+<p> 以该题为例，写dfs()的时候，在传参确定前序中序数组的左右边界的时候花费了很长时间，并且写的代码耦合度高，如果后期维护排查出问题，不利于修改。因此一个好的做法是，再新建一个工具函数专门用来解决左右边界的确定，这样如果因为左右边界出错，只需要修改工具函数即可。</p>
+<p> 通过这道题和面试官的交流，我认为考察角度有：1. 根据提示，是否有能力把问题独立解决出来，而不是因为这道题之前做过，现在忘了，就不能当作一个新的问题解决；2. 编程习惯考察，代码耦合程度是否较低，写出来的代码是否利于后期维护和排查问题；3. 对于面向接口编程，结构化编程的理解和应用。</p>
+<h2 id="三面（2021-08-10-16-00-16-45）"><a href="#三面（2021-08-10-16-00-16-45）" class="headerlink" title="三面（2021-08-10 16:00 - 16:45）"></a>三面（2021-08-10 16:00 - 16:45）</h2><p><em><strong>主管综面</strong></em></p>
+<ol>
+<li>实习期间认为有哪些成长？</li>
+<li>你经历的最大的问题和挑战是什么？</li>
+<li>从内心上是如何感受和看待这些困难的？</li>
+<li>工作岗位分布在北京、南京、武汉、东莞，你的意向是什么？</li>
+</ol>
+<p><em><strong>反问环节</strong></em></p>
+<ol>
+<li>团队主要的工作职责？（做供应链产品开发）</li>
+<li>团队的组织架构大致是怎样的，一个小组多少人？</li>
+<li>上下班双休加班情况（周三鼓励健身、周五鼓励早下班，其他工作日弹性制（区间一小时），满足8小时就可，上班时间看城市，晚上九点有班车）</li>
+<li>有哪些定期的学习分享（mentor制，半年试用期，有一个答辩。平时会有技术栈专题的技术分享交流，团队有专门的架构师，负责产品升级迭代）</li>
+<li>半年试用期答辩的后果和影响？（淘汰制，5% - 10%，主要淘汰不适应华为工作环境的人）</li>
+<li>升职加薪周期（基本两年升一级，优秀的一年一级，非常优秀的一年两级）</li>
+<li>户口问题（看北京给的指标，每年也都不一样，需要进一步和hr沟通；工作以后排队拿户口，但过程比较复杂）</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E4%BD%9C%E6%B2%89%E6%B7%80/">工作沉淀</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/11/tech/JavaCE/Javax%E6%96%B0%E7%89%B9%E6%80%A7/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Javax新特性</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/09/tech/JavaSE/Spring-IoC-AOP/">
+                        <span class="hidden-mobile">Spring IoC & AOP</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

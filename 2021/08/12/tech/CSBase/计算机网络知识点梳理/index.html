@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>计算机网络知识点梳理 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="计算机网络知识点梳理">
+              
+                计算机网络知识点梳理
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-12 16:28" pubdate>
+        2021年8月12日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      52
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计算机网络知识点梳理</h1>
+            
+            <div class="markdown-body">
+              <h1 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h1><p>七层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。</p>
+<p>五层：物理层、数据链路层、网络层、运输层、应用层。</p>
+<p><img src="/img/2021/%E4%B8%83%E5%B1%82%E7%BD%91%E7%BB%9C%E5%AF%B9%E6%AF%94.png" srcset="/img/loading.gif" lazyload alt="七层网络对比"></p>
+<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><p><em><strong>URI和URL的区别</strong></em></p>
+<p><strong>URI(Uniform Resource Identifier)</strong> ：中文全称为统一资源标志符，主要作用是唯一标识一个资源。<br><strong>URL(Uniform Resource Location)</strong> ：中文全称为统一资源定位符，主要作用是提供资源的路径。<br>有个经典的比喻是URI像是身份证，可以唯一标识一个人，而URL更像一个住址，可以通过URL找到这个人。</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p><em><strong>DNS的定义</strong></em></p>
+<p>DNS的全称是domain name system，即域名系统。DNS是因特网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的去访问互联网而不用去记住能够被机器直接读取的IP地址。</p>
+<p>DNS要做的就是将域名解析成IP。</p>
+<p><em><strong>DNS解析域名的过程</strong></em></p>
+<ol>
+<li>在浏览器中输入 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 域名，操作系统会先检查自己本地的hosts文件是否有这个域名的映射关系，如果有，就先调用这个IP地址映射，完成域名解析；</li>
+<li>如果hosts文件中没有，则查询本地DNS解析器缓存，如果有，则完成地址解析；</li>
+<li>如果本地DNS解析器缓存中没有，则去查找本地DNS服务器，如果查到，完成解析。</li>
+<li>如果没有，则本地服务器会向根域名服务器发起查询请求。根域名服务器会告诉本地域名服务器去查询哪个顶级域名服务器；</li>
+<li>本地域名服务器向顶级域名服务器发起查询请求，顶级域名服务器会告诉本地域名服务器去查找哪个权限域名服务器；</li>
+<li>本地域名服务器向权限域名服务器发起查询请求，权限域名服务器告诉本地域名服务器<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 所对应的IP地址；</li>
+<li>本地域名服务器告诉主机<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 所对应的IP地址。</li>
+</ol>
+<blockquote>
+<p>主机向本地域名服务器的查询一般是采用递归查询，而本地域名服务器向根域名的查询一般是采用迭代查询。<br><em><strong>递归查询</strong></em>：主机向本地域名发送查询请求报文，而本地域名服务器不知道该域名对应的IP地址时，本地域名会继续向根域名发送查询请求报文，不是通知主机自己向根域名发送查询请求报文。<br><em><strong>迭代查询</strong></em>：本地域名服务器向根域名发出查询请求报文后，根域名不会继续向顶级域名服务器发送查询请求报文，而是通知本地域名服务器向顶级域名发送查询请求报文。</p>
+</blockquote>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h3 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>获取资源</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>传输实体主体</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>上传文件</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>删除文件</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>和GET方法类似，但只返回报文首部，不返回报文实体主体部分</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>对资源进行部分修改</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>查询指定的URL支持的方法</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td>要求用隧道协议连接代理</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>服务器会将通信路径返回给客户端</td>
+</tr>
+</tbody></table>
+<p><em><strong>GET和POST的差别</strong></em></p>
+<ul>
+<li><p>作用</p>
+<p>GET用于获取资源，POST用于传输实体主体</p>
+</li>
+<li><p>参数位置</p>
+<p>GET的参数放在URL中，POST的参数存储在实体主体中，并且GET方法提交的请求的URL中的数据做多是2048字节，POST请求没有大小限制。</p>
+</li>
+<li><p>安全性</p>
+<p>GET方法因为参数放在URL中，安全性相对于POST较差一些</p>
+</li>
+<li><p>幂等性</p>
+<p>GET方法是具有幂等性的，而POST方法不具有幂等性。这里幂等性指客户端连续发出多次请求，收到的结果都是一样的.</p>
+</li>
+</ul>
+<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><p>1XX</p>
+<p>100 Continue：表示正常，客户端可以继续发送请求<br>101 Switching Protocols：切换协议，服务器根据客户端的请求切换协议。<br>2XX</p>
+<p>200 OK：请求成功<br>201 Created：已创建，表示成功请求并创建了新的资源<br>202 Accepted：已接受，已接受请求，但未处理完成。<br>204 No Content：无内容，服务器成功处理，但未返回内容。<br>205 Reset Content：重置内容，服务器处理成功，客户端应重置文档视图。<br>206 Partial Content：表示客户端进行了范围请求，响应报文应包含Content-Range指定范围的实体内容<br>3XX</p>
+<p>301 Moved Permanently：永久性重定向<br>302 Found：临时重定向<br>303 See Other：和301功能类似，但要求客户端采用get方法获取资源<br>304 Not Modified：所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。<br>305 Use Proxy：所请求的资源必须通过代理访问<br>307 Temporary Redirect： 临时重定向，与302类似，要求使用get请求重定向。<br>4XX</p>
+<p>400 Bad Request：客户端请求的语法错误，服务器无法理解。<br>401 Unauthorized：表示发送的请求需要有认证信息。<br>403 Forbidden：服务器理解用户的请求，但是拒绝执行该请求<br>404 Not Found：服务器无法根据客户端的请求找到资源。<br>405 Method Not Allowed：客户端请求中的方法被禁止<br>406 Not Acceptable：服务器无法根据客户端请求的内容特性完成请求<br>408 Request Time-out：服务器等待客户端发送的请求时间过长，超时<br>5XX</p>
+<p>500 Internal Server Error：服务器内部错误，无法完成请求<br>501 Not Implemented：服务器不支持请求的功能，无法完成请求</p>
+<h3 id="HTTP-与-HTTPS-的区别"><a href="#HTTP-与-HTTPS-的区别" class="headerlink" title="HTTP 与 HTTPS 的区别"></a>HTTP 与 HTTPS 的区别</h3><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">HTTP</th>
+<th>HTTPS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">端口</td>
+<td align="center">80</td>
+<td>443</td>
+</tr>
+<tr>
+<td align="center">安全性</td>
+<td align="center">无加密，安全性较差</td>
+<td>有加密机制，安全性较高</td>
+</tr>
+<tr>
+<td align="center">资源消耗</td>
+<td align="center">较少</td>
+<td>由于加密处理，资源消耗更多</td>
+</tr>
+<tr>
+<td align="center">是否需要证书</td>
+<td align="center">不需要</td>
+<td>需要</td>
+</tr>
+<tr>
+<td align="center">协议</td>
+<td align="center">运行在TCP协议之上</td>
+<td>运行在SSL协议之上，SSL运行在TCP协议之上</td>
+</tr>
+</tbody></table>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><p><em><strong>加密过程</strong></em></p>
+<p>HTTPS使用混合加密方式，使用非对称加密来传输对称密钥来保证安全性，使用对称加密来保证通信的效率。</p>
+<ol>
+<li>客户端向服务端发起第一次握手请求，告诉服务端客户端所支持的SSL的指定版本、加密算法及密钥长度等信息。</li>
+<li>服务端将自己的公钥发给数字证书认证机构，数字证书认证机构利用自己的私钥对服务器的公钥进行数字签名，并给服务器颁发公钥证书。</li>
+<li>服务端将证书发给客服端。</li>
+<li>客服端利用数字认证机构的公钥，向数字证书认证机构验证公钥证书上的数字签名，确认服务器公开密钥的真实性。</li>
+<li>客服端使用服务端的公开密钥加密自己生成的对称密钥，发给服务端。</li>
+<li>服务端收到后利用私钥解密信息，获得客户端发来的对称密钥。</li>
+<li>通信双方可用对称密钥来加密解密信息。</li>
+</ol>
+<p><em><strong>各版本区别</strong></em></p>
+<p><strong>HTTP 1.0和HTTP 1.1</strong></p>
+<ol>
+<li>长连接<br>HTTP 1.1支持长连接和请求的流水线操作。长连接是指不在需要每次请求都重新建立一次连接，HTTP 1.0默认使用短连接，每次请求都要重新建立一次TCP连接，资源消耗较大。请求的流水线操作是指客户端在收到HTTP的响应报文之前可以先发送新的请求报文，不支持请求的流水线操作需要等到收到HTTP的响应报文后才能继续发送新的请求报文。</li>
+<li>缓存处理<br>在HTTP 1.0中主要使用header中的If-Modified-Since,Expires作为缓存判断的标准，HTTP 1.1引入了Entity tag，If-Unmodified-Since, If-Match等更多可供选择的缓存头来控制缓存策略。</li>
+<li>错误状态码<br>在HTTP 1.1新增了24个错误状态响应码</li>
+<li>HOST域<br>在HTTP 1.0 中认为每台服务器都会绑定唯一的IP地址，所以，请求中的URL并没有传递主机名。但后来一台服务器上可能存在多个虚拟机，它们共享一个IP地址，所以HTTP 1.1中请求消息和响应消息都应该支持Host域。</li>
+<li>带宽优化及网络连接的使用<br>在HTTP 1.0中会存在浪费带宽的现象，主要是因为不支持断点续传功能，客户端只是需要某个对象的一部分，服务端却将整个对象都传了过来。在HTTP 1.1中请求头引入了range头域，它支持只请求资源的某个部分，返回的状态码为206。</li>
+</ol>
+<p><strong>HTTP 2.0的新特性</strong></p>
+<ol>
+<li>新的二进制格式：HTTP 1.x的解析是基于文本，HTTP 2.0的解析采用二进制，实现方便，健壮性更好。</li>
+<li>多路复用：每一个request对应一个id，一个连接上可以有多个request，每个连接的request可以随机混在一起，这样接收方可以根据request的id将request归属到各自不同的服务端请求里。</li>
+<li>header压缩：在HTTP 1.x中，header携带大量信息，并且每次都需要重新发送，HTTP 2.0采用编码的方式减小了header的大小，同时通信双方各自缓存一份header fields表，避免了header的重复传输。</li>
+<li>服务端推送：客户端在请求一个资源时，会把相关资源一起发给客户端，这样客户端就不需要再次发起请求。</li>
+</ol>
+<h2 id="其他常见问题"><a href="#其他常见问题" class="headerlink" title="其他常见问题"></a>其他常见问题</h2><p><em><strong>在浏览器中输⼊url地址到显示主⻚的过程</strong></em></p>
+<ol>
+<li>对输入到浏览器的url进行DNS解析，将域名转换为IP地址。</li>
+<li>和目的服务器建立TCP连接</li>
+<li>向目的服务器发送HTTP请求</li>
+<li>服务器处理请求并返回HTTP报文</li>
+<li>浏览器解析并渲染页面</li>
+</ol>
+<p><em><strong>cookie 和 session</strong></em></p>
+<p>HTTP协议是无状态的，即服务器无法判断用户身份。Session和Cookie可以用来进行身份辨认。</p>
+<p><strong>Cookie</strong></p>
+<p>Cookie是保存在客户端一个小数据块，其中包含了用户信息。当客户端向服务端发起请求，服务端会像客户端浏览器发送一个Cookie，客户端会把Cookie存起来，当下次客户端再次请求服务端时，会携带上这个Cookie，服务端会通过这个Cookie来确定身份。</p>
+<p><strong>Session</strong></p>
+<p>Session是通过Cookie实现的，和Cookie不同的是，Session是存在服务端的。当客户端浏览器第一次访问服务器时，服务器会为浏览器创建一个sessionid，将sessionid放到Cookie中，存在客户端浏览器。比如浏览器访问的是购物网站，将一本《图解HTTP》放到了购物车，当浏览器再次访问服务器时，服务器会取出Cookie中的sessionid，并根据sessionid获取会话中的存储的信息，确认浏览器的身份是上次将《图解HTTP》放入到购物车那个用户。</p>
+<p><strong>Token</strong></p>
+<p>客户端在浏览器第一次访问服务端时，服务端生成的一串字符串作为Token发给客户端浏览器，下次浏览器在访问服务端时携带token即可无需验证用户名和密码，省下来大量的资源开销。</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">存放位置</th>
+<th align="center">占用空间</th>
+<th align="center">安全性</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Cookie</td>
+<td align="center">客户端浏览器</td>
+<td align="center">小</td>
+<td align="center">较低</td>
+<td>一般存放配置信息</td>
+</tr>
+<tr>
+<td align="center">Session</td>
+<td align="center">服务端</td>
+<td align="center">多</td>
+<td align="center">较高</td>
+<td>存放较为重要的信息</td>
+</tr>
+</tbody></table>
+<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="TCP报文"><a href="#TCP报文" class="headerlink" title="TCP报文"></a>TCP报文</h3><p><img src="/img/2021/TCP%E9%A6%96%E9%83%A8.webp" srcset="/img/loading.gif" lazyload alt="TCP首部"></p>
+<h3 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h3><p><em><strong>三次握手</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>握手</th>
+<th>发送端</th>
+<th>标志位</th>
+<th>序号（seq）</th>
+<th>确认号（ack）</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>client</td>
+<td>SYN=1</td>
+<td>x</td>
+<td>-</td>
+<td>CLOSE -&gt; SYN_SENT</td>
+</tr>
+<tr>
+<td>2</td>
+<td>server</td>
+<td>SYN=1 ACK=1</td>
+<td></td>
+<td>x+1</td>
+<td>CLOSE -&gt; SYN_RCVD</td>
+</tr>
+<tr>
+<td>3</td>
+<td>client</td>
+<td>ACK=1</td>
+<td>x+1</td>
+<td>y+1</td>
+<td>SYN_RCVD -&gt; ESTABLISHED</td>
+</tr>
+</tbody></table>
+<p><img src="/img/2021/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.webp" srcset="/img/loading.gif" lazyload alt="TCP三次握手"></p>
+<p><em><strong>为什么是三次握手，不是两次？</strong></em></p>
+<ol>
+<li>server给client发送的ack丢失了，client认为没有建立连接，但server认为已经建立连接，server发送数据会浪费网络资源；</li>
+<li>server接受到了一个失效的client发送的连接请求，会发送给client一个ack，但client不会发送数据，TCP连接也没有意义。</li>
+</ol>
+<p><em><strong>四次挥手</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>挥手</th>
+<th>发送端</th>
+<th>标志位</th>
+<th>序号（seq）</th>
+<th>确认号（ack）</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>client</td>
+<td>FIN=1</td>
+<td>u</td>
+<td></td>
+<td>ESTABLISHED -&gt; FIN-WAIT-1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>server</td>
+<td>ACK=1</td>
+<td>v</td>
+<td>u+1</td>
+<td>ESTABLISHED -&gt; CLOSE-WAIT <br />FIN-WAIT-1 - &gt; FIN-WAIT-2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>server</td>
+<td>FIN=1 ACK=1</td>
+<td>w</td>
+<td>u+1</td>
+<td>CLOSE-WAIT -&gt; LAST-ACK</td>
+</tr>
+<tr>
+<td>4</td>
+<td>client</td>
+<td>ACK=1</td>
+<td>u+1</td>
+<td>w+1</td>
+<td>FIN-WAIT-2 -&gt; TIME-WAIT</td>
+</tr>
+</tbody></table>
+<p><img src="/img/2021/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.webp" srcset="/img/loading.gif" lazyload alt="TCP四次挥手"></p>
+<p><em><strong>为什么是四次握手？</strong></em></p>
+<ol>
+<li>c-&gt;s-&gt;c-&gt;s ：TCP是全双工通信，第一次挥手是c不发数据了，第二次挥手是s对c不发数据的确认，第三次挥手是c收到s对c关闭连接的确认。但s还是可以单通道给c发数据的，并没有主动的释放连接。（而s对c的ack和s的FIN不能同时进行，因为如果s不主动FIN，c就会不停的给s发送FIN。）</li>
+<li>c-&gt;s, s-&gt;c, s-&gt;c：s需要一个c对其FIN的确认，否则会超时重传。</li>
+</ol>
+<p><em><strong>为什么TIME-WAIT之后要等2MSL？</strong></em></p>
+<blockquote>
+<p>MSL（Maximum Segment Lifetime）：最长报文段寿命</p>
+</blockquote>
+<ol>
+<li>可使本次TCP连接中的所有报文全部消失，不会出现在下一个TCP连接中。</li>
+<li>当第四次挥手数据包丢失，server会超时重传，client要预留出来这部分时间，否则server无法正常关闭。</li>
+</ol>
+<h3 id="可靠传输"><a href="#可靠传输" class="headerlink" title="可靠传输"></a>可靠传输</h3><p>TCP是如何保证可靠传输的？</p>
+<p>主要有校验和、序列号、超时重传、流量控制及拥塞避免等几种方法。</p>
+<p><em><strong>校验和</strong></em></p>
+<p>在发送端和接收端对数据进行校验计算，如果两者不一致，说明数据在传输中有差错，TCP讲丢弃报文。</p>
+<blockquote>
+<p>IP、UDP、TCP校验和计算方式相似，都是二进制反码运算求和再取反。区别在于IP只校验IP报文的首部，UDP和TCP校验首部和数据部分。</p>
+</blockquote>
+<p><em><strong>序列号</strong></em></p>
+<p>TCP会对每一个发送的字节进行编号，接收方接到数据后，会对发送方发送确认应答(ACK报文)，并且这个ACK报文中带有相应的确认编号，告诉发送方，下一次发送的数据从编号多少开始发。如果发送方发送相同的数据，接收端也可以通过序列号判断出，直接将数据丢弃。</p>
+<p><em><strong>重传</strong></em></p>
+<p>超时重传 ：RTT超过RTO要进行重传。</p>
+<blockquote>
+<p>RTT（Round-Trip Time） ：TCP发送报文和收到确认的时间差。<br>RTO（Retransmission Time-Out） ：超时计时器设置的超时时间。</p>
+</blockquote>
+<p>冗余确认 ：利用序列号对缺失报文段进行计数，缩短超时周期，提高重传效率。</p>
+<p><em><strong>流量控制</strong></em></p>
+<p>流量控制是匹配发送方的发送速率与接收方的读取速率。</p>
+<p>TCP提供的是一种基于滑动窗口的控制机制。</p>
+<p>接收方根据自己接收缓存的大小，动态调整接收窗口的大小通知发送方（通过调整TCP首部的“窗口”字段）；发送方根据当前网络拥塞程度确定拥塞窗口，取接受窗口和拥塞窗口的最小值作为发送窗口大小。</p>
+<p><code>接收窗口 = 接收端缓存大小</code></p>
+<p><code>发送窗口 = min&#123;接收窗口, 拥塞窗口&#125;</code></p>
+<p>拥塞窗口：由发送方根据网络拥塞状态决定。</p>
+<p><em><strong>拥塞控制</strong></em></p>
+<p>拥塞控制的过程由四部分：慢开始、拥塞避免、快重传、快恢复。</p>
+<p>慢开始：拥塞窗口初始值为1，然后指数增长，直到慢开始设定的门限。</p>
+<p>拥塞避免：拥塞窗口达到慢开始门限后开始线性增长，直到网络阻塞，调整慢开始门限为网络拥塞时窗口的一半，重新从再慢开始。</p>
+<p>快重传：当冗余确认超过预设值的时候，直接认为网络拥塞，相对拥塞避免，这是另一种认为网络拥塞的判决条件。</p>
+<p>快恢复：快重传之后，将此时的发送窗口调整为拥塞窗口的一半，进行线性增长的发送数据。</p>
+<blockquote>
+<p>流量控制和拥塞控制的区别：流量控制是点对点的，是发生在TCP连接的两个socket之间，而拥塞控制是发生在全局网络的，在主机和路由器之间。</p>
+</blockquote>
+<p><img src="/img/2021/%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E8%BF%87%E7%A8%8B.webp" srcset="/img/loading.gif" lazyload alt="拥塞控制过程"></p>
+<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p><img src="/img/2021/UDP%E9%A6%96%E9%83%A8.webp" srcset="/img/loading.gif" lazyload alt="UDP首部"></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">是否面向连接</th>
+<th align="center">可靠性</th>
+<th align="center">传输形式</th>
+<th align="center">传输效率</th>
+<th align="center">消耗资源</th>
+<th align="center">应用场景</th>
+<th align="center">首部字节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TCP</td>
+<td align="center">面向连接</td>
+<td align="center">可靠</td>
+<td align="center">字节流</td>
+<td align="center">慢</td>
+<td align="center">多</td>
+<td align="center">文件/邮件传输</td>
+<td align="center">20~60</td>
+</tr>
+<tr>
+<td align="center">UDP</td>
+<td align="center">无连接</td>
+<td align="center">不可靠</td>
+<td align="center">数据报文段</td>
+<td align="center">快</td>
+<td align="center">少</td>
+<td align="center">视频/语音传输</td>
+<td align="center">8</td>
+</tr>
+</tbody></table>
+<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><p>ARP协议的主要作用是实现从IP地址转换为MAC地址。</p>
+<p><em><strong>ARP的工作流程</strong></em></p>
+<ol>
+<li>在局域网内，主机A要向主机B发送IP数据报时，首先会在主机A的ARP缓存表中查找是否有IP地址及其对应的MAC地址，如果有，则将MAC地址写入到MAC帧的首部，并通过局域网将该MAC帧发送到MAC地址所在的主机B。</li>
+<li>如果主机A的ARP缓存表中没有主机B的IP地址及所对应的MAC地址，主机A会在局域网内广播发送一个ARP请求分组。局域网内的所有主机都会收到这个ARP请求分组。</li>
+<li>主机B在看到主机A发送的ARP请求分组中有自己的IP地址，会向主机A以单播的方式发送一个带有自己MAC地址的响应分组。</li>
+<li>主机A收到主机B的ARP响应分组后，会在ARP缓存表中写入主机B的IP地址及其IP地址对应的MAC地址。</li>
+<li>如果主机A和主机B不在同一个局域网内，必须通过路由器转发到主机B的局域网才可以通过主机B的MAC地址找到主机B。（主机A和主机B已经可以通信的情况下，主机A的ARP缓存表中存的并不是主机B的IP地址及主机B的MAC地址，而是主机B的IP地址及该通信链路上的下一跳路由器的MAC地址。这就是上图中的源IP地址和目的IP地址一直不变，而MAC地址却随着链路的不同而改变。）</li>
+</ol>
+<p><em><strong>IP地址 &amp; MAC地址</strong></em></p>
+<p>网络层实现的是主机之间的通信，而链路层实现的是链路之间的通信，所以从下图可以看出，在数据传输过程中，IP数据报的源地址(IP1)和目的地址(IP2)是一直不变的，而MAC地址(硬件地址)却一直随着链路的改变而改变。</p>
+<h2 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h2><!--补充下ICMP，和PING-->
+
+<h3 id="PING"><a href="#PING" class="headerlink" title="PING"></a>PING</h3><p>ping是ICMP(网际控制报文协议)中的一个重要应用，ICMP是网络层的协议。ping的作用是测试两个主机的连通性。</p>
+<p><em><strong>ping的工作过程</strong></em></p>
+<ol>
+<li>向目的主机发送多个ICMP回送请求报文</li>
+<li>根据目的主机返回的回送报文的时间和成功响应的次数估算出数据包往返时间及丢包率。</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/12/tech/JavaCE/Java-IO/">
+                        <span class="hidden-mobile">Java-IO</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>美团实习需求梳理 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="美团实习需求梳理">
+              
+                美团实习需求梳理
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-05 09:54" pubdate>
+        2021年8月5日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      51
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">美团实习需求梳理</h1>
+            
+            <div class="markdown-body">
+              <h1 id="充电宝微信客诉"><a href="#充电宝微信客诉" class="headerlink" title="充电宝微信客诉"></a>充电宝微信客诉</h1><h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p>用户在使用充电宝业务时，通过微信发起诉讼，微信侧要求美团侧在24小时内进行回复响应，否则默认给用户退款。美团侧客诉服务之前都是通过太平洋系统调取微信侧工单线下回访解决客诉问题的，此方案大量消耗人工资源，此需求核心价值在于为及时响应微信侧请求，减少经济损失，形成线上自动化的回复处理。</p>
+<h2 id="产品方案"><a href="#产品方案" class="headerlink" title="产品方案"></a>产品方案</h2><p>由于需求紧急，产品方案排了两期。一期方案为网管侧直接对微信侧做同步响应，回复消息写死。<!-- 二期方案后续补上 --></p>
+<p><img src="/img/2021/%E5%BE%AE%E4%BF%A1%E5%AE%A2%E8%AF%89%E4%B8%80%E6%9C%9F%E4%BA%A7%E5%93%81%E6%96%B9%E6%A1%88.jpg" srcset="/img/loading.gif" lazyload alt="微信客诉一期产品方案"></p>
+<p><img src="/img/2021/%E5%BE%AE%E4%BF%A1%E5%AE%A2%E8%AF%89%E4%BA%8C%E6%9C%9F%E4%BA%A7%E5%93%81%E6%96%B9%E6%A1%88.jpg" srcset="/img/loading.gif" lazyload alt="微信客诉二期产品方案"></p>
+<h2 id="技术方案"><a href="#技术方案" class="headerlink" title="技术方案"></a>技术方案</h2><h3 id="一期技术方案"><a href="#一期技术方案" class="headerlink" title="一期技术方案"></a>一期技术方案</h3><p>首先，要创建回调地址，在上线前告诉微信侧请求美团网关侧的回调地址。</p>
+<p>其次，要写一个controller，实现微信侧「通知回调」接口，处理微信侧的回调请求。</p>
+<p>在这个处理controller里，要实现微信侧提供的「提交回复」接口。</p>
+<!--微信客诉一期技术方案图重新画 -->
+
+<h3 id="一期技术实现"><a href="#一期技术实现" class="headerlink" title="一期技术实现"></a>一期技术实现</h3><h4 id="创建回调地址"><a href="#创建回调地址" class="headerlink" title="创建回调地址"></a>创建回调地址</h4><p><a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter10_2_2.shtml">参考文档</a></p>
+<p>在当时我的实现思路是，在controller新增了一个创建回调地址的方法，然后拿postman去请求这个controller，然后利用这个controller请求微信侧的「创建回调地址」接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/newCallbackUrl&quot;, method = RequestMethod.POST)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">newCallbackUrl</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>    String requestUrl = <span class="hljs-string">&quot;https://api.mch.weixin.qq.com/v3/merchant-service/complaint-notifications&quot;</span>;<br>    String callbackUrl = <span class="hljs-string">&quot;https://paygate-staging-yf.pay.st.meituan.com/paygate/notify/complaint/app&quot;</span>;<br>    Short payType = PayType.PAY_TYPE_WXPAYSCORE_APP; <br>    WxConfig wxConfig = WxConfig.wxConfigMap.get(payType + <span class="hljs-string">&quot;&quot;</span>); <br>    <br>    Map&lt;String, String&gt; requestMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>    requestMap.put(<span class="hljs-string">&quot;url&quot;</span>, callbackUrl);<br>    String requestMsg = JSON.toJSONString(requestMap);<br>    <span class="hljs-keyword">long</span> timestamp = WxPayUtil.getCurrentTimestamp();<br>    String nonce = WxPayUtil.generateNonceStr();<br>    String signature = SignUtil.signRSA(requestMsg, HttpRequestTypeEnum.POST, requestUrl, timestamp, nonce, wxConfig.getPrivateKey());<br>    HttpResponseModel responseModel = HttpUtils.httpPost(requestUrl, requestMsg, wxConfig.getPlatformCertificateNo(), WxPayScoreServiceImpl.getAuthorization(wxConfig, signature, timestamp, nonce), <span class="hljs-keyword">new</span> HashMap&lt;&gt;(), <span class="hljs-keyword">null</span>);<br>    <br>    Map&lt;String, String&gt; header = responseModel.getHttpHeader();<br>    String ret = JSON.toJSONString(header);<br>    String responseData = responseModel.getResponseData();<br>    ret += (<span class="hljs-string">&quot;\n&quot;</span> + responseData);<br>    System.out.println(responseData);<br>    response.setStatus(<span class="hljs-number">200</span>);<br>    response.setContentType(<span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>);<br>    response.getWriter().write(responseData);<br>    response.getWriter().flush();<br>    response.getWriter().close();<br>    <br>    <span class="hljs-keyword">return</span> ret;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="业务线处理函数"><a href="#业务线处理函数" class="headerlink" title="业务线处理函数"></a>业务线处理函数</h4><p>微信提供了若干种支付方式：JSAPI、APP、H5、Native、小程序等。由于充电宝业务只接入了Native和小程序两个接口。所以在处理的时候，要分别进行响应处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/app/complaint&quot;, method = RequestMethod.POST)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">app</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;<br>    response.setStatus(<span class="hljs-number">500</span>);<br>    Short payType = PayType.PAY_TYPE_WXPAYSCORE_APP;<br>    doProcess(payType, request, response);<span class="hljs-comment">//APP</span><br>&#125;<br><br><span class="hljs-meta">@RequestMapping(value = &quot;/applets/complaint&quot;, method = RequestMethod.POST)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">applets</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;<br>    response.setStatus(<span class="hljs-number">500</span>);<br>    Short payType = PayType.PAY_TYPE_WXPAYSCORE_APPLETS;<br>    doProcess(payType, request, response);<span class="hljs-comment">//小程序</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="处理函数"><a href="#处理函数" class="headerlink" title="处理函数"></a>处理函数</h4><p>整个处理部分包含了三个部分：</p>
+<ol>
+<li>加签</li>
+<li>响应回调请求</li>
+<li>调用回复接口</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doProcess</span><span class="hljs-params">(Short payType, HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;<br>    WxConfig wxConfig = WxConfig.wxConfigMap.get(payType + <span class="hljs-string">&quot;&quot;</span>);<br>    <span class="hljs-keyword">try</span> &#123;<br>        String reqContext = WxUtil.parseReqByte(request);<br>        Map&lt;String, Object&gt; reqMap = <span class="hljs-keyword">new</span> Gson().fromJson(reqContext, HashMap.class);<br>        log.info(<span class="hljs-string">&quot;WxPayComplaint request payType:&#123;&#125;, data:&#123;&#125;&quot;</span>, payType, reqMap);<br>        <span class="hljs-keyword">if</span> (reqMap == <span class="hljs-keyword">null</span> || reqMap.size() &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <br>        Map&lt;String, String&gt; reqWxResource = (Map&lt;String, String&gt;) reqMap.get(<span class="hljs-string">&quot;resource&quot;</span>);<br>        String notifyContext = WxPayUtil.decryptToString(wxConfig.getApiKey(), String.valueOf(reqWxResource.get(<span class="hljs-string">&quot;associated_data&quot;</span>)),<br>                String.valueOf(reqWxResource.get(<span class="hljs-string">&quot;nonce&quot;</span>)), String.valueOf(reqWxResource.get(<span class="hljs-string">&quot;ciphertext&quot;</span>)));<br>        Map&lt;String, String&gt; notifyContextMap = WxUtil.jsonStrToMap(notifyContext);<br>        String msgId = String.valueOf(reqMap.get(<span class="hljs-string">&quot;id&quot;</span>));<br>        String complaintID = notifyContextMap.get(<span class="hljs-string">&quot;complaint_id&quot;</span>);<br>        String complainedMchId = wxConfig.getMchId();<br>        String actionType = notifyContextMap.get(<span class="hljs-string">&quot;action_type&quot;</span>);<br>        log.info(<span class="hljs-string">&quot;msgId:&#123;&#125;,complaintId:&#123;&#125;,actionType:&#123;&#125;&quot;</span>, msgId, complaintID, actionType);<br>        <br>        response.setStatus(<span class="hljs-number">200</span>);<br>        response.setContentType(<span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>);<br>        response.setHeader(<span class="hljs-string">&quot;Pragma&quot;</span>, <span class="hljs-string">&quot;No-cache&quot;</span>);<br>        response.setHeader(<span class="hljs-string">&quot;Cache-Control&quot;</span>, <span class="hljs-string">&quot;no-cache&quot;</span>);<br>        response.setDateHeader(<span class="hljs-string">&quot;Expires&quot;</span>, <span class="hljs-number">0</span>);<br>        Map&lt;String, String&gt; responseMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>        responseMap.put(<span class="hljs-string">&quot;code&quot;</span>, <span class="hljs-string">&quot;SUCCESS&quot;</span>);<br>        responseMap.put(<span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-string">&quot;成功&quot;</span>);<br>        response.getWriter().write(<span class="hljs-keyword">new</span> Gson().toJson(responseMap));<br>        response.getWriter().flush();<br>        response.getWriter().close();<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;CREATE_COMPLAINT&quot;</span>.equals(actionType) || <span class="hljs-string">&quot;CONTINUE_COMPLAINT&quot;</span>.equals(actionType)) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++) &#123;<br>                <span class="hljs-keyword">if</span> (submitResponse(complaintID, complainedMchId, wxConfig)) <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        log.error(<span class="hljs-string">&quot;wxComplaint response notify error: &#123;&#125;&quot;</span>, ExceptionUtils.getStackTrace(e));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="回复接口实现"><a href="#回复接口实现" class="headerlink" title="回复接口实现"></a>回复接口实现</h4><p><a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter10_2_14.shtml">参考文档</a></p>
+<p>根据微信侧提供的接口文档，必传参数包括商户id和回复内容，这里的商户id是从微信侧回调报文中获取的，回复内容是写死的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">submitResponse</span><span class="hljs-params">(String complaintID, String complainedMchid, WxConfig wxConfig)</span> <span class="hljs-keyword">throws</span> SendException </span>&#123;<br>    String responseContent = <span class="hljs-string">&quot;您的反馈已经收到，我们将尽快联系您处理。&quot;</span>;<br>    String suffixUrl = String.format(WxConstants.COMPLAINTS_RESPONSE_URI_SUFFIX, complaintID);<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">long</span> timestamp = WxPayUtil.getCurrentTimestamp();<br>        Map&lt;String, String&gt; requestMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>        requestMap.put(<span class="hljs-string">&quot;complainted_mchid&quot;</span>, complainedMchid);<br>        requestMap.put(<span class="hljs-string">&quot;response_content&quot;</span>, responseContent);<br>        String requestMsg = <span class="hljs-keyword">new</span> Gson().toJson(requestMap);<br>        String nonce = WxPayUtil.generateNonceStr();<br>        String signature = SignUtil.signRSA(requestMsg, HttpRequestTypeEnum.POST, suffixUrl, timestamp, nonce, wxConfig.getPrivateKey());<br>        <span class="hljs-comment">// 打印 发送的报文</span><br>        HttpResponseModel responseModel = HttpUtils.httpPost(WxPayUtil.url + suffixUrl, requestMsg, wxConfig.getPlatformCertificateNo(),<br>                WxPayScoreServiceImpl.getAuthorization(wxConfig, signature, timestamp, nonce), <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);<br>        <span class="hljs-keyword">if</span> (responseModel != <span class="hljs-keyword">null</span> &amp;&amp; responseModel.getHttpStatusCode() == <span class="hljs-number">204</span>) &#123;<br>            log.info(<span class="hljs-string">&quot;submitResponse success&quot;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            log.info(<span class="hljs-string">&quot;submitResponse error&quot;</span>);<br>            <span class="hljs-keyword">if</span> (responseModel != <span class="hljs-keyword">null</span>) &#123;<br>                log.info(<span class="hljs-string">&quot;submitResponse return: \n httpStatusCode:&#123;&#125;, httpHeader: &#123;&#125;, responseData: &#123;&#125;&quot;</span>,<br>                        responseModel.getHttpStatusCode(), <span class="hljs-keyword">new</span> Gson().toJson(responseModel.getHttpHeader()), responseModel.getResponseData());<br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        log.error(<span class="hljs-string">&quot;submit response error:&#123;&#125;&quot;</span>, ExceptionUtils.getStackTrace(e));<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="签名方式"><a href="#签名方式" class="headerlink" title="签名方式"></a>签名方式</h3><p>微信侧约定的签名方式是RSA加密。</p>
+<p>整个给微信侧签名过程是怎样的？<br>参考：<a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/doc/apiv3/wechatpay/wechatpay4_0.shtml">签名方案</a>、<a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/doc/apiv3/wechatpay/wechatpay4_0.shtml">验签方案</a></p>
+<h1 id="单车接入支付宝代扣"><a href="#单车接入支付宝代扣" class="headerlink" title="单车接入支付宝代扣"></a>单车接入支付宝代扣</h1><h2 id="项目背景-1"><a href="#项目背景-1" class="headerlink" title="项目背景"></a>项目背景</h2><p>微信侧要下线单车场景自动续费做产品升级，考虑到用户量较大，美团临时新增支付宝代扣功能。</p>
+<h2 id="产品方案-1"><a href="#产品方案-1" class="headerlink" title="产品方案"></a>产品方案</h2><p>之前美团已经将打车业务接入到支付宝代扣能力建设中，根据和支付宝侧沟通，单车场景接入只需要在签约接口新增子商户字段，此行为不影响其他支付退款接口。</p>
+<p><img src="/img/2021/%E6%94%AF%E4%BB%98%E5%AE%9D%E4%BB%A3%E6%89%A3%E7%AD%BE%E7%BA%A6%E6%B5%81%E7%A8%8B%EF%BC%88%E5%85%A8%E9%93%BE%E8%B7%AF%EF%BC%89.jpg" srcset="/img/loading.gif" lazyload alt="支付宝代扣签约流程（全链路）"></p>
+<h2 id="技术方案-1"><a href="#技术方案-1" class="headerlink" title="技术方案"></a>技术方案</h2><p>通过thrift文件声明一个子商户对象，其中包含若干字段。通过thrift文件生成工具导出为java文件，给上游提供SDK。</p>
+<p>在开发过程中，涉及签约接口的部分，要将新添加的字段封装到reqMap中，为请求下游数据封装做铺垫。</p>
+<h3 id="RPC框架"><a href="#RPC框架" class="headerlink" title="RPC框架"></a>RPC框架</h3><h4 id="为什么要用RPC框架？"><a href="#为什么要用RPC框架？" class="headerlink" title="为什么要用RPC框架？"></a>为什么要用RPC框架？</h4><p>对于RPC的解释：</p>
+<blockquote>
+<p>RPC为远程调用服务，调用远端的服务的就像直接在本地调用，本质上来说是一种c/s服务。</p>
+</blockquote>
+<p>在c/s架构服务中，分布式系统采用http通信和采用RPC框架通信的对比分析：</p>
+<ol>
+<li>从网络资源消耗角度来说，如果业务量庞大，需要反复握手，会有额外的网络开销，RPC框架可以选择合适的通信协议，减少网络开销；</li>
+<li>从代码开发角度来说，网络通信代码相对冗余，RPC可以类似本地调用一样，写起来简单方便；</li>
+<li>RPC框架一般会有服务注册中心模块，通过该模块，可以实现服务的负载和故障迁移。</li>
+</ol>
+<h4 id="thrift的优势有哪些？"><a href="#thrift的优势有哪些？" class="headerlink" title="thrift的优势有哪些？"></a>thrift的优势有哪些？</h4><ol>
+<li>提供了多种数据序列化方式,常用的binary、json数据序列化格式；</li>
+<li>支持代码自动生成:可以根据thrift文件定义协议,然后自动生成客户端代码；</li>
+<li>支持跨语言调用，公司内部使用多种语言，如java、php等，RPC框架可以考虑使用thrift。</li>
+</ol>
+<h1 id="DCEP"><a href="#DCEP" class="headerlink" title="DCEP"></a>DCEP</h1><h2 id="接口组织结构"><a href="#接口组织结构" class="headerlink" title="接口组织结构"></a>接口组织结构</h2><h3 id="基础服务接口"><a href="#基础服务接口" class="headerlink" title="基础服务接口"></a>基础服务接口</h3><p>基础服务接口包含支付、支付查询、退款、退款查询。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.meituan.pay.paygw.service;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IBaseService</span> </span>&#123;<br>    <span class="hljs-function">String <span class="hljs-title">pay</span><span class="hljs-params">(Map&lt;String, String&gt; reqMap)</span></span>;<br>    <br>    <span class="hljs-function">String <span class="hljs-title">payQuery</span><span class="hljs-params">(Map&lt;String, String&gt; reqMap)</span></span>;<br>    <br>    <span class="hljs-function">String <span class="hljs-title">refund</span><span class="hljs-params">(Map&lt;String, String&gt; reqMap)</span></span>;<br>    <br>    <span class="hljs-function">String <span class="hljs-title">refundQuery</span><span class="hljs-params">(Map&lt;String, String&gt; reqMap)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="dcep通道当前扩展的子接口"><a href="#dcep通道当前扩展的子接口" class="headerlink" title="dcep通道当前扩展的子接口"></a>dcep通道当前扩展的子接口</h3><p>dcep扩展的子接口有：开通白名单、发红包、钱包开立状态查询、发红包。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.meituan.pay.paygw.service;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IAllowListService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IBaseService</span></span>&#123;<br>    <br>    <span class="hljs-function">AllowListRespVo <span class="hljs-title">supportAllowList</span><span class="hljs-params">(AllowListReqVo allowListReqVo, AllowListRespVo allowListRespVo)</span></span>;<br>    <br>    <span class="hljs-function">RedPctRespVo <span class="hljs-title">supportRedPct</span><span class="hljs-params">(RedPctReqVo redPctReqVo, RedPctRespVo respVo)</span></span>;<br>    <br>    <span class="hljs-function">WalletStateQueryRespVo <span class="hljs-title">walletStateQuery</span><span class="hljs-params">(WalletStateQueryReqVo walletStateQueryReqVo, WalletStateQueryRespVo respVo)</span></span>;<br>    <br>    <span class="hljs-function">RedPctQueryRespVo <span class="hljs-title">redPctQuery</span><span class="hljs-params">(RedPctQueryReqVo redPctQueryReqVo, RedPctQueryRespVo respVo)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="具体开发流程"><a href="#具体开发流程" class="headerlink" title="具体开发流程"></a>具体开发流程</h2><p>接口具体实现方法主要有三个步骤：</p>
+<ol>
+<li>组装上游参数</li>
+<li>给下游发送请求并解析响应</li>
+<li>构建响应信息返回给上游</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br></pre></td><td class="code"><pre><code class="hljs java">  <br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 构建红包余额返回参数</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> respStr</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> respVo</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> payType</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> RedPctQueryRespVo <span class="hljs-title">buildRedPctQueryRes</span><span class="hljs-params">(String respStr, RedPctQueryRespVo respVo, String payType)</span> </span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        TokenRedPctQueryResp resp = dcepPsbcConfig.parsePsbcCommonRtn(respStr, TokenRedPctQueryResp.class, payType);<br>        <span class="hljs-keyword">if</span> (resp == <span class="hljs-keyword">null</span> || resp.getHead() == <span class="hljs-keyword">null</span> || resp.getBody() ==<span class="hljs-keyword">null</span>)  &#123;<br>            log.error(<span class="hljs-string">&quot;buildRedPctQueryRes error resp is null&quot;</span>);<br>            respVo.response.setErrorCode(ErrorCodeConfig.PAYGATE_COMMON_ERR);<br>            <span class="hljs-keyword">return</span> respVo;<br>        &#125;<br>        logHandler.logBankInter(<span class="hljs-string">&quot;dcep psbc buildRedPctQueryRes response:&quot;</span> + JacksonUtil.toJson(resp));<br>        <br>        String respCode = resp.getBody().getRespCode();<br>        String respMsg = resp.getBody().getRespMsg();<br>        String outNo = resp.getBody().getBusiMainId();<br>        <span class="hljs-keyword">if</span> (BANK_RESP_OK.equalsIgnoreCase(respCode)) &#123;<br>            respVo.setOutNo(outNo);<br>            List&lt;PsbcRedPctActInfo&gt; redPctActInfoList = resp.getBody().getRedpctActInfoList();<br>            List&lt;Object&gt; objectList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>            <span class="hljs-keyword">for</span> (PsbcRedPctActInfo item : redPctActInfoList) &#123;<br>                RedPctActInfo redPctActInfo = <span class="hljs-keyword">new</span> RedPctActInfo();<br>                redPctActInfo.setRedPctActNo(item.getRedpctActNo());<br>                <span class="hljs-keyword">if</span> (!<span class="hljs-string">&quot;#.##&quot;</span>.equals(item.getRedpctActBal()) &amp;&amp; StringUtils.isNotBlank(item.getRedpctActBal())) &#123;<br>                    redPctActInfo.setRedPctActBal(AmountUtils.y2fLong(item.getRedpctActBal()) + <span class="hljs-string">&quot;&quot;</span>);<br>                &#125;<br>                redPctActInfo.setRedPctActCode(item.getRedpctActCode());<br>                redPctActInfo.setRedPctActMsg(item.getRedpctActMsg());<br>                objectList.add(redPctActInfo);<br>            &#125;<br>            List&lt;RedPctActInfo&gt; redpctActInfoList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>            <span class="hljs-keyword">for</span> (Object item: objectList) &#123;<br>                redpctActInfoList.add((RedPctActInfo) item);<br>            &#125;<br>            respVo.setRedPctActInfoList(redpctActInfoList);<br>            respVo.response.setSuccess(<span class="hljs-keyword">true</span>);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            respVo.response.setSuccess(<span class="hljs-keyword">false</span>);<br>            String gwRtnCode = <span class="hljs-keyword">this</span>.bankCodeToGwRtnCode(respCode, RedPctQueryRespVo.class);<br>            respVo.response.setErrorCode(gwRtnCode);<br>            respVo.response.setErrorMsg(respMsg);<br>            respVo.response.setThirdErrorCode(respCode);<br>            respVo.response.setThirdErrorMsg(respMsg);<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        log.error(<span class="hljs-string">&quot;buildRedPctQueryRes error: &#123;&#125;&quot;</span>, ExceptionUtils.getStackTrace(e));<br>        respVo.response.setErrorCode(ErrorCodeConfig.PAYGATE_COMMON_ERR);<br>    &#125;<br>    <span class="hljs-keyword">return</span> respVo;<br>&#125;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 构建红包余额请求参数</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">* <span class="hljs-doctag">@throws</span> PreSendException</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> Map&lt;String, String&gt; <span class="hljs-title">buildRedPctQueryParams</span><span class="hljs-params">(RedPctQueryReqVo redPctQueryReqVo)</span> <span class="hljs-keyword">throws</span> PreSendException </span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 组装参数</span><br>        TokenRedPctQueryReq req = <span class="hljs-keyword">new</span> TokenRedPctQueryReq();<br>        TokenRedPctQueryReq.Head head = req.<span class="hljs-function">new <span class="hljs-title">Head</span><span class="hljs-params">()</span></span>;<br>        head.setPartnerTxSriNo(fmt.format(<span class="hljs-keyword">new</span> Date())+LeafIdGenUtil.getIdByDigit(Config.LEAF_ID,<span class="hljs-number">10</span>));<br>        head.setMethod(dcepPsbcConfig.RED_PCT_QUERY_METHOD);<br>        head.setVersion(dcepPsbcConfig.VERSION);<br>        head.setMerchantId(MtConfigUtils.getMccVal(dcepPsbcConfig.MERCHANT_ID));<br>        head.setAppID(MtConfigUtils.getMccVal(dcepPsbcConfig.APP_ID));<br>        head.setReqTime(fmt.format(<span class="hljs-keyword">new</span> Date()));<br>        head.setAccessType(dcepPsbcConfig.ACCESS_TYPE);<br>        head.setReserve(<span class="hljs-string">&quot;&quot;</span>);<br>        req.setHead(head);<br><br>        TokenRedPctQueryReq.Body body = req.n<span class="hljs-function">ew <span class="hljs-title">Body</span><span class="hljs-params">()</span></span>;<br>        body.setBusiMainId(redPctQueryReqVo.getOutNo());<br>        body.setReqTransTime(fmt.format(<span class="hljs-keyword">new</span> Date()));<br>        body.setPhone(redPctQueryReqVo.getUserCellphone());<br>        List&lt;RedPctActInfo&gt; redPctActInfoList = redPctQueryReqVo.getRedPctActInfoList();<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">null</span> == redPctActInfoList || redPctActInfoList.isEmpty() || StringUtils.isBlank(redPctActInfoList.get(<span class="hljs-number">0</span>).getRedPctActNo())) &#123;<br>            log.error(<span class="hljs-string">&quot;RedPctActNo can&#x27;t be empty&quot;</span>);<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> PreSendException(ErrorCodeConfig.ILLEGAL_ARGUMENT);<br>        &#125;<br>        List&lt;String&gt; redpctActList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-keyword">for</span> (RedPctActInfo item: redPctActInfoList) &#123;<br>            redpctActList.add(item.getRedPctActNo());<br>        &#125;<br>        body.setRedpctActList(redpctActList);<br>        body.setWltId(MtConfigUtils.getMccVal(DcepPsbcConfig.WltId));<br>        req.setBody(body);<br><br>        <span class="hljs-keyword">return</span> dcepPsbcConfig.assemblePsbcCommonReq(req, redPctQueryReqVo.getPayType()+<span class="hljs-string">&quot;&quot;</span>);<br>    &#125; <span class="hljs-keyword">catch</span> (PreSendException e) &#123;<br>        <span class="hljs-keyword">throw</span> e;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        log.error(<span class="hljs-string">&quot;buildWalletStateQueryParams error :&#123;&#125;&quot;</span>, ExceptionUtils.getStackTrace(e));<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> PreSendException(ErrorCodeConfig.ILLEGAL_ARGUMENT);<br>    &#125;<br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">doPostWithContentType</span><span class="hljs-params">(String urlStr, String reqContent, <span class="hljs-keyword">int</span> connectTimeout, <span class="hljs-keyword">int</span> socketTimeout, String encoding)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    StringBuilder resStr = <span class="hljs-keyword">new</span> StringBuilder();<br>    BufferedReader in = <span class="hljs-keyword">null</span>;<br>    HttpURLConnection connection = <span class="hljs-keyword">null</span>;<br>    HttpsURLConnection connections = <span class="hljs-keyword">null</span>;<br>    OutputStream out = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-keyword">boolean</span> isOnline = CommonConfig.isOnline();<br><br>    <span class="hljs-comment">//设置信任所有站点证书</span><br>    trustAllHosts();<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        URL url = <span class="hljs-keyword">new</span> URL(urlStr);<br><br>        <span class="hljs-keyword">if</span>(<span class="hljs-string">&quot;https&quot;</span>.equals(urlStr.substring(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>)))&#123;<br>            <span class="hljs-comment">//https</span><br>            connections = (HttpsURLConnection) url.openConnection();<br>            connections.setConnectTimeout(connectTimeout);<br>            connections.setReadTimeout(socketTimeout);<br>            connections.setRequestMethod(<span class="hljs-string">&quot;POST&quot;</span>);<br>            connections.setDoOutput(<span class="hljs-keyword">true</span>);<br>            connections.setRequestProperty(<span class="hljs-string">&quot;accept&quot;</span>, <span class="hljs-string">&quot;*/*&quot;</span>);<br>            connections.setRequestProperty(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>);<br>            connections.setRequestProperty(<span class="hljs-string">&quot;Content-Length&quot;</span>, reqContent.length()+<span class="hljs-string">&quot;&quot;</span>);<br>            <span class="hljs-comment">//服务端站点证书与域名不匹配时需要设置不校验域名</span><br>            connections.setHostnameVerifier(<span class="hljs-keyword">new</span> MyHostnameVerifier());<br><br>            logger.info(<span class="hljs-string">&quot;https connecting...&quot;</span>);<br>            connections.connect();<br>            logger.info(<span class="hljs-string">&quot;https connected!&quot;</span>);<br><br>            out = connections.getOutputStream();<br>            out.write(reqContent.getBytes(encoding));<br><br>            String httpCode = Integer.toString(connections.getResponseCode());<br>            logger.info(<span class="hljs-string">&quot;httpCode:&#123;&#125;&quot;</span>,httpCode);<br>            <span class="hljs-keyword">if</span>(!<span class="hljs-string">&quot;200&quot;</span>.equals(httpCode)) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">&quot;HTTPS通信失败:&quot;</span> + httpCode);<br>            &#125;<br>            <span class="hljs-comment">//</span><br>            in = <span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> InputStreamReader(connections.getInputStream(), encoding));<br>            String line;<br>            <span class="hljs-keyword">while</span>((line = in.readLine()) != <span class="hljs-keyword">null</span>) &#123;<br>                resStr.append(line).append(<span class="hljs-string">&quot;\r\n&quot;</span>);<br>            &#125;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">//http</span><br>            connection = (HttpURLConnection) url.openConnection();<br>            connection.setConnectTimeout(connectTimeout);<br>            connection.setReadTimeout(socketTimeout);<br>            connection.setRequestMethod(<span class="hljs-string">&quot;POST&quot;</span>);<br>            connection.setDoOutput(<span class="hljs-keyword">true</span>);<br>            connection.setRequestProperty(<span class="hljs-string">&quot;accept&quot;</span>, <span class="hljs-string">&quot;*/*&quot;</span>);<br>            connection.setRequestProperty(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>);<br>            connection.setRequestProperty(<span class="hljs-string">&quot;Content-Length&quot;</span>, reqContent.length()+<span class="hljs-string">&quot;&quot;</span>);<br><br>            logger.info(<span class="hljs-string">&quot;http connecting...&quot;</span>);<br>            connection.connect();<br>            logger.info(<span class="hljs-string">&quot;http connected!&quot;</span>);<br><br>            out = connection.getOutputStream();<br>            out.write(reqContent.getBytes(encoding));<br><br>            String httpCode = Integer.toString(connection.getResponseCode());<br>            logger.info(<span class="hljs-string">&quot;httpCode:&#123;&#125;&quot;</span>,httpCode);<br>            <span class="hljs-keyword">if</span>(!<span class="hljs-string">&quot;200&quot;</span>.equals(httpCode)) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">&quot;HTTP通信失败:&quot;</span> + httpCode);<br>            &#125;<br>            <span class="hljs-comment">//</span><br>            in = <span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> InputStreamReader(connection.getInputStream(), encoding));<br>            String line;<br>            <span class="hljs-keyword">while</span>((line = in.readLine()) != <span class="hljs-keyword">null</span>) &#123;<br>                resStr.append(line).append(<span class="hljs-string">&quot;\r\n&quot;</span>);<br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span>(Exception e) &#123;<br>        <span class="hljs-keyword">throw</span> e;<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">if</span>(out != <span class="hljs-keyword">null</span>) &#123;<br>                out.close();<br>            &#125;<br>            <span class="hljs-keyword">if</span>(connection != <span class="hljs-keyword">null</span>) &#123;<br>                connection.disconnect();<br>            &#125;<br>            <span class="hljs-keyword">if</span>(connections != <span class="hljs-keyword">null</span>) &#123;<br>                connections.disconnect();<br>            &#125;<br>            <span class="hljs-keyword">if</span>(in != <span class="hljs-keyword">null</span>) &#123;<br>                in.close();<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            out = <span class="hljs-keyword">null</span>;<br>            in = <span class="hljs-keyword">null</span>;<br>            connection = <span class="hljs-keyword">null</span>;<br>            logger.error(<span class="hljs-string">&quot;exception while sendByHttps/Http:&quot;</span> + e);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> resStr.toString();<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 构建红包余额返回参数</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> respStr</span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> respVo</span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> payType</span><br><span class="hljs-comment">* <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> RedPctQueryRespVo <span class="hljs-title">buildRedPctQueryRes</span><span class="hljs-params">(String respStr, RedPctQueryRespVo respVo, String payType)</span> </span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        TokenRedPctQueryResp resp = dcepPsbcConfig.parsePsbcCommonRtn(respStr, TokenRedPctQueryResp.class, payType);<br>        <span class="hljs-keyword">if</span> (resp == <span class="hljs-keyword">null</span> || resp.getHead() == <span class="hljs-keyword">null</span> || resp.getBody() ==<span class="hljs-keyword">null</span>)  &#123;<br>            log.error(<span class="hljs-string">&quot;buildRedPctQueryRes error resp is null&quot;</span>);<br>            respVo.response.setErrorCode(ErrorCodeConfig.PAYGATE_COMMON_ERR);<br>            <span class="hljs-keyword">return</span> respVo;<br>        &#125;<br>        logHandler.logBankInter(<span class="hljs-string">&quot;dcep psbc buildRedPctQueryRes response:&quot;</span> + JacksonUtil.toJson(resp));<br><br>        String respCode = resp.getBody().getRespCode();<br>        String respMsg = resp.getBody().getRespMsg();<br>        String outNo = resp.getBody().getBusiMainId();<br>        <span class="hljs-keyword">if</span> (BANK_RESP_OK.equalsIgnoreCase(respCode)) &#123;<br>            respVo.setOutNo(outNo);<br>            List&lt;PsbcRedPctActInfo&gt; redPctActInfoList = resp.getBody().getRedpctActInfoList();<br>            List&lt;Object&gt; objectList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>            <span class="hljs-keyword">for</span> (PsbcRedPctActInfo item : redPctActInfoList) &#123;<br>                RedPctActInfo redPctActInfo = <span class="hljs-keyword">new</span> RedPctActInfo();<br>                redPctActInfo.setRedPctActNo(item.getRedpctActNo());<br>                <span class="hljs-keyword">if</span> (!<span class="hljs-string">&quot;#.##&quot;</span>.equals(item.getRedpctActBal()) &amp;&amp; StringUtils.isNotBlank(item.getRedpctActBal())) &#123;<br>                    redPctActInfo.setRedPctActBal(AmountUtils.y2fLong(item.getRedpctActBal()) + <span class="hljs-string">&quot;&quot;</span>);<br>                &#125;<br>                redPctActInfo.setRedPctActCode(item.getRedpctActCode());<br>                redPctActInfo.setRedPctActMsg(item.getRedpctActMsg());<br>                objectList.add(redPctActInfo);<br>            &#125;<br>            List&lt;RedPctActInfo&gt; redpctActInfoList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>            <span class="hljs-keyword">for</span> (Object item: objectList) &#123;<br>                redpctActInfoList.add((RedPctActInfo) item);<br>            &#125;<br>            respVo.setRedPctActInfoList(redpctActInfoList);<br>            respVo.response.setSuccess(<span class="hljs-keyword">true</span>);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            respVo.response.setSuccess(<span class="hljs-keyword">false</span>);<br>            String gwRtnCode = <span class="hljs-keyword">this</span>.bankCodeToGwRtnCode(respCode, RedPctQueryRespVo.class);<br>            respVo.response.setErrorCode(gwRtnCode);<br>            respVo.response.setErrorMsg(respMsg);<br>            respVo.response.setThirdErrorCode(respCode);<br>            respVo.response.setThirdErrorMsg(respMsg);<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        log.error(<span class="hljs-string">&quot;buildRedPctQueryRes error: &#123;&#125;&quot;</span>, ExceptionUtils.getStackTrace(e));<br>        respVo.response.setErrorCode(ErrorCodeConfig.PAYGATE_COMMON_ERR);<br>    &#125;<br>    <span class="hljs-keyword">return</span> respVo;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="DCEP全链路梳理"><a href="#DCEP全链路梳理" class="headerlink" title="DCEP全链路梳理"></a>DCEP全链路梳理</h2><h3 id="网关接口调用关系"><a href="#网关接口调用关系" class="headerlink" title="网关接口调用关系"></a>网关接口调用关系</h3><p><img src="/img/2021/dcep%E7%BB%91%E5%AE%9A%E8%A7%A3%E7%BB%91%E6%B5%81%E7%A8%8B.jpg" srcset="/img/loading.gif" lazyload alt="dcep绑定解绑流程"></p>
+<p><img src="/img/2021/dcep%E6%94%AF%E4%BB%98%E9%80%80%E6%AC%BE%E6%B5%81%E7%A8%8B.jpg" srcset="/img/loading.gif" lazyload alt="dcep支付退款流程"></p>
+<p><img src="/img/2021/dcep%E8%B4%A6%E5%8D%95%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.jpg" srcset="/img/loading.gif" lazyload alt="dcep账单处理流程"></p>
+<h1 id="网关新平台建设"><a href="#网关新平台建设" class="headerlink" title="网关新平台建设"></a>网关新平台建设</h1><h2 id="需求点"><a href="#需求点" class="headerlink" title="需求点"></a>需求点</h2><ol>
+<li>工具类：JSON格式校验，拼接JSON</li>
+<li>分页查询</li>
+<li>页面迁移</li>
+</ol>
+<h2 id="前后端交互流程"><a href="#前后端交互流程" class="headerlink" title="前后端交互流程"></a>前后端交互流程</h2><h2 id="技术点"><a href="#技术点" class="headerlink" title="技术点"></a>技术点</h2><h3 id="数据库读写分离"><a href="#数据库读写分离" class="headerlink" title="数据库读写分离"></a>数据库读写分离</h3><p>MySQL读写分离，索引，最左匹配原则。</p>
+<h3 id="Spring-MVC原理"><a href="#Spring-MVC原理" class="headerlink" title="Spring MVC原理"></a>Spring MVC原理</h3><p>从Spring MVC原理出发，解释页面迁移的过程。</p>
+<h1 id="技术细节梳理"><a href="#技术细节梳理" class="headerlink" title="技术细节梳理"></a>技术细节梳理</h1><h2 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h2><h3 id="dcep"><a href="#dcep" class="headerlink" title="dcep"></a>dcep</h3><ol>
+<li>生成sm4key并对明文用sm4key对称加密</li>
+<li>使用sm2对sm4key和publickey进行加密得到加密的sm4key</li>
+<li>将加密请求报文和加密sm4key拼装成传输报文，再用私钥进行加密</li>
+<li></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/05/tech/middleware/Redis%E6%A2%B3%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Redis梳理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/01/tech/JavaCE/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                        <span class="hidden-mobile">Java多线程-线程池</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

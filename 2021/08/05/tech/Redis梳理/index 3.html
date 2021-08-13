@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>Redis梳理 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Redis梳理">
+              
+                Redis梳理
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-05 16:07" pubdate>
+        2021年8月5日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      47
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Redis梳理</h1>
+            
+            <div class="markdown-body">
+              <h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><p>Redis基本数据结构有：String、List、Hash、Set、SortedSet</p>
+<h3 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h3><p>操作复杂度：在SortedSet中添加、删除或更新一个成员都是非常快速的操作，其时间复杂度为<strong>logN</strong>。</p>
+<p>SortedSet底层采用字典+跳跃表两种数据结构，来保存有序集元素。字典是通过哈希表来实现的。</p>
+<p><img src="/img/2021/zset%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.jpg" srcset="/img/loading.gif" lazyload alt="zset数据结构"></p>
+<h3 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h3><h2 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h2><p>Redis支持RDB持久化、AOF持久化、RDB-AOF混合持久化这三种持久化方式。</p>
+<h3 id="RDB持久化"><a href="#RDB持久化" class="headerlink" title="RDB持久化"></a>RDB持久化</h3><p><em><strong>概要</strong></em></p>
+<ol>
+<li>RDB持久化是Redis默认的持久化方式；</li>
+<li>工作原理是周期性地以快照的形式将数据持久化到硬盘中；</li>
+<li>通过BGSAVE命令操作。 <!--bgsave怎么用再看一下--></li>
+</ol>
+<p><em><strong>持久化过程</strong></em></p>
+<ol>
+<li><code>bgsave</code>命令让父进程fork一个子进程（进行一个判断，如果父进程已经有了一个子进程就直接返回）；</li>
+<li>父进程fork完了之后处理其他任务，同时，子进程将父进程内存中的数据写到.rdb文件持久化到硬盘中；（os通过CopyOnWrite解决数据更新引发的冲突）</li>
+<li>子进程持久化完了之后，通知父进程更新.rdb文件。</li>
+</ol>
+<p><img src="/img/2021/RDB%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="RDB持久化过程"></p>
+<h3 id="AOF持久化"><a href="#AOF持久化" class="headerlink" title="AOF持久化"></a>AOF持久化</h3><p><em><strong>概要</strong></em></p>
+<ol>
+<li>AOF持久化以独立日志的方式，记录每次写入的命令；</li>
+<li>AOF持久化的实时性更好，但存在大量的冗余命令，需要通过重写机制压缩日志，恢复速度慢。</li>
+</ol>
+<p><em><strong>持久化过程</strong></em></p>
+<ol>
+<li>命令写入后，通过append到一个buffer中保证实时性，再同步到一个旧AOF文件中；</li>
+<li>重写过程和RDB持久化过程类似，只是最后父进程写到一个buffer里，同步到一个新AOF文件中；</li>
+<li>最后用新的AOF文件把旧的AOF文件替换掉，重启服务时再把新文件load进来。</li>
+</ol>
+<p><img src="/img/2021/AOF%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="AOF持久化过程"></p>
+<h3 id="RDB-AOF混合持久化"><a href="#RDB-AOF混合持久化" class="headerlink" title="RDB-AOF混合持久化"></a>RDB-AOF混合持久化</h3><p>混合持久化的过程为：在AOF重写时，先执行<code>bgsave</code>生成RDB，再将后处理的命令追加到rdb结尾。</p>
+<h2 id="Redis主从复制"><a href="#Redis主从复制" class="headerlink" title="Redis主从复制"></a>Redis主从复制</h2><p>Redis的主从复制是为了提升分布式系统的可用性和读写性能的。Redis通过SLAVEOF命令或slaveof配置让一个server复制另一个server的数据集和状态。Redis采用异步复制机制。</p>
+<p>主从复制的优点：</p>
+<ol>
+<li>master可以关闭持久化机制，减少IO性能损耗；</li>
+<li>slave能提高读请求处理效率；</li>
+<li>容灾性比较好</li>
+</ol>
+<blockquote>
+<p>主从复制和集群概念上的区别：主从复制是一个master和若干个slave，一个master挂了可以从slave推选新的master，slave可以用提供故障恢复、分担读流量、备份数据；集群是数据量较大时，数据根据key根据哈希计算出slot在多个分片中进行分区（partition），客户端对key的请求会被转发到持有那个key的分片上。分片由一个master和若干个slave组成，他们之间又通过主从复制机制来同步数据。可以理解为集群是主从复制和分区的集合。</p>
+</blockquote>
+<h3 id="主从复制的使用"><a href="#主从复制的使用" class="headerlink" title="主从复制的使用"></a>主从复制的使用</h3><p>主从复制的开启，完全是在 slave 发起的，不需要我们在 master 做任何事情。slave 开启主从复制，有三种方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 配置文件，在从服务器的配置文件中加入：</span><br>slaveof &lt;masterip&gt; &lt;masterport&gt;<br><br><span class="hljs-meta">#</span><span class="bash">启动命令，Redis server 启动命令后加入：</span><br>--slaveof &lt;masterip&gt; &lt;masterport&gt;<br><br><span class="hljs-meta">#</span><span class="bash"> 客户端命令 Redis server 启动后，直接通过客户端执行命令：</span><br>slaveof &lt;masterip&gt; &lt;masterport&gt;，则该 Redis 实例成为 slave。<br></code></pre></td></tr></table></figure>
+
+<h3 id="主从复制的原理"><a href="#主从复制的原理" class="headerlink" title="主从复制的原理"></a>主从复制的原理</h3><p>主从复制过程可分为三个阶段：复制初始化、数据同步和命令传播。</p>
+<p><em><strong>初始化阶段</strong></em></p>
+<ol>
+<li>执行完slaveof命令后，slave根据master地址发起socket连接，master收到socket连接之后将连接信息保存，连接建立；</li>
+<li>slave向master发送PING命令，结果如果返回PONG则说明master可用，否则说明master处理其他任务在阻塞中，slave断开连接并重试；</li>
+</ol>
+<p><em><strong>数据同步阶段</strong></em></p>
+<ol>
+<li>master和slave相互确认连接信息后，slave向master发送psync命令；</li>
+<li>主库收到该命令后判断是进行增量同步还是全量同步，然后根据策略进行数据的同步；</li>
+<li>当master有新的写操作时候，此时进入复制第三阶段。</li>
+</ol>
+<p><em><strong>命令传播阶段</strong></em></p>
+<ol>
+<li>数据同步之后，master和slave通过心跳机制检测彼此是否挂了，每隔10smaster向slave发送PING命令判断slave是否在线，slave每隔1s发送replconf ack命令。</li>
+<li>slave发送的命令除了判断master是否在线外，还汇报了自己的复制偏移量，让master根据当前同步情况发布未同步数据的命令。</li>
+</ol>
+<p><em><strong>全量复制</strong></em></p>
+<p>Redis全量复制一般发生在Slave初始化阶段，这时Slave需要将Master上的所有数据都复制一份。</p>
+<p>发生全量复制的时候，master会在后台启动一个线程，把同步数据生成一份RDB文件，同时将新收到客户端的写命令缓存到内存中，RDB文件生成完之后发送给slave，等slave同步完RDB文件之后，再把写命令发给slave进行同步。过程中如果发生网络故障，会自动重连，master只会复制给slave部分缺少的数据。</p>
+<p><em><strong>增量复制</strong></em></p>
+<p>增量复制发生在正常工作时master发生的写操作同步到slave的过程。增量复制的过程为：master每执行一个写命令就向slave发送相同的写命令，slave接受并执行。</p>
+<h2 id="Redis集群模式"><a href="#Redis集群模式" class="headerlink" title="Redis集群模式"></a>Redis集群模式</h2><h3 id="集群模式原理"><a href="#集群模式原理" class="headerlink" title="集群模式原理"></a>集群模式原理</h3><p>大规模数据存储系统都会面临的一个问题就是如何横向拓展。当你的数据集越来越大，一主多从的模式已经无法支撑这么大量的数据存储，于是你首先考虑将多个主从模式结合在一起对外提供服务。</p>
+<p>Redis采用的是一种去中心化的集群模式。集群通过分片进行数据共享，分片内采用一主多从的形式进行副本复制，并提供复制和故障恢复功能。</p>
+<blockquote>
+<p>主从复制相当于一棵树，集群相当于是一个森林。</p>
+</blockquote>
+<p><em><strong>Redis集群模式原理</strong></em></p>
+<p>以下图为例，一主一从构成一个分片，之间通过异步进行复制，一个机房的master挂掉，会推选另一个机房的slave为master，继续提供服务。每个master负责一部分的slot，客户端通过key做映射取模得到对应的slot，连接到对应的分片，写请求一律走master， 读请求根据路由选择规则找到对应的分片节点。</p>
+<p><img src="/img/2021/Redis%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F.jpg" srcset="/img/loading.gif" lazyload alt="Redis集群模式"></p>
+<h3 id="故障检测"><a href="#故障检测" class="headerlink" title="故障检测"></a>故障检测</h3><p>跟大多数分布式系统一样，Redis Cluster 的节点间通过持续的 heart beat 来保持信息同步，不过 Redis Cluster 节点信息同步是内部实现的，并不依赖第三方组件如 Zookeeper。集群中的节点持续交换 PING、PONG 数据，消息协议使用 Gossip，这两种数据包的数据结构一样，之间通过 type 字段进行区分。</p>
+<p>Redis通过<strong>哨兵机制</strong>保证高可用。</p>
+<p><em><strong>哨兵机制的工作原理</strong></em></p>
+<ol>
+<li>Redis Sentinel（哨兵）是一个分布式架构，它包含若干个哨兵节点和数据节点。</li>
+<li>每个哨兵节点会对数据节点和其余的哨兵节点进行监控，当发现节点不可达时，会对节点做下线标识。</li>
+<li>如果被标识的是主节点，它就会与其他的哨兵节点进行协商，当多数哨兵节点都认为主节点不可达时，它们便会选举出一个哨兵节点来完成自动故障转移的工作，同时还会将这个变化实时地通知给应用方。</li>
+</ol>
+<p><em><strong>通信过程</strong></em></p>
+<p>Redis集群中的每个节点会定期向其他节点发送PING，如果超过规定时间（node_timeout）没有收到PONG，就会标记为疑似下线状态（PFAIL）。在PING的时候，会广播其他节点当前节点知道的其他节点的信息（包括疑似挂了的节点），当其他节点收到这些疑似挂了的节点之后，会做失效报告（failure report）。如果当前节点已经PFAIL了某个节点，并且大部分节点认为PFAIL的节点PFAIL了，那么当前节点就改PFAIL为FAIL并广播出去。</p>
+<h3 id="故障迁移"><a href="#故障迁移" class="headerlink" title="故障迁移"></a>故障迁移</h3><p>Redis引入了一个<em>epoch</em>的概念。在Redis集群中主要有两种epoch：<em>curentEpoch</em> 和 <em>configEpoch</em>。</p>
+<p><em><strong>currentEpoch</strong></em></p>
+<p>这是一个集群状态相关的概念，可以当做记录集群状态变更的递增版本号。每个集群节点，都会通过 server.cluster-&gt;currentEpoch 记录当前的 currentEpoch。</p>
+<p>集群节点创建时，不管是 master 还是 slave，都置 currentEpoch 为 0。当前节点接收到来自其他节点的包时，如果发送者的 currentEpoch（消息头部会包含发送者的 currentEpoch）大于当前节点的currentEpoch，那么当前节点会更新 currentEpoch 为发送者的 currentEpoch。因此，集群中所有节点的 currentEpoch 最终会达成一致，相当于对集群状态的认知达成了一致。</p>
+<p><em><strong>currentEpoch的作用</strong></em></p>
+<p>currentEpoch 作用在于，当集群的状态发生改变，某个节点为了执行一些动作需要寻求其他节点的同意时，就会增加 currentEpoch 的值。目前 currentEpoch 只用于 slave 的故障转移流程，这就跟哨兵中的sentinel.current_epoch 作用是一模一样的。当 slave A 发现其所属的 master 下线时，就会试图发起故障转移流程。首先就是增加 currentEpoch 的值，这个增加后的 currentEpoch 是所有集群节点中最大的。然后slave A 向所有节点发起拉票请求，请求其他 master 投票给自己，使自己能成为新的 master。其他节点收到包后，发现发送者的 currentEpoch 比自己的 currentEpoch 大，就会更新自己的 currentEpoch，并在尚未投票的情况下，投票给 slave A，表示同意使其成为新的 master。</p>
+<p><em><strong>configEpoch</strong></em></p>
+<p>这是一个集群节点配置相关的概念，每个集群节点都有自己独一无二的 configepoch。所谓的节点配置，实际上是指节点所负责的槽位信息。</p>
+<p> 每一个 master 在向其他节点发送包时，都会附带其 configEpoch 信息，以及一份表示它所负责的 slots 信息。而 slave 向其他节点发送包时，其包中的 configEpoch 和负责槽位信息，是其 master 的 configEpoch 和负责的 slot 信息。节点收到包之后，就会根据包中的 configEpoch 和负责的 slots 信息，记录到相应节点属性中。</p>
+<p><em><strong>configEpoch的作用</strong></em></p>
+<p>configEpoch 主要用于解决不同的节点的配置发生冲突的情况。举个例子就明白了：节点A 宣称负责 slot 1，其向外发送的包中，包含了自己的 configEpoch 和负责的 slots 信息。节点 C 收到 A 发来的包后，发现自己当前没有记录 slot 1 的负责节点（也就是 server.cluster-&gt;slots[1] 为 NULL），就会将 A 置为 slot 1 的负责节点（server.cluster-&gt;slots[1] = A），并记录节点 A 的 configEpoch。后来，节点 C 又收到了 B 发来的包，它也宣称负责 slot 1，此时，如何判断 slot 1 到底由谁负责呢？</p>
+<p>这就是 configEpoch 起作用的时候了，C 在 B 发来的包中，发现它的 configEpoch，要比 A 的大，说明 B 是更新的配置。因此，就将 slot 1 的负责节点设置为 B（server.cluster-&gt;slots[1] = B）。在 slave 发起选举，获得足够多的选票之后，成功当选时，也就是 slave 试图替代其已经下线的旧 master，成为新的 master 时，会增加它自己的 configEpoch，使其成为当前所有集群节点的 configEpoch 中的最大值。这样，该 slave 成为 master 后，就会向所有节点发送广播包，强制其他节点更新相关 slots 的负责节点为自己。</p>
+<blockquote>
+<p>slave在发现从属master下线后，通过增加currentEpoch计数，向其他节点拉起投票，其他节点在currentEpoch更新机制下会投票给slave，从而选举其成为master。</p>
+</blockquote>
+<h2 id="Redis淘汰策略"><a href="#Redis淘汰策略" class="headerlink" title="Redis淘汰策略"></a>Redis淘汰策略</h2><p>当写入数据将导致超出maxmemory限制时，Redis会采用maxmemory-policy所指定的策略进行数据淘汰。</p>
+<p>按照「数据范围」分为volatile淘汰和allkeys淘汰，按照「淘汰算法」分为随机淘汰、LRU淘汰、LFU淘汰。</p>
+<p>LRU：按最近最少使用原则淘汰。（未被淘汰的key可能是不常使用但刚刚使用的key）</p>
+<p>LFU：先按照使用次数淘汰，使用次数相同的key再使用LRU淘汰。（Redis4.0支持）</p>
+<p><img src="/img/2021/Redis%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5.png" srcset="/img/loading.gif" lazyload alt="Redis淘汰策略"></p>
+<h2 id="Redis过期策略"><a href="#Redis过期策略" class="headerlink" title="Redis过期策略"></a>Redis过期策略</h2><p>Redis支持两种过期策略：定期删除和惰性删除。</p>
+<p><em><strong>定期删除</strong></em></p>
+<p>Redis会将设置了过期时间的key放到一个独立的字典中，并对该字典进行每秒10次的过期扫描。<br>过期扫描不会遍历字典中所有的key，而是采用了一种简单的贪心策略。该策略的删除逻辑如下：</p>
+<ol>
+<li>从过期字典中随机选择20个key；</li>
+<li>删除这20个key中已过期的key；</li>
+<li>如果已过期key的比例超过25%，则重复步骤1。</li>
+</ol>
+<p><em><strong>惰性删除</strong></em></p>
+<p>客户端访问一个key的时候，Redis会先检查它的过期时间，如果发现过期就立刻删除这个key。</p>
+<h3 id="缓存穿透、缓存击穿、缓存雪崩"><a href="#缓存穿透、缓存击穿、缓存雪崩" class="headerlink" title="缓存穿透、缓存击穿、缓存雪崩"></a>缓存穿透、缓存击穿、缓存雪崩</h3><p><em><strong>缓存穿透</strong></em></p>
+<p>客户端查询根本不存在的数据，使得请求直达存储层，导致其负载过大，甚至宕机。出现这种情况的原因，可能是业务层误将缓存和库中的数据删除了，也可能是有人恶意攻击，专门访问库中不存在的数据。</p>
+<p>解决方案：</p>
+<ol>
+<li>缓存空对象：存储层未命中后，仍然将空值存入缓存层，客户端再次访问数据时，缓存层会直接返回空值。</li>
+<li>布隆过滤器：将数据存入布隆过滤器，访问缓存之前以过滤器拦截，若请求的数据不存在则直接返回空值。</li>
+</ol>
+<p><em><strong>布隆过滤器</strong></em></p>
+<p>布隆过滤器可以用很低的代价，估算出数据是否真实存在。</p>
+<p>布隆过滤器的核心包括两部分：</p>
+<ol>
+<li>一个大型的位数组；</li>
+<li>若干个不一样的哈希函数，每个哈希函数都能将哈希值算的比较均匀。</li>
+</ol>
+<p>布隆过滤器的工作原理：</p>
+<ol>
+<li>添加key时，每个哈希函数都利用这个key计算出一个哈希值，再根据哈希值计算一个位置，并将位数组中这个位置的值设置为1。</li>
+<li>询问key时，每个哈希函数都利用这个key计算出一个哈希值，再根据哈希值计算一个位置。然后对比这些哈希函数在位数组中对应位置的数值：<ul>
+<li>如果这几个位置中，有一个位置的值是0，就说明这个布隆过滤器中，不存在这个key。</li>
+<li>如果这几个位置中，所有位置的值都是1，就说明这个布隆过滤器中，极有可能存在这个key。之所以不是百分之百确定，是因为也可能是其他的key运算导致该位置为1。</li>
+</ul>
+</li>
+</ol>
+<p><em><strong>缓存击穿</strong></em></p>
+<p>一份热点数据，它的访问量非常大。在其缓存失效的瞬间，大量请求直达存储层，导致服务崩溃。</p>
+<p>解决方案：</p>
+<ol>
+<li>永不过期：热点数据不设置过期时间，所以不会出现上述问题，这是“物理”上的永不过期。或者为每个数据设置逻辑过期时间，当发现该数据逻辑过期时，使用单独的线程重建缓存。</li>
+<li>加互斥锁：对数据的访问加互斥锁，当一个线程访问该数据时，其他线程只能等待。这个线程访问过后，缓存中的数据将被重建，届时其他线程就可以直接从缓存中取值。</li>
+</ol>
+<p><em><strong>缓存雪崩</strong></em></p>
+<p>在某一时刻，缓存层无法继续提供服务，导致所有的请求直达存储层，造成<strong>数据库宕机</strong>。可能是<strong>缓存中有大量数据同时过期</strong>，也可能是<strong>Redis节点发生故障</strong>，导致大量请求无法得到处理。</p>
+<p>解决方案：</p>
+<ol>
+<li>避免数据同时过期：设置过期时间时，附加一个随机数，避免大量的key同时过期。</li>
+<li>启用降级和熔断措施：在发生雪崩时，若应用访问的不是核心数据，则直接返回预定义信息/空值/错误信息。或者在发生雪崩时，对于访问缓存接口的请求，客户端并不会把请求发给Redis，而是直接返回。</li>
+<li>构建高可用的Redis服务：采用哨兵或集群模式，部署多个Redis实例，个别节点宕机，依然可以保持服务的整体可用。</li>
+</ol>
+<h2 id="Redis性能分析"><a href="#Redis性能分析" class="headerlink" title="Redis性能分析"></a>Redis性能分析</h2><p><em><strong>Redis性能高的原因</strong></em></p>
+<ol>
+<li>Redis是单线程的，可以避免线程切换的性能损耗；</li>
+<li>Redis大部分操作是在内存中完成的；</li>
+<li>Redis采用了IO多路复用机制，使其在IO操作中能并发处理大量的请求，实现高吞吐；</li>
+<li>Redis使用了高效的数据结构（如：在zset中使用跳表）</li>
+<li>Redis是C语言编写的，执行效率高</li>
+</ol>
+<p><em><strong>关于单线程的解释</strong></em></p>
+<p>Redis在键值对操作时，是单线程操作。涉及持久化、异步、集群数据同步等操作时，需要依赖其他线程来执行。Redis的底层其实并不完全是单线程的。</p>
+<p><em><strong>IO多路复用</strong></em> <!-- 留着开一个IO多路复用的专题来写--></p>
+<h2 id="TODO："><a href="#TODO：" class="headerlink" title="TODO："></a>TODO：</h2><ul>
+<li>IO多路复用</li>
+<li>关于跳表结构操作细节的掌握</li>
+<li>redis的API的使用</li>
+<li></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/05/tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%A2%B3%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">加密算法梳理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/05/tech/%E7%BE%8E%E5%9B%A2%E5%AE%9E%E4%B9%A0%E9%9C%80%E6%B1%82%E6%A2%B3%E7%90%86/">
+                        <span class="hidden-mobile">美团实习需求梳理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
