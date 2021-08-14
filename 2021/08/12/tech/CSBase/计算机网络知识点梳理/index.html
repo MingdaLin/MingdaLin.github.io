@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.8k 字
+      7.2k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52
+      78
        分钟
     </span>
   
@@ -232,10 +232,75 @@
             <div class="markdown-body">
               <h1 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h1><p>七层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。</p>
 <p>五层：物理层、数据链路层、网络层、运输层、应用层。</p>
-<p><img src="/img/2021/%E4%B8%83%E5%B1%82%E7%BD%91%E7%BB%9C%E5%AF%B9%E6%AF%94.png" srcset="/img/loading.gif" lazyload alt="七层网络对比"></p>
-<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><p><em><strong>URI和URL的区别</strong></em></p>
-<p><strong>URI(Uniform Resource Identifier)</strong> ：中文全称为统一资源标志符，主要作用是唯一标识一个资源。<br><strong>URL(Uniform Resource Location)</strong> ：中文全称为统一资源定位符，主要作用是提供资源的路径。<br>有个经典的比喻是URI像是身份证，可以唯一标识一个人，而URL更像一个住址，可以通过URL找到这个人。</p>
-<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p><em><strong>DNS的定义</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>七层网络体系结构</th>
+<th>任务</th>
+<th>功能</th>
+<th>传输单位</th>
+<th>实现硬件</th>
+<th>协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>物理层</td>
+<td>传比特流传比特流</td>
+<td>为数据段设备提供传送数据通路为数据段设备</td>
+<td>比特</td>
+<td>集线器、中继器</td>
+<td></td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>将IP报文封装成帧</td>
+<td>链路连接的建立、拆除和分离；帧定界和帧同步；差错检测</td>
+<td>帧</td>
+<td>交换机、网桥</td>
+<td>PPP、STP、ARQ</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>将传输层的报文封装成分组；选择路由，将报文交付到目的主机。</td>
+<td>为传输层提供服务；组包和拆包；路由选择；拥塞控制</td>
+<td>数据段</td>
+<td>路由器</td>
+<td>ICMP、ARP、IP、IGMP、OSPF</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>负责主机中两个进程的通信</td>
+<td>为端到端连接提供可靠的服务；为端到端连接提供流量控制、差错控制、服务质量管理等</td>
+<td>报文段（TCP）、用户数据报（UDP）</td>
+<td></td>
+<td>TCP、UDP</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>不同主机各进程间的对话</td>
+<td>管理主机间的会话进程，端到端服务。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>负责处理两个内部数据表示结构不同的通信系统间交换信息的表示格式。</td>
+<td>为数据加密和解密；为提高传输效率提供必需的数据压缩和解压。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>应用层</td>
+<td>提供系统与用户的接口</td>
+<td>文件传输；访问和管理；电子邮件服务</td>
+<td></td>
+<td></td>
+<td>FTP、SMTP、POP3、HTTP、DNS</td>
+</tr>
+</tbody></table>
+<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p><em><strong>DNS的定义</strong></em></p>
 <p>DNS的全称是domain name system，即域名系统。DNS是因特网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的去访问互联网而不用去记住能够被机器直接读取的IP地址。</p>
 <p>DNS要做的就是将域名解析成IP。</p>
 <p><em><strong>DNS解析域名的过程</strong></em></p>
@@ -251,6 +316,8 @@
 <blockquote>
 <p>主机向本地域名服务器的查询一般是采用递归查询，而本地域名服务器向根域名的查询一般是采用迭代查询。<br><em><strong>递归查询</strong></em>：主机向本地域名发送查询请求报文，而本地域名服务器不知道该域名对应的IP地址时，本地域名会继续向根域名发送查询请求报文，不是通知主机自己向根域名发送查询请求报文。<br><em><strong>迭代查询</strong></em>：本地域名服务器向根域名发出查询请求报文后，根域名不会继续向顶级域名服务器发送查询请求报文，而是通知本地域名服务器向顶级域名发送查询请求报文。</p>
 </blockquote>
+<p><em><strong>URI和URL的区别</strong></em></p>
+<p><strong>URI(Uniform Resource Identifier)</strong> ：中文全称为统一资源标志符，主要作用是唯一标识一个资源。<br><strong>URL(Uniform Resource Location)</strong> ：中文全称为统一资源定位符，主要作用是提供资源的路径。<br>有个经典的比喻是URI像是身份证，可以唯一标识一个人，而URL更像一个住址，可以通过URL找到这个人。</p>
 <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h3 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h3><table>
 <thead>
 <tr>
@@ -304,18 +371,33 @@
 <p>GET的参数放在URL中，POST的参数存储在实体主体中，并且GET方法提交的请求的URL中的数据做多是2048字节，POST请求没有大小限制。</p>
 </li>
 <li><p>安全性</p>
-<p>GET方法因为参数放在URL中，安全性相对于POST较差一些</p>
+<p>GET方法因为参数放在URL中，安全性相对于POST较差一些。</p>
 </li>
 <li><p>幂等性</p>
-<p>GET方法是具有幂等性的，而POST方法不具有幂等性。这里幂等性指客户端连续发出多次请求，收到的结果都是一样的.</p>
+<p>GET方法是具有幂等性的，而POST方法不具有幂等性。这里幂等性指客户端连续发出多次请求，收到的结果都是一样的。</p>
 </li>
 </ul>
-<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><p>1XX</p>
-<p>100 Continue：表示正常，客户端可以继续发送请求<br>101 Switching Protocols：切换协议，服务器根据客户端的请求切换协议。<br>2XX</p>
-<p>200 OK：请求成功<br>201 Created：已创建，表示成功请求并创建了新的资源<br>202 Accepted：已接受，已接受请求，但未处理完成。<br>204 No Content：无内容，服务器成功处理，但未返回内容。<br>205 Reset Content：重置内容，服务器处理成功，客户端应重置文档视图。<br>206 Partial Content：表示客户端进行了范围请求，响应报文应包含Content-Range指定范围的实体内容<br>3XX</p>
-<p>301 Moved Permanently：永久性重定向<br>302 Found：临时重定向<br>303 See Other：和301功能类似，但要求客户端采用get方法获取资源<br>304 Not Modified：所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。<br>305 Use Proxy：所请求的资源必须通过代理访问<br>307 Temporary Redirect： 临时重定向，与302类似，要求使用get请求重定向。<br>4XX</p>
-<p>400 Bad Request：客户端请求的语法错误，服务器无法理解。<br>401 Unauthorized：表示发送的请求需要有认证信息。<br>403 Forbidden：服务器理解用户的请求，但是拒绝执行该请求<br>404 Not Found：服务器无法根据客户端的请求找到资源。<br>405 Method Not Allowed：客户端请求中的方法被禁止<br>406 Not Acceptable：服务器无法根据客户端请求的内容特性完成请求<br>408 Request Time-out：服务器等待客户端发送的请求时间过长，超时<br>5XX</p>
-<p>500 Internal Server Error：服务器内部错误，无法完成请求<br>501 Not Implemented：服务器不支持请求的功能，无法完成请求</p>
+<p><em><strong>POST和PUT的区别</strong></em></p>
+<p>二者都用于请求数据的更新和创建。</p>
+<p>但二者最本质的区别在于POST不是幂等的，而PUT是幂等的。即PUT多次返回结果是一样的，但POST多次会返回不同的对象。POST由服务器来指定地址，而PUT是用户指定的。</p>
+<p>比如一个用户要对一个账号反复修改密码，就要用PUT，而一个用户想要创建多个账号，就要用POST。</p>
+<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><ol>
+<li><p>1XX：信息性状态码，表示接受的请求正在处理</p>
+<p> 100 Continue：表示正常，客户端可以继续发送请求<br> 101 Switching Protocols：切换协议，服务器根据客户端的请求切换协议。</p>
+</li>
+<li><p>2XX：成功状态码，表示请求正常处理完毕</p>
+<p> 200 OK：请求成功<br> 201 Created：已创建，表示成功请求并创建了新的资源<br> 202 Accepted：已接受，已接受请求，但未处理完成。<br> 204 No Content：无内容，服务器成功处理，但未返回内容。<br> 205 Reset Content：重置内容，服务器处理成功，客户端应重置文档视图。<br> 206 Partial Content：表示客户端进行了范围请求，响应报文应包含Content-Range指定范围的实体内容</p>
+</li>
+<li><p>3XX：重定向状态码，表示需要进行附加操作以完成请求</p>
+<p> 301 Moved Permanently：永久性重定向<br> 302 Found：临时重定向<br> 303 See Other：和301功能类似，但要求客户端采用get方法获取资源<br> 304 Not Modified：所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。<br> 305 Use Proxy：所请求的资源必须通过代理访问<br> 307 Temporary Redirect： 临时重定向，与302类似，要求使用get请求重定向。</p>
+</li>
+<li><p>4XX：客户端错误码，服务器无法处理请求</p>
+<p> 400 Bad Request：客户端请求的语法错误，服务器无法理解。<br> 401 Unauthorized：表示发送的请求需要有认证信息。<br> 403 Forbidden：服务器理解用户的请求，但是拒绝执行该请求<br> 404 Not Found：服务器无法根据客户端的请求找到资源。<br> 405 Method Not Allowed：客户端请求中的方法被禁止<br> 406 Not Acceptable：服务器无法根据客户端请求的内容特性完成请求<br> 408 Request Time-out：服务器等待客户端发送的请求时间过长，超时</p>
+</li>
+<li><p>5XX：服务器错误码，服务器处理请求出错</p>
+<p> 500 Internal Server Error：服务器内部错误，无法完成请求<br> 501 Not Implemented：服务器不支持请求的功能，无法完成请求</p>
+</li>
+</ol>
 <h3 id="HTTP-与-HTTPS-的区别"><a href="#HTTP-与-HTTPS-的区别" class="headerlink" title="HTTP 与 HTTPS 的区别"></a>HTTP 与 HTTPS 的区别</h3><table>
 <thead>
 <tr>
@@ -364,19 +446,71 @@
 <p><em><strong>各版本区别</strong></em></p>
 <p><strong>HTTP 1.0和HTTP 1.1</strong></p>
 <ol>
-<li>长连接<br>HTTP 1.1支持长连接和请求的流水线操作。长连接是指不在需要每次请求都重新建立一次连接，HTTP 1.0默认使用短连接，每次请求都要重新建立一次TCP连接，资源消耗较大。请求的流水线操作是指客户端在收到HTTP的响应报文之前可以先发送新的请求报文，不支持请求的流水线操作需要等到收到HTTP的响应报文后才能继续发送新的请求报文。</li>
-<li>缓存处理<br>在HTTP 1.0中主要使用header中的If-Modified-Since,Expires作为缓存判断的标准，HTTP 1.1引入了Entity tag，If-Unmodified-Since, If-Match等更多可供选择的缓存头来控制缓存策略。</li>
-<li>错误状态码<br>在HTTP 1.1新增了24个错误状态响应码</li>
-<li>HOST域<br>在HTTP 1.0 中认为每台服务器都会绑定唯一的IP地址，所以，请求中的URL并没有传递主机名。但后来一台服务器上可能存在多个虚拟机，它们共享一个IP地址，所以HTTP 1.1中请求消息和响应消息都应该支持Host域。</li>
-<li>带宽优化及网络连接的使用<br>在HTTP 1.0中会存在浪费带宽的现象，主要是因为不支持断点续传功能，客户端只是需要某个对象的一部分，服务端却将整个对象都传了过来。在HTTP 1.1中请求头引入了range头域，它支持只请求资源的某个部分，返回的状态码为206。</li>
+<li><p>长连接</p>
+<p> HTTP 1.1支持长连接和请求的流水线操作。</p>
+<p> 长连接是指不在需要每次请求都重新建立一次连接，HTTP 1.0默认使用短连接，每次请求都要重新建立一次TCP连接，资源消耗较大。</p>
+<p> 请求的流水线操作是指客户端在收到HTTP的响应报文之前可以先发送新的请求报文，不支持请求的流水线操作需要等到收到HTTP的响应报文后才能继续发送新的请求报文。</p>
+</li>
+<li><p>管道化（假并行传输）</p>
+<p> 当网络请求包含多个文本、图像、视频等资源时，HTTP1.1 支持并行发送。</p>
+<p> 但对处理器而言，必须按照客户端请求的先后顺序依次回送相应的结果，以保证客户端能够区分出每次请求的响应内容。</p>
+<p> HTTP管道化可以把先进先出队列从客户端(请求队列)迁移到服务端(响应队列)，但其并没有解决队头阻塞的问题。</p>
+</li>
+<li><p>支持响应请求的某部分资源</p>
+<p>HTTP1.1支持断点续传功能，服务端可以只响应客户端请求对象的一部分。在HTTP 1.1中请求头引入了range头域，它支持只请求资源的某个部分，返回的状态码为206。</p>
+<p>而在HTTP 1.0中会存在浪费带宽的现象，主要是因为不支持断点续传功能，客户端只是需要某个对象的一部分，服务端却将整个对象都传了过来。</p>
+<p>如此可以优化网络带宽。</p>
+</li>
+<li><p>增加缓存处理，支持断点续传</p>
+<p> HTTP1.1还加入了缓存处理(强缓存和协商缓存)，新的字段如cache-control，支持断点传输，以及增加了Host字段(使得一个服务器能够用来创建多个Web站点)</p>
+</li>
 </ol>
-<p><strong>HTTP 2.0的新特性</strong></p>
+<p><strong>HTTP2.0 新特性</strong></p>
 <ol>
-<li>新的二进制格式：HTTP 1.x的解析是基于文本，HTTP 2.0的解析采用二进制，实现方便，健壮性更好。</li>
-<li>多路复用：每一个request对应一个id，一个连接上可以有多个request，每个连接的request可以随机混在一起，这样接收方可以根据request的id将request归属到各自不同的服务端请求里。</li>
-<li>header压缩：在HTTP 1.x中，header携带大量信息，并且每次都需要重新发送，HTTP 2.0采用编码的方式减小了header的大小，同时通信双方各自缓存一份header fields表，避免了header的重复传输。</li>
-<li>服务端推送：客户端在请求一个资源时，会把相关资源一起发给客户端，这样客户端就不需要再次发起请求。</li>
+<li><p>二进制分帧</p>
+<p> HTTP2.0通过在应用层和传输层之间增加一个二进制分层帧，突破了HTTP1.1解析是基于文本的性能限制，改进传输性能。</p>
+</li>
+<li><p>多路复用</p>
+<p> 一条TCP连接可以承载任意流量的双向数据流，数据流会被拆分成帧，乱序发送，然后再根据每个帧头部的流标识符（stream_id）重新封装。</p>
+<p> 现阶段浏览器的优化策略是，同时建立多个TCP的会话，实现真并行。</p>
+<p> 对并行性能的分析：</p>
+<pre><code> 1. 并行连接可能会因为充分利用客户端的带宽从而提高加载速度；
+ 
+ 2. 在客户端带宽不充足的情况下，并不会提高加载速度，而且并行连接会产生额外的开销；
+ 
+ 3. 浏览器做的渐进式并行加载会让用户感觉加载速度快了。
+</code></pre>
+</li>
+<li><p>header压缩</p>
+<p> 在HTTP 1.x中，header携带大量信息，并且每次都需要重新发送，HTTP 2.0采用编码的方式减小了header的大小，同时通信双方各自缓存一份header fields表，避免了header的重复传输。</p>
+</li>
+<li><p>服务端推送</p>
+<p> 客户端在请求一个资源时，会把相关资源一起发给客户端，这样客户端就不需要再次发起请求。</p>
+</li>
 </ol>
+<p><em><strong>HTTP3.0 新特性</strong></em></p>
+<p>HTTP3.0是基于google的QUIC协议，而QUIC协议是使用UDP实现的。</p>
+<p>QUIC协议特性：</p>
+<ol>
+<li><p>0-RTT ：传输层和加密层在0-RTT就能建立连接。</p>
+<p> 缓存当前会话的上下文，下次恢复会话的时候，只需要将之前的缓存传递给服务器，验证通过，就可以进行传输了。</p>
+</li>
+<li><p>多路复用</p>
+<p> QUIC基于UDP，一个连接上的多个stream之间没有依赖，即使丢包，只需要重发丢失的包即可，不需要重传整个连接。</p>
+</li>
+<li><p>移动端表现更好</p>
+<p> QUIC在移动端的表现比TCP好，因为TCP是基于IP识别连接，而QUIC是通过ID识别链接。 无论网络环境如何变化，只要ID不便，就能迅速重新连上。</p>
+</li>
+<li><p>报文加密认证 </p>
+<p> QUIC几乎所有报文头部都是经过认证的，报文Body都是经过加密的。</p>
+<p> TCP协议头没有经过任何加密和认证，在传输过程中很容易被中间网络设备篡改、注入和窃听。</p>
+</li>
+<li><p>向前纠错机制 </p>
+<p> 每个数据包除了它本身的内容之外还包括了其他数据包的数据，因此少量的丢包可以通过其他包的冗余数据直接组装而无需重传。</p>
+<p> 向前纠错牺牲了每个数据包可以发送数据的上限，但是优化了数据重传的时间消耗，提升了传输性能。</p>
+</li>
+</ol>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/gogzf/article/details/78287166">参考1</a>、<a target="_blank" rel="noopener" href="https://network.51cto.com/art/202010/628901.htm">参考2</a>、<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903976354185230#heading-0">参考3</a></p>
 <h2 id="其他常见问题"><a href="#其他常见问题" class="headerlink" title="其他常见问题"></a>其他常见问题</h2><p><em><strong>在浏览器中输⼊url地址到显示主⻚的过程</strong></em></p>
 <ol>
 <li>对输入到浏览器的url进行DNS解析，将域名转换为IP地址。</li>
@@ -390,7 +524,7 @@
 <p><strong>Cookie</strong></p>
 <p>Cookie是保存在客户端一个小数据块，其中包含了用户信息。当客户端向服务端发起请求，服务端会像客户端浏览器发送一个Cookie，客户端会把Cookie存起来，当下次客户端再次请求服务端时，会携带上这个Cookie，服务端会通过这个Cookie来确定身份。</p>
 <p><strong>Session</strong></p>
-<p>Session是通过Cookie实现的，和Cookie不同的是，Session是存在服务端的。当客户端浏览器第一次访问服务器时，服务器会为浏览器创建一个sessionid，将sessionid放到Cookie中，存在客户端浏览器。比如浏览器访问的是购物网站，将一本《图解HTTP》放到了购物车，当浏览器再次访问服务器时，服务器会取出Cookie中的sessionid，并根据sessionid获取会话中的存储的信息，确认浏览器的身份是上次将《图解HTTP》放入到购物车那个用户。</p>
+<p>Session是通过Cookie实现的，和Cookie不同的是，Session是存在服务端的。当客户端浏览器第一次访问服务器时，服务器会为浏览器创建一个sessionid，将sessionid放到Cookie中，存在客户端浏览器。</p>
 <p><strong>Token</strong></p>
 <p>客户端在浏览器第一次访问服务端时，服务端生成的一串字符串作为Token发给客户端浏览器，下次浏览器在访问服务端时携带token即可无需验证用户名和密码，省下来大量的资源开销。</p>
 <table>
@@ -419,6 +553,15 @@
 </tr>
 </tbody></table>
 <h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="TCP报文"><a href="#TCP报文" class="headerlink" title="TCP报文"></a>TCP报文</h3><p><img src="/img/2021/TCP%E9%A6%96%E9%83%A8.webp" srcset="/img/loading.gif" lazyload alt="TCP首部"></p>
+<p><em><strong>TCP都有哪几种状态，分别都代表什么含义？</strong></em></p>
+<ol>
+<li>SYN：同步位，SYN = 1 表示连接请求；</li>
+<li>FIN：终止位，FIN = 1 表示释放连接；</li>
+<li>ACK：确认位，ACK = 1 表示确认号有效；</li>
+<li>RST：复位位，RST = 1 表示TCP连接出现严重错误（主机崩溃等），需要重新建立连接；</li>
+<li>PSH：推送位，PSH = 1 表示接收端要尽快交付任务，不要等到缓存满了再提交；</li>
+<li>URG：紧急位，URG = 1 表示告诉系统该报文段为高优，需要加急传送。</li>
+</ol>
 <h3 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h3><p><em><strong>三次握手</strong></em></p>
 <table>
 <thead>
@@ -514,17 +657,19 @@
 <li>c-&gt;s, s-&gt;c, s-&gt;c：s需要一个c对其FIN的确认，否则会超时重传。</li>
 </ol>
 <p><em><strong>为什么TIME-WAIT之后要等2MSL？</strong></em></p>
-<blockquote>
-<p>MSL（Maximum Segment Lifetime）：最长报文段寿命</p>
-</blockquote>
 <ol>
 <li>可使本次TCP连接中的所有报文全部消失，不会出现在下一个TCP连接中。</li>
 <li>当第四次挥手数据包丢失，server会超时重传，client要预留出来这部分时间，否则server无法正常关闭。</li>
 </ol>
+<p><em><strong>MSL、TTL及RTT的区别</strong></em></p>
+<p>MSL(Maximum Segment Lifetime) ：报文最大生存时间，超过这个时间，报文就将在网络中被丢弃。在TCP第四次挥手进入TIME_WAIT后，要等待2MSL的时间。</p>
+<p>TTL(time to live)：ip数据报可以经过的最大路由数，由源主机设置初始值时给定。每经过一个处理他的路由器此值就减1，当此值为0则数据报将被丢弃，同时发送ICMP报文通知源主机。</p>
+<p>RTT(round-trip time)：C/S往返所花时间。由TCP自适应算法计算动态给出，随着网络拥塞状态的变化而变化。</p>
 <h3 id="可靠传输"><a href="#可靠传输" class="headerlink" title="可靠传输"></a>可靠传输</h3><p>TCP是如何保证可靠传输的？</p>
 <p>主要有校验和、序列号、超时重传、流量控制及拥塞避免等几种方法。</p>
 <p><em><strong>校验和</strong></em></p>
-<p>在发送端和接收端对数据进行校验计算，如果两者不一致，说明数据在传输中有差错，TCP讲丢弃报文。</p>
+<p>具体步骤：</p>
+<p>发送方将校验和报文段置0，加上12位的伪首部（伪首部 + 首部 + 数据），将拼接后的报文视为若干个16位的数据，按二进制反码计算这些16位数据的和，然后将结果的反码写到校验和报文段里。接收方拿到报文段，加上伪首部，做同样的操作，如果得到的为全1，则说明无差错。</p>
 <blockquote>
 <p>IP、UDP、TCP校验和计算方式相似，都是二进制反码运算求和再取反。区别在于IP只校验IP报文的首部，UDP和TCP校验首部和数据部分。</p>
 </blockquote>
@@ -536,6 +681,12 @@
 <p>RTT（Round-Trip Time） ：TCP发送报文和收到确认的时间差。<br>RTO（Retransmission Time-Out） ：超时计时器设置的超时时间。</p>
 </blockquote>
 <p>冗余确认 ：利用序列号对缺失报文段进行计数，缩短超时周期，提高重传效率。</p>
+<p><em><strong>停止等待协议</strong></em></p>
+<p>每发完一个分组就停止发送，等待对方确认，在收到确认后再发下一个分组。</p>
+<p>TCP默认使用累计确认，只确认第一个丢失包的序号位置。</p>
+<blockquote>
+<p>确认号(ack)：期望收到对方下一个报文段的数据的第一个字节的序号。</p>
+</blockquote>
 <p><em><strong>流量控制</strong></em></p>
 <p>流量控制是匹配发送方的发送速率与接收方的读取速率。</p>
 <p>TCP提供的是一种基于滑动窗口的控制机制。</p>
@@ -588,7 +739,8 @@
 <td align="center">8</td>
 </tr>
 </tbody></table>
-<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><p>ARP协议的主要作用是实现从IP地址转换为MAC地址。</p>
+<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><h2 id="IP报文"><a href="#IP报文" class="headerlink" title="IP报文"></a>IP报文</h2><p><a href="/img/2021/IP%E6%95%B0%E6%8D%AE%E5%8C%85%E6%A0%BC%E5%BC%8F.png">IP数据包格式</a></p>
+<h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><p>ARP协议的主要作用是实现从IP地址转换为MAC地址。</p>
 <p><em><strong>ARP的工作流程</strong></em></p>
 <ol>
 <li>在局域网内，主机A要向主机B发送IP数据报时，首先会在主机A的ARP缓存表中查找是否有IP地址及其对应的MAC地址，如果有，则将MAC地址写入到MAC帧的首部，并通过局域网将该MAC帧发送到MAC地址所在的主机B。</li>
@@ -599,13 +751,56 @@
 </ol>
 <p><em><strong>IP地址 &amp; MAC地址</strong></em></p>
 <p>网络层实现的是主机之间的通信，而链路层实现的是链路之间的通信，所以从下图可以看出，在数据传输过程中，IP数据报的源地址(IP1)和目的地址(IP2)是一直不变的，而MAC地址(硬件地址)却一直随着链路的改变而改变。</p>
-<h2 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h2><!--补充下ICMP，和PING-->
-
-<h3 id="PING"><a href="#PING" class="headerlink" title="PING"></a>PING</h3><p>ping是ICMP(网际控制报文协议)中的一个重要应用，ICMP是网络层的协议。ping的作用是测试两个主机的连通性。</p>
-<p><em><strong>ping的工作过程</strong></em></p>
+<h2 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h2><p>ICMP（Intent Control Message Protocol）互联网控制报文协议：用于TCP/IP网络中发送控制消息，提供IP包废弃的各种问题反馈。</p>
+<p>ICMP 报文是封装在 IP 包里面，它工作在网络层，是 IP 协议的助手。</p>
+<p><img src="/img/2021/ICMP%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84.jpg" srcset="/img/loading.gif" lazyload alt="ICMP报文结构"></p>
+<p>ICMP有两种报文格式：查询报文、差错报文。</p>
+<p><em><strong>查询报文</strong></em></p>
+<p>发送端主动发起请求，并且获取到应答。</p>
+<p>典型的应用就是PING。</p>
+<p>ping是ICMP(网际控制报文协议)中的一个重要应用，ICMP是网络层的协议。ping的作用是测试两个主机的连通性。</p>
+<p>ping的工作过程：</p>
 <ol>
 <li>向目的主机发送多个ICMP回送请求报文</li>
 <li>根据目的主机返回的回送报文的时间和成功响应的次数估算出数据包往返时间及丢包率。</li>
+</ol>
+<p>ping执行后都发生了什么？</p>
+<ol>
+<li>ping 命令执行的时候，源主机首先会构建一个 ICMP 回送请求消息数据包。</li>
+<li>ICMP 数据包内包含多个字段，最重要的是两个：第一个是类型，对于回送请求消息而言该字段为 8；另外一个是序号，主要用于区分连续 ping 的时候发出的多个数据包，每发出一个请求数据包，序号会自动加 1。</li>
+<li>ICMP报文段作为IP报文的一部分，加上源ip地址和目的ip地址，拼接成ip数据包；</li>
+<li>ip数据包通过ARP协议添加MAC头部，并转发到目的主机（中间可能涉及路由跳转）；</li>
+<li>目的主机按MAC地址、IP数据包逐层解析；</li>
+<li>响应阶段，目的主机会构建一个 ICMP 回送响应消息数据包，回送响应数据包的类型字段为 0，序号为接收到的请求数据包中的序号，然后再发送出去给源主机。</li>
+</ol>
+<p><em><strong>差错报文</strong></em></p>
+<ol>
+<li><p>终点不可达</p>
+<p> A、网络不可达 — 代码为 0，<br> B、主机不可达 — 代码为 1.<br> C、协议不可达 — 代码为 2.<br> D、端口不可达 — 代码为 3.<br> E、需要分段 - 代码为 4.（ 必须把数据分段才能去到终点</p>
+</li>
+<li><p>源站抑制</p>
+<p> 发送端发送大量数据时，可能会导致网络( 路由器 )过载，此时过载处可以向发送端发送源抑制的消息，让他降低发送速度。</p>
+</li>
+<li><p>时间超时</p>
+<p> 网络包超过设置的在网络中的生存时间，还没有达到。</p>
+</li>
+<li><p>路由重定向</p>
+<p> 定义数据包的路由规则。因为大部分的时候，路由规则是通过相关协议算法生成的，有些时候重新定义过之后，会让这个数据包绕的更远。</p>
+</li>
+</ol>
+<h2 id="DHCP协议"><a href="#DHCP协议" class="headerlink" title="DHCP协议"></a>DHCP协议</h2><p>DHCP(Dynamic Host Configuration Protocol) 动态主机配置协议，用于给主机动态分配ip地址。</p>
+<p>DHCP是应用层协议，基于UDP。</p>
+<h2 id="NAT协议"><a href="#NAT协议" class="headerlink" title="NAT协议"></a>NAT协议</h2><p>NAT（Network Address Translation）网络地址转换，是内网和外网ip转换的协议。它的作用在于：1、整个内网只需要一个全球IP就可以全球互连，而内网IP是可重用的，因此可以节省IP资源的消耗；2、内网只用于LAN，不用于WAN，可以隐藏内部网络结构，提高网络安全性。</p>
+<p>NAT协议通过NAT路由器实现的，NAT要通过NAT转换表，实现源ip地址或目的ip地址的转换。NAT转换表存放着{本地IP地址 : 端口}到{全球IP地址 : 端口}的映射。</p>
+<p>内网ip网段：</p>
+<ol>
+<li>A类：10.0.0.0～10.255.255.255</li>
+<li>B类：172.16.0.0～172.31.255.255</li>
+<li>C类：192.168.0.0～192.168.255.255</li>
+</ol>
+<h2 id="CIDR协议"><a href="#CIDR协议" class="headerlink" title="CIDR协议"></a>CIDR协议</h2><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903662838349838">https://juejin.cn/post/6844903662838349838</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaolincoding/p/12571184.html">https://www.cnblogs.com/xiaolincoding/p/12571184.html</a></li>
 </ol>
 
             </div>
