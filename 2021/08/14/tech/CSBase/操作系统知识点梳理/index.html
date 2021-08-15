@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>操作系统知识点梳理 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="操作系统知识点梳理">
+              
+                操作系统知识点梳理
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-14 19:11" pubdate>
+        2021年8月14日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统知识点梳理</h1>
+            
+            <div class="markdown-body">
+              <h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="什么是操作系统？"><a href="#什么是操作系统？" class="headerlink" title="什么是操作系统？"></a>什么是操作系统？</h3><p>操作系统是管理硬件和软件的一种应用程序，它为计算机硬件和软件提供了一种中间层，使应用软件和硬件进行分离，让我们无需关注硬件的实现，把关注点更多放在软件应用上。</p>
+<h3 id="操作系统是干什么的？"><a href="#操作系统是干什么的？" class="headerlink" title="操作系统是干什么的？"></a>操作系统是干什么的？</h3><p>管理计算机资源，这些资源包括 CPU、内存、磁盘驱动器、打印机等。<br>提供一种图形界面，就像我们前面描述的那样，它提供了用户和计算机之间的桥梁。<br>为其他软件提供服务，操作系统与软件进行交互，以便为其分配运行所需的任何必要资源。</p>
+<h3 id="用户态和核心态"><a href="#用户态和核心态" class="headerlink" title="用户态和核心态"></a>用户态和核心态</h3><p>用户态和内核态是操作系统的两种运行状态。</p>
+<p><em><strong>内核态</strong></em></p>
+<p> 处于内核态的 CPU 可以访问任意的数据，包括外围设备，比如网卡、硬盘等，处于内核态的 CPU 可以从一个程序切换到另外一个程序，并且占用 CPU 不会发生抢占情况，一般处于特权级 0 的状态我们称之为内核态。</p>
+<p><em><strong>用户态</strong></em></p>
+<p> 处于用户态的 CPU 只能受限的访问内存，并且不允许访问外围设备，用户态下的 CPU 不允许独占，也就是说 CPU 能够被其他程序获取。</p>
+<p><em><strong>为什么要有用户态和内核态？</strong></em></p>
+<p> 这个主要是访问能力的限制的考量，计算机中有一些比较危险的操作，比如设置时钟、内存清理，这些都需要在内核态下完成，如果随意进行这些操作，那你的系统得崩溃多少次。</p>
+<p><em><strong>用户态和内核态是如何切换的？</strong></em></p>
+<p>只能<code>系统调用</code>才能操作用户态与内核态的切换，而只有<code>操作系统</code>才能操作系统调用。</p>
+<p>用户态 -&gt; 内核态 的工作流程：</p>
+<ol>
+<li>首先用户程序会调用 glibc 库，glibc 是一个标准库，同时也是一套核心库，库中定义了很多关键 API。</li>
+<li>glibc 库知道针对不同体系结构调用系统调用的正确方法，它会根据体系结构应用程序的二进制接口设置用户进程传递的参数，来准备系统调用。</li>
+<li>然后，glibc 库调用软件中断指令(SWI) ，这个指令通过更新 CPSR 寄存器将模式改为超级用户模式，然后跳转到地址 0x08 处。</li>
+<li>到目前为止，整个过程仍处于用户态下，在执行 SWI 指令后，允许进程执行内核代码，MMU 现在允许内核虚拟内存访问</li>
+<li>从地址 0x08 开始，进程执行加载并跳转到中断处理程序，这个程序就是 ARM 中的 vector_swi()。</li>
+<li>在 vector_swi() 处，从 SWI 指令中提取系统调用号 SCNO，然后使用 SCNO 作为系统调用表 sys_call_table 的索引，调转到系统调用函数。</li>
+<li>执行系统调用完成后，将还原用户模式寄存器，然后再以用户模式执行。</li>
+</ol>
+<p><img src="/img/2021/%E7%94%A8%E6%88%B7%E6%80%81-%3E%E5%86%85%E6%A0%B8%E6%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="用户态-&gt;内核态工作流程"></p>
+<p><em><strong>内核</strong></em></p>
+<p>内核是一个计算机程序，它是操作系统的核心，可以控制操作系统中所有的内容。内核通常是在 <code>boot loader</code>装载程序之前加载的第一个程序。</p>
+<blockquote>
+<p>boot loader又被称为引导加载程序，能够将计算机的操作系统放入内存中。在电源通电或者计算机重启时，BIOS会执行一些初始测试，然后将控制权转移到引导加载程序所在的主引导记录(MBR) 。</p>
+</blockquote>
+<h3 id="操作系统启动过程"><a href="#操作系统启动过程" class="headerlink" title="操作系统启动过程"></a>操作系统启动过程</h3><!--todo-->
+
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><h3 id="进程-1"><a href="#进程-1" class="headerlink" title="进程"></a>进程</h3><p><em><strong>进程</strong></em></p>
+<p>进程就是正在执行程序的实例，比如说 Web 程序就是一个进程，shell 也是一个进程，文章编辑器 typora 也是一个进程。</p>
+<p><em><strong>进程表</strong></em></p>
+<p>操作系统为了跟踪每个进程的活动状态，维护了一个进程表。在进程表的内部，列出了每个进程的状态以及每个进程使用的资源等。</p>
+<p><em><strong>进程控制块（PCB）</strong></em></p>
+<p>PCB是进程的唯一标识，系统通过PCB来控制和管理进程的状态。</p>
+<p>PCB主要包含的信息：进程描述信息、进程控制和管理信息、资源分配清单、处理机相关信息。</p>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p><em><strong>线程的实现方式</strong></em></p>
+<ol>
+<li>用户级线程：线程的控制和管理发生在应用程序，内核不感知。而且一般从单线程开始，运行过程中派生出其他线程。</li>
+<li>内核级线程：线程的控制和管理发生在内核，应用程序不感知。</li>
+<li>组合方式：线程的创建、调度、同步都发生在用户空间，一个内核线程映射多个用户线程。</li>
+</ol>
+<p><em><strong>线程模型</strong></em></p>
+<ol>
+<li>多对一：所有用户线程都对应一个内核线程。线程管理在用户空间。优点是效率高，缺点是内核线程阻塞，所有用户线程都受到影响。</li>
+<li>一对一：一个用户线程对应一个内核线程。线程管理在内核空间。有点是并发能力强，缺点是开销大，程序性能低。</li>
+<li>多对多：少量内核线程映射多量的用户线程。取二者所长，弥补二者所短。</li>
+</ol>
+<h3 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h3><p><em><strong>进程和线程的区别</strong></em></p>
+<p>资源和调度：进程是资源分配的最小单位；线程是cpu调度的最小单位。</p>
+<p>并发：进程是用来实现各应用程序并发的，线程是为了提高并发性能的。（因为进程切换需要虚拟内存空间的切换，而线程可以共享进程资源，因此上下文切换的开销小。）</p>
+<p>系统开销：进程的上下文切换开销大，而线程的上下文切换开销小。</p>
+<p>地址空间：进程间相互独立，进程内的线程共享资源，并且对其他进程的线程不可见。</p>
+<p>通信：进程间通信通过同步和互斥保证数据的一致性，线程可以直接读写数据。</p>
+<p><em><strong>上下文切换</strong></em></p>
+<h2 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h2><p>IPC(Inter Process Communication)：进程间通信。</p>
+<ol>
+<li><p>管道</p>
+<p> 半双工通信方式，双方通信需要建立两个管道；</p>
+<p> 是一个独立的文件系统，只存在在内存中；</p>
+<p> 本质是一个内核缓冲区，可以认为是一个循环队列。进程以先进先出的方式从缓冲区存取数据，一端进程顺序写到队尾，一端进程从队头开始读数据，且每个数据只能被读一次；</p>
+<p> 只能用于亲缘进程之间的通信。（非亲缘进程可以通过有名管道通信） </p>
+</li>
+<li><p>共享内存</p>
+<p> 多个进程可以直接在内核专门预留一块内存空间读写，是最快的IPC形式。</p>
+<p> 需要同步机制（信号量）达到进程间的同步及互斥。</p>
+</li>
+<li><p>信号量（严格来讲不属于通信方式，只是为同步提供的一种机制）</p>
+<p> 信号量是一个计数器，用于多进程对共享数据的访问，信号量的意图在于进程间同步。</p>
+<p> 进程获得共享资源需要进行的操作：1、创建一个信号量，初始值为0或1；2、等待一个信号量：该操作测试信号量的值，如果小于0，就阻塞，也称为P操作；3、挂出一个信号量：该操作将信号量的值加1，也称为V操作。</p>
+<p> 信号量的操作都是原子的（PV原语，或wait、signal），是在内核中实现的。</p>
+<p> 信号量和互斥量之间的区别：</p>
+<pre><code> 互斥量用于线程的互斥，信号量用于线程的同步。
+ 
+ 互斥：是指某一资源同时只允许一个访问者对其进行访问，具有唯一性和排它性。但互斥无法限制访问者对资源的访问顺序，即访问是无序的。
+
+ 同步：是指在互斥的基础上（大多数情况），通过其它机制实现访问者对资源的有序访问。
+</code></pre>
+</li>
+</ol>
+<ol start="4">
+<li><p>消息传递</p>
+<p> 消息传递是进程间实现通信和同步等待的机制。</p>
+<p> 进程间的交流不需要共享内存，而是利用操作系统提供的消息传递的方法进行进程通信。</p>
+<p> 消息传递是通过发送消息和接受消息两个原语实现的。进程间的数据交换以消息为单位。</p>
+<p> 通信方式分为直接通信和间接通信。</p>
+<p> 直接通信：发送进程直接把消息发送给接收进程，将消息挂在接收进程的消息缓冲队列上。</p>
+<p> 间接通信：发送进程把消息发送到中间实体，接收进程从中间实体获得消息。电子邮件系统就采用这种通信方式。</p>
+</li>
+<li><p>消息队列 </p>
+<p> 消息队列是以消息为单位的链表，存放在内存中并由消息队列标识符标识，能提供不同进程间的全双工通信；</p>
+<p> 与管道不同的第一点：消息队列存在内核中，只有操作系统重启或者显示删除时，才会真正被删除；</p>
+<p> 与管道不同的第二点：   </p>
+</li>
+<li><p>信号</p>
+<p> 信号可以在任何时候发给某一进程，而无需知道该进程的状态。</p>
+<p> SIGINT：程序终止信号。程序运行过程中，按Ctrl+C键将产生该信号。</p>
+</li>
+<li><p>socket</p>
+<p> 这种通信方式可以实现跨机器的进程通信。</p>
+<p> socket是对TCP/IP协议簇的接口抽象。</p>
+<p> socket通信的建立过程：</p>
+<pre><code> 服务端：
+     1. 服务器系统调用socket创建一个套接字；
+     2. 服务器进程调用`bind`方法给套接字命名，并等待客户端连接到这个套接字；
+     3. 系统调用`listen`来创建一个队列并将其用于存放来自客户的进入连接；
+     4. 服务器通过系统调用`accept`来接受客户的连接，并创建新的套接字用于特定客户端的连接。
+
+ 客户端：
+     1. 客户端系统调用socket创建一个未命名套接字;
+     2. 然后将服务器创建的命名套接字作为地址，调用`connect`与服务器进行连接；
+     3. 建立连接后，就可以用套接字进行数据双向通信。
+</code></pre>
+</li>
+</ol>
+<h2 id="进程的状态模型"><a href="#进程的状态模型" class="headerlink" title="进程的状态模型"></a>进程的状态模型</h2><h3 id="进程的五种状态"><a href="#进程的五种状态" class="headerlink" title="进程的五种状态"></a>进程的五种状态</h3><p>进程的五种状态：运行态、就绪态、阻塞态、创建态、结束态。</p>
+<ol>
+<li>运行态：进程在处理机上运行；</li>
+<li>就绪态：进程除了处理机外获取了其他一切资源，等待处理机被调度执行；</li>
+<li>阻塞态：进程正在等待某一事件而释放处理机资源；</li>
+<li>创建态：进程正在被创建；</li>
+<li>结束态：进程正从系统中消失。</li>
+</ol>
+<h3 id="进程的创建"><a href="#进程的创建" class="headerlink" title="进程的创建"></a>进程的创建</h3><p><em><strong>操作系统创建一个进程的过程</strong></em></p>
+<ol>
+<li>为新进程分配一个唯一标识号，并申请一个空白的PCB；</li>
+<li>为进程分配内存空间等资源（体现在PCB），资源不足，则进入阻塞状态；</li>
+<li>初始化PCB，主要包括初始化标志信息、处理机状态信息、处理机控制信息、进程优先级等；</li>
+<li>将进程加入到就绪队列里，等待执行。</li>
+</ol>
+<h3 id="进程的终止"><a href="#进程的终止" class="headerlink" title="进程的终止"></a>进程的终止</h3><p><em><strong>进程终止的原因</strong></em></p>
+<ol>
+<li>正常结束</li>
+<li>异常结束：存储区越界、非法指令、运行超时、IO故障等；</li>
+<li>外界干扰，如操作系统干预、父进程终止等。</li>
+</ol>
+<p><em><strong>进程终止的过程</strong></em></p>
+<ol>
+<li>根据标示号，检索PCB，读出进程状态；</li>
+<li>如果进程处于运行态，终止运行，释放处理机资源；</li>
+<li>若进程有子进程，终止子进程；</li>
+<li>将进程拥有的全部资源归还给父进程或操作系统；</li>
+<li>将该PCB从所在队列中清除。</li>
+</ol>
+<h3 id="进程的阻塞和唤醒"><a href="#进程的阻塞和唤醒" class="headerlink" title="进程的阻塞和唤醒"></a>进程的阻塞和唤醒</h3><p><em><strong>阻塞的执行过程</strong></em></p>
+<ol>
+<li>找到进程标识对应的PCB；</li>
+<li>如果进程状态为运行态，保护现场，转换状态为阻塞态，停止运行；</li>
+<li>将PCB插入事件的等待队列，释放处理机资源。</li>
+</ol>
+<p><em><strong>唤醒的执行过程</strong></em></p>
+<ol>
+<li>在事件的等待队列中找到相应进程的PCB；</li>
+<li>将其从等待队列中移除，并置进程状态为就绪态；</li>
+<li>把PCB插入就绪队列，等待调度程序调度。</li>
+</ol>
+<h3 id="进程的切换"><a href="#进程的切换" class="headerlink" title="进程的切换"></a>进程的切换</h3><p><em><strong>进程切换的执行过程</strong></em></p>
+<ol>
+<li>保存处理机上下文，包括程序计数器及一些寄存器；</li>
+<li>更新PCB信息；</li>
+<li>把PCB移到相应的队列（就绪队列、阻塞队列）</li>
+<li>选择另一个进程执行，并更新其PCB；</li>
+<li>更新内存管理的数据结构</li>
+<li>恢复处理机的上下文。</li>
+</ol>
+<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><h3 id="先来先服务"><a href="#先来先服务" class="headerlink" title="先来先服务"></a>先来先服务</h3><p>算法简单，效率低，非抢占，长作业有利，有利于cpu繁忙型作业，不利于IO繁忙型作业。</p>
+<h3 id="短作业优先"><a href="#短作业优先" class="headerlink" title="短作业优先"></a>短作业优先</h3><p>对长作业不利（饥饿），不能保证紧迫性作业及时处理。</p>
+<h3 id="优先级调度"><a href="#优先级调度" class="headerlink" title="优先级调度"></a>优先级调度</h3><p>优先级用于描述作业的紧迫程度。</p>
+<p>分为抢占式和非抢占式。</p>
+<p>IO型 &gt; cpu型；系统进程 &gt; 用户进程</p>
+<h3 id="高响应比调度"><a href="#高响应比调度" class="headerlink" title="高响应比调度"></a>高响应比调度</h3><p>是先来先服务和短作业优先的平衡算法。</p>
+<p><code>响应比 = （等待时间 + 要求服务时间）/ 要求服务时间</code></p>
+<h3 id="时间片轮转调度"><a href="#时间片轮转调度" class="headerlink" title="时间片轮转调度"></a>时间片轮转调度</h3><h3 id="多级反馈队列调度"><a href="#多级反馈队列调度" class="headerlink" title="多级反馈队列调度"></a>多级反馈队列调度</h3><p>是对优先级和时间轮转的发展。</p>
+<ol>
+<li>设置多个就绪队列，赋予不同的优先级；</li>
+<li>为就绪队列赋予时间片，优先级越高的就绪队列时间片越短；</li>
+<li>新进程进入内存后，放到最高优先级的队列，按先来先服务等待调度，执行时间为分配的时间片时间；如果没有执行完就放到第二优先级的队列的队尾；</li>
+<li>仅当第一优先级为空的时候，再来调度第二优先级队列里的进程。</li>
+</ol>
+<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/12/tech/CSBase/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/">
+                        <span class="hidden-mobile">计算机网络知识点梳理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
