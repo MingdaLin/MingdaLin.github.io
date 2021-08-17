@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>团灭股票问题 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="团灭股票问题">
+              
+                团灭股票问题
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-08 15:35" pubdate>
+        2020年11月8日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      35
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">团灭股票问题</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>以下问题在没有进行状态压缩前，都是套用一个模板分析的状态转移、写出的代码，因此面试的时候可以直接先把没有进行状态压缩的算法写出来，再在此基础上修改代码优化空间。</p>
+</blockquote>
+<hr>
+<h4 id="122-买卖股票的最佳时机-II"><a href="#122-买卖股票的最佳时机-II" class="headerlink" title="122. 买卖股票的最佳时机 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122. 买卖股票的最佳时机 II</a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 状态量： </span><br><span class="hljs-comment">//     天数 &amp; 是否持有股票</span><br><span class="hljs-comment">// dp[i][j]定义：</span><br><span class="hljs-comment">//     第i天手里有或没有股票的最大利润；</span><br><span class="hljs-comment">// 状态转移：</span><br><span class="hljs-comment">//     第i天持有股票：dp[i][1]</span><br><span class="hljs-comment">//         可能是第i-1天以前就买过了 dp[i][1] = dp[i-1][1]</span><br><span class="hljs-comment">//         也可能是第i天刚买入的 dp[i][1] = dp[i-1][0] - prices[i]</span><br><span class="hljs-comment">//     第i天不持有股票：dp[i][0]</span><br><span class="hljs-comment">//         可能是i-1天持有股票，i天刚好卖出；dp[i][0] = dp[i-1][1] + prices[i]</span><br><span class="hljs-comment">//         也可能是i-1天就没有股票； dp[i][0] = dp[i-1][0]</span><br><span class="hljs-comment">// 初始状态：</span><br><span class="hljs-comment">//     dp[0][0] = 0</span><br><span class="hljs-comment">//     dp[0][1] = - prices[0]</span><br><span class="hljs-comment">// 返回值：</span><br><span class="hljs-comment">//     最后一天不持有股票的最大利润，即：dp[prices.length - 1][0]</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] prices)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[prices.length][<span class="hljs-number">2</span>];<br>        dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = - prices[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.length; ++i) &#123;<br>            dp[i][<span class="hljs-number">1</span>] = Math.max(dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>], dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] - prices[i]);<br>            dp[i][<span class="hljs-number">0</span>] = Math.max(dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] + prices[i], dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]);<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[prices.length - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>空间压缩：观察到第i天是否持有股票只由i-1天决定，因此不需要记录再久之间的状态。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxProfit</span>(<span class="hljs-params">self, prices: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:</span><br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        状态转移：</span><br><span class="hljs-string">        第i天持有股票，state1</span><br><span class="hljs-string">            可能是i-1天以前买的： </span><br><span class="hljs-string">            也可能是i天刚买的</span><br><span class="hljs-string">        第i天不持有股票，state0</span><br><span class="hljs-string">            可能是i-1天以前卖的，</span><br><span class="hljs-string">            也可能是第i天刚卖的 </span><br><span class="hljs-string"></span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        <span class="hljs-comment"># state0 代表当前不持有股票的最大收益， state1 代表当前持有股票的最大收益</span><br>        state0, state1 = <span class="hljs-number">0</span>, -prices[<span class="hljs-number">0</span>]<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(prices)):<br>            state0_new = <span class="hljs-built_in">max</span>(state0, state1 + prices[i])<br>            state1_new = <span class="hljs-built_in">max</span>(state1, state0 - prices[i])<br>            state0, state1 = state0_new, state1_new<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(state0, state1)<br></code></pre></td></tr></table></figure>
+
+<p>贪心策略：由于可以无限次交易，我们只需要记录<strong>当前</strong>的增量并将其累加就可，而得到的结果就是最终的全局最优解。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxProfit</span>(<span class="hljs-params">self, prices: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:</span><br>        profit = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(prices)):<br>            tmp = prices[i] - prices[i - <span class="hljs-number">1</span>]<br>            <span class="hljs-keyword">if</span> tmp &gt; <span class="hljs-number">0</span>: profit += tmp<br>        <span class="hljs-keyword">return</span> profit<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="714-买卖股票的最佳时机含手续费"><a href="#714-买卖股票的最佳时机含手续费" class="headerlink" title="714. 买卖股票的最佳时机含手续费"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">714. 买卖股票的最佳时机含手续费</a></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;题解：DP</span><br><span class="hljs-string">dp数组的含义：</span><br><span class="hljs-string">    dp[i][j]代表当前第i天在状态j时的最大收益</span><br><span class="hljs-string">状态：</span><br><span class="hljs-string">    第i天持有股票: dp[i][0]，第i天没有股票: dp[i][1]</span><br><span class="hljs-string">状态转移：</span><br><span class="hljs-string">    1. 第i天持有股票：</span><br><span class="hljs-string">        可能是第i-1天持有的股票：dp[i-1][0]</span><br><span class="hljs-string">        也可能是第i天刚买的股票：dp[i-1][1] - prices[i]</span><br><span class="hljs-string">        state1 = max(dp[i-1][0], dp[i-1][1] - prices[i])</span><br><span class="hljs-string">    2. 第i天不持有股票：</span><br><span class="hljs-string">        可能是第i-1天就没有股票：dp[i-1][1]</span><br><span class="hljs-string">        也可能是第i天刚卖出股票：dp[i-1][0] + prices[i] - fee</span><br><span class="hljs-string">        state2 = max(dp[i-1][1], dp[i-1][0] + prices[i] - fee)</span><br><span class="hljs-string">边界条件：</span><br><span class="hljs-string">    dp[0][0] = -prices[0]</span><br><span class="hljs-string">    dp[0][1] = 0</span><br><span class="hljs-string">最终输出：</span><br><span class="hljs-string">    res = max(dp[n-1][0],dp[n-1][1])</span><br><span class="hljs-string">空间优化：</span><br><span class="hljs-string">    state1, state2 = -prices[0], 0</span><br><span class="hljs-string">复杂度分析：</span><br><span class="hljs-string">    T(n) = O(n); S(n) = O(1)</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxProfit</span>(<span class="hljs-params">self, prices: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>], fee: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:</span><br>        prices_len = <span class="hljs-built_in">len</span>(prices)<br>        <span class="hljs-keyword">if</span> prices_len == <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> prices_len == <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        state1, state2 = -prices[<span class="hljs-number">0</span>], <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, prices_len):<br>            state1_new = <span class="hljs-built_in">max</span>(state1, state2 - prices[i])<br>            state2_new = <span class="hljs-built_in">max</span>(state2, state1 + prices[i] - fee)<br>            state1, state2 = state1_new, state2_new<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(state1, state2)<br></code></pre></td></tr></table></figure>
+
+<p>贪心解法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] prices, <span class="hljs-keyword">int</span> fee)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> len=prices.length;<br>        <span class="hljs-keyword">if</span> (len&lt;<span class="hljs-number">2</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>,min=prices[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;len ; i++) &#123;<br>            <span class="hljs-keyword">if</span> (prices[i]&lt;min)&#123;<br>                <span class="hljs-comment">//未发生买卖时找到第一个最小数，如果发生过买卖则比较当前价格和上次卖出时的价格减去手续费</span><br>                min=prices[i];<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">if</span> (prices[i]-fee&gt;min)&#123;<br>                    res+=prices[i]-min-fee;<br>                    <span class="hljs-comment">//当前的价格已经减过手续费，所以min的值应为当前价格减去手续费。</span><br>                    min=prices[i]-fee;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="309-最佳买卖股票时机含冷冻期"><a href="#309-最佳买卖股票时机含冷冻期" class="headerlink" title="309. 最佳买卖股票时机含冷冻期"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">309. 最佳买卖股票时机含冷冻期</a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 状态量：</span><br><span class="hljs-comment">//     天数 &amp; 是否持有股票 &amp; 是否处于冷冻期</span><br><span class="hljs-comment">// dp定义：</span><br><span class="hljs-comment">//     dp[i][j][k] 为第i天后持有/不持有股票处于/不处于冷冻期的最大收益；</span><br><span class="hljs-comment">//     不持有不处于均用0表示，持有处于均用1表示；</span><br><span class="hljs-comment">// 状态转移：</span><br><span class="hljs-comment">//     第i天后持有股票：</span><br><span class="hljs-comment">//         可能是第i-1天已经持有的：dp[i][1][0] = dp[i-1][1][0]</span><br><span class="hljs-comment">//         也可能是第i天刚好买入的：dp[i][1][0] = dp[i-1][0][0] - prices[i]</span><br><span class="hljs-comment">//     第i天后不持有股票：</span><br><span class="hljs-comment">//         第i-1天后就没持有股票</span><br><span class="hljs-comment">//             此时可能是i-1天本来就没有股票：dp[i][0][0] = dp[i-1][0][0]</span><br><span class="hljs-comment">//             也可能是i-1天刚好卖出，此时i-1天后处于冷冻期：dp[i][0][0] = dp[i-1][0][1]</span><br><span class="hljs-comment">//         第i天刚卖出，此时第i-1天持有股票，第i天后处于冷冻期：dp[i][0][1] = dp[i-1][1][0] + prices[i]</span><br><span class="hljs-comment">// 初始化：</span><br><span class="hljs-comment">//     dp[0][0][k] = 0</span><br><span class="hljs-comment">//     dp[0][1][k] = - prices[0]</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] prices)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (prices.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span>[][][] dp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[prices.length][<span class="hljs-number">2</span>][<span class="hljs-number">2</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">2</span>; ++k) &#123;<br>            dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>][k] = -prices[<span class="hljs-number">0</span>];<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.length; ++i) &#123;<br>            dp[i][<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] = Math.max(dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][<span class="hljs-number">0</span>], dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] - prices[i]);<br>            dp[i][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = Math.max(dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>], dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]);<br>            dp[i][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] + prices[i];<br>        &#125;<br>        Arrays.sort(dp[prices.length - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>]);<br>        <span class="hljs-keyword">return</span> dp[prices.length - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>空间压缩：观察到冷冻期只会出现在前一天刚卖完，当前这一天才会处在冷冻期，因此可以将状态量减小为三个。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;题解：DP</span><br><span class="hljs-string">状态：</span><br><span class="hljs-string">    1. 当前第i天持有股票：dp[i][0]</span><br><span class="hljs-string">    2. 当前第i天不持有股票，处于冷冻期（第i天刚卖出股票）：dp[i][1]</span><br><span class="hljs-string">    3. 当前第i天不持有股票，不处于冷冻期（第i天没有卖出股票）：dp[i][2]</span><br><span class="hljs-string">dp数组含义：</span><br><span class="hljs-string">    dp[i][j]代表第i天j状态下的最大收益</span><br><span class="hljs-string">状态转移：</span><br><span class="hljs-string">    1. 第i天持有的股票可能是第i-1天已经持有的：dp[i-1][0]</span><br><span class="hljs-string">       也可能是第i天刚好买入的（此时i-1天只有不处在冷冻期第i天才能买入）：dp[i-1][2]</span><br><span class="hljs-string">        dp[i][0] = max(dp[i-1][0], dp[i-1][2] - prices[i])</span><br><span class="hljs-string">    2. 第i天刚卖出股票意味着i-1天一定持有股票：</span><br><span class="hljs-string">        dp[i][1] = dp[i-1][0] + prices[i]</span><br><span class="hljs-string">    3. 第i天不持有股票且当天没有卖出股票：</span><br><span class="hljs-string">        dp[i][2] = max(dp[i-1][1], dp[i-1][2])</span><br><span class="hljs-string">边界条件：</span><br><span class="hljs-string">    dp[0][0] = -prices[0]</span><br><span class="hljs-string">    dp[0][1] = 0</span><br><span class="hljs-string">    dp[0][2] = 0</span><br><span class="hljs-string">最终结果：</span><br><span class="hljs-string">    n = len(prices)</span><br><span class="hljs-string">    res = max(dp[n-1][0], dp[n-1][1], dp[n-1][2])</span><br><span class="hljs-string">空间优化：</span><br><span class="hljs-string">    第i天状态只由i-1天状态决定，因此可以用三个变量分别记录i-1天时三个状态的最大收益：</span><br><span class="hljs-string">    状态1: state1_stock</span><br><span class="hljs-string">    状态2: state2_selling</span><br><span class="hljs-string">    状态3: state3_selled</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">List</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxProfit</span>(<span class="hljs-params">self, prices: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:</span><br>        prices_len = <span class="hljs-built_in">len</span>(prices)<br>        <span class="hljs-keyword">if</span> prices_len == <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> prices_len == <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        state1, state2, state3 = -prices[<span class="hljs-number">0</span>], <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(prices_len):<br>            state1_new = <span class="hljs-built_in">max</span>(state1, state3 - prices[i])<br>            state2_new = state1 + prices[i]<br>            state3_new = <span class="hljs-built_in">max</span>(state2, state3)<br>            state1, state2, state3 = state1_new, state2_new, state3_new<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(state1, state2, state3)<br><br>sol = Solution()<br>prices = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]<br><span class="hljs-built_in">print</span>(sol.maxProfit(prices))<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="123-买卖股票的最佳时机-III"><a href="#123-买卖股票的最佳时机-III" class="headerlink" title="123. 买卖股票的最佳时机 III"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/">123. 买卖股票的最佳时机 III</a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 状态量：</span><br><span class="hljs-comment">//     天数 &amp; 是否持有股票 &amp; 已完成的交易数</span><br><span class="hljs-comment">// dp数组定义：</span><br><span class="hljs-comment">//     dp[i][j][k] 第i天后持有或不持有股票完成k笔交易的最大利润；</span><br><span class="hljs-comment">//     i 与prices[]下标一致</span><br><span class="hljs-comment">//     j = 0 -&gt; 不持有 j = 1 -&gt; 持有</span><br><span class="hljs-comment">//     k = 0, 1, 2</span><br><span class="hljs-comment">// 状态转移：</span><br><span class="hljs-comment">//     第i天后持有股票：</span><br><span class="hljs-comment">//         可能是第i-1天也持有股票：dp[i][1][k] = dp[i-1][1][k]</span><br><span class="hljs-comment">//         也可能是第i天刚买入股票：dp[i][1][k] = dp[i-1][0][k] - prices[i]</span><br><span class="hljs-comment">//     第i天后不持有股票：</span><br><span class="hljs-comment">//         可能是第i-1天也不持有股票：dp[i][0][k] = dp[i-1][0][k]</span><br><span class="hljs-comment">//         也可能是第i天刚卖出股票，此时相较于i-1天，完成的交易数+1：dp[i][0][k] = dp[i-1][1][k-1] + prices[i]</span><br><span class="hljs-comment">// 初始化：</span><br><span class="hljs-comment">//     dp[0][0][k] = 0</span><br><span class="hljs-comment">//     dp[0][1][k] = - prices[0]</span><br><span class="hljs-comment">// 返回：</span><br><span class="hljs-comment">//     最后一天后完成0，1，2笔交易后不持有股票的最大值。</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] prices)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span>[][][] dp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[prices.length][<span class="hljs-number">2</span>][<span class="hljs-number">3</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">3</span>; ++k) &#123;<br>            dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>][k] = -prices[<span class="hljs-number">0</span>];<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.length; ++i) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">3</span>; ++k) &#123;<br>                dp[i][<span class="hljs-number">1</span>][k] = Math.max(dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][k], dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][k] - prices[i]);<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">1</span>; k &lt; <span class="hljs-number">3</span>; ++k) &#123;<br>                dp[i][<span class="hljs-number">0</span>][k] = Math.max(dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][k], dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][k-<span class="hljs-number">1</span>] + prices[i]);<br>            &#125;<br>        &#125;<br>        Arrays.sort(dp[prices.length-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]);<br>        <span class="hljs-keyword">return</span> dp[prices.length-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">2</span>];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>空间压缩：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/solution/wu-chong-shi-xian-xiang-xi-tu-jie-123mai-mai-gu-pi/">参考地址</a></p>
+<hr>
+<h4 id="188-买卖股票的最佳时机-IV"><a href="#188-买卖股票的最佳时机-IV" class="headerlink" title="188. 买卖股票的最佳时机 IV"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/">188. 买卖股票的最佳时机 IV</a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k, <span class="hljs-keyword">int</span>[] prices)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (prices.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span>[][][] dp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[prices.length][<span class="hljs-number">2</span>][k+<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>; count &lt; k+<span class="hljs-number">1</span>; ++count) &#123;<br>            dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>][count] = -prices[<span class="hljs-number">0</span>];<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.length; ++i) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>; count &lt; k+<span class="hljs-number">1</span>; ++count) &#123;<br>                dp[i][<span class="hljs-number">1</span>][count] = Math.max(dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][count], dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][count] - prices[i]);<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> count = <span class="hljs-number">1</span>; count &lt; k+<span class="hljs-number">1</span>; ++count) &#123;<br>                dp[i][<span class="hljs-number">0</span>][count] = Math.max(dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][count], dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][count-<span class="hljs-number">1</span>] + prices[i]);<br>            &#125;<br>        &#125;<br>        Arrays.sort(dp[prices.length-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]);<br>        <span class="hljs-keyword">return</span> dp[prices.length-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][k];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/leetcode/">leetcode</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/09/tech/leetcode/%E6%B1%82%E6%95%B0%E7%BB%84%E7%AC%ACk%E5%A4%A7%E6%88%96%E5%89%8Dk%E5%A4%A7%E9%97%AE%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">求数组第k大或前k大问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/07/tech/leetcode/327-%E5%8C%BA%E9%97%B4%E5%92%8C%E7%9A%84%E4%B8%AA%E6%95%B0/">
+                        <span class="hidden-mobile">327. 区间和的个数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
