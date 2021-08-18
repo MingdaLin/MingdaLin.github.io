@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.2k 字
+      7.3k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      78
+      79
        分钟
     </span>
   
@@ -365,7 +365,7 @@
 <p><em><strong>GET和POST的差别</strong></em></p>
 <ul>
 <li><p>作用</p>
-<p>GET用于获取资源，POST用于传输实体主体</p>
+<p>GET用于获取资源，POST用于传输实体主体。GET相当于SELECT，POST相当于CREATE。</p>
 </li>
 <li><p>参数位置</p>
 <p>GET的参数放在URL中，POST的参数存储在实体主体中，并且GET方法提交的请求的URL中的数据做多是2048字节，POST请求没有大小限制。</p>
@@ -378,6 +378,7 @@
 </li>
 </ul>
 <p><em><strong>POST和PUT的区别</strong></em></p>
+<p>POST相当于CREATE，PUT相当于UPDATE。</p>
 <p>二者都用于请求数据的更新和创建。</p>
 <p>但二者最本质的区别在于POST不是幂等的，而PUT是幂等的。即PUT多次返回结果是一样的，但POST多次会返回不同的对象。POST由服务器来指定地址，而PUT是用户指定的。</p>
 <p>比如一个用户要对一个账号反复修改密码，就要用PUT，而一个用户想要创建多个账号，就要用POST。</p>
@@ -392,10 +393,10 @@
 <p> 301 Moved Permanently：永久性重定向<br> 302 Found：临时重定向<br> 303 See Other：和301功能类似，但要求客户端采用get方法获取资源<br> 304 Not Modified：所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。<br> 305 Use Proxy：所请求的资源必须通过代理访问<br> 307 Temporary Redirect： 临时重定向，与302类似，要求使用get请求重定向。</p>
 </li>
 <li><p>4XX：客户端错误码，服务器无法处理请求</p>
-<p> 400 Bad Request：客户端请求的语法错误，服务器无法理解。<br> 401 Unauthorized：表示发送的请求需要有认证信息。<br> 403 Forbidden：服务器理解用户的请求，但是拒绝执行该请求<br> 404 Not Found：服务器无法根据客户端的请求找到资源。<br> 405 Method Not Allowed：客户端请求中的方法被禁止<br> 406 Not Acceptable：服务器无法根据客户端请求的内容特性完成请求<br> 408 Request Time-out：服务器等待客户端发送的请求时间过长，超时</p>
+<p> 400 Bad Request：客户端请求的语法错误，服务器无法理解。<br> 401 Unauthorized：表示发送的请求需要有认证信息。<br> 403 Forbidden：服务器理解用户的请求，但是拒绝执行该请求。<br> 404 Not Found：服务器无法根据客户端的请求找到资源。<br> 405 Method Not Allowed：客户端请求中的方法被禁止<br> 406 Not Acceptable：服务器无法根据客户端请求的内容特性完成请求<br> 408 Request Time-out：服务器等待客户端发送的请求时间过长，超时</p>
 </li>
 <li><p>5XX：服务器错误码，服务器处理请求出错</p>
-<p> 500 Internal Server Error：服务器内部错误，无法完成请求<br> 501 Not Implemented：服务器不支持请求的功能，无法完成请求</p>
+<p> 500 Internal Server Error：服务器内部错误，无法完成请求<br> 501 Not Implemented：请求方法不被服务器支持，或无法处理。<br> 502 Bad Gateway：服务器作为网关需要得到一个处理这个请求的响应，但是得到一个错误的响应。<br> 503 Service Unavailable：服务器没有准备好处理请求。 常见原因是服务器因维护或重载而停机。<br> 504 Gateway Timeout：当服务器作为网关，不能及时得到响应时返回此错误代码。</p>
 </li>
 </ol>
 <h3 id="HTTP-与-HTTPS-的区别"><a href="#HTTP-与-HTTPS-的区别" class="headerlink" title="HTTP 与 HTTPS 的区别"></a>HTTP 与 HTTPS 的区别</h3><table>

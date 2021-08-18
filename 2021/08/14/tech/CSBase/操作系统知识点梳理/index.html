@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.8k 字
+      7.2k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      69
+      75
        分钟
     </span>
   
@@ -266,6 +266,9 @@
 <p><em><strong>进程控制块（PCB）</strong></em></p>
 <p>PCB是进程的唯一标识，系统通过PCB来控制和管理进程的状态。</p>
 <p>PCB主要包含的信息：进程描述信息、进程控制和管理信息、资源分配清单、处理机相关信息。</p>
+<blockquote>
+<p>PCB里含有进程的标识信息、状态信息、资源的占有情况等。</p>
+</blockquote>
 <h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p><em><strong>线程的实现方式</strong></em></p>
 <ol>
 <li>用户级线程：线程的控制和管理发生在应用程序，内核不感知。而且一般从单线程开始，运行过程中派生出其他线程。</li>
@@ -274,8 +277,8 @@
 </ol>
 <p><em><strong>线程模型</strong></em></p>
 <ol>
-<li>多对一：所有用户线程都对应一个内核线程。线程管理在用户空间。优点是效率高，缺点是内核线程阻塞，所有用户线程都受到影响。</li>
-<li>一对一：一个用户线程对应一个内核线程。线程管理在内核空间。有点是并发能力强，缺点是开销大，程序性能低。</li>
+<li>多对一：所有用户线程都对应一个内核线程。<strong>线程管理在用户空间</strong>。优点是效率高，缺点是内核线程阻塞，所有用户线程都受到影响。</li>
+<li>一对一：一个用户线程对应一个内核线程。<strong>线程管理在内核空间</strong>。有点是并发能力强，缺点是开销大，程序性能低。</li>
 <li>多对多：少量内核线程映射多量的用户线程。取二者所长，弥补二者所短。</li>
 </ol>
 <h3 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h3><p><em><strong>进程和线程的区别</strong></em></p>
@@ -284,59 +287,66 @@
 <p>系统开销：进程的上下文切换开销大，而线程的上下文切换开销小。</p>
 <p>地址空间：进程间相互独立，进程内的线程共享资源，并且对其他进程的线程不可见。</p>
 <p>通信：进程间通信通过同步和互斥保证数据的一致性，线程可以直接读写数据。</p>
-<h2 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h2><h3 id="IPC"><a href="#IPC" class="headerlink" title="IPC"></a>IPC</h3><p>IPC(Inter Process Communication)：进程间通信。</p>
-<ol>
-<li><p>管道</p>
-<p> 半双工通信方式，双方通信需要建立两个管道；</p>
-<p> 是一个独立的文件系统，只存在在内存中；</p>
-<p> 本质是一个内核缓冲区，可以认为是一个循环队列。进程以先进先出的方式从缓冲区存取数据，一端进程顺序写到队尾，一端进程从队头开始读数据，且每个数据只能被读一次；</p>
-<p> 只能用于亲缘进程之间的通信。（非亲缘进程可以通过有名管道通信） </p>
-</li>
+<h2 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h2><p>IPC(Inter Process Communication)：进程间通信。</p>
+<ul>
 <li><p>共享内存</p>
-<p> 多个进程可以直接在内核专门预留一块内存空间读写，是最快的IPC形式。</p>
-<p> 需要同步机制（信号量）达到进程间的同步及互斥。</p>
+<p>  多个进程可以直接在内核专门预留一块内存空间读写，是最快的IPC形式。</p>
+<p>  需要同步机制（信号量）达到进程间的同步及互斥。</p>
+<ul>
+<li>信号量<ul>
+<li>信号量是一个计数器，用于多进程对共享数据的访问，信号量的意图在于进程间同步。</li>
+<li>进程获得共享资源需要进行的操作：1、创建一个信号量，初始值为0或1；2、等待一个信号量：该操作测试信号量的值，如果小于0，就阻塞，也称为P操作；3、挂出一个信号量：该操作将信号量的值加1，也称为V操作。</li>
+<li>信号量的操作都是原子的（PV原语，或wait、signal），是在内核中实现的。</li>
+<li>信号量和互斥量之间的区别：互斥量用于线程的互斥，信号量用于线程的同步。</li>
+</ul>
 </li>
-<li><p>信号量（严格来讲不属于通信方式，只是为同步提供的一种机制）</p>
-<p> 信号量是一个计数器，用于多进程对共享数据的访问，信号量的意图在于进程间同步。</p>
-<p> 进程获得共享资源需要进行的操作：1、创建一个信号量，初始值为0或1；2、等待一个信号量：该操作测试信号量的值，如果小于0，就阻塞，也称为P操作；3、挂出一个信号量：该操作将信号量的值加1，也称为V操作。</p>
-<p> 信号量的操作都是原子的（PV原语，或wait、signal），是在内核中实现的。</p>
-<p> 信号量和互斥量之间的区别：互斥量用于线程的互斥，信号量用于线程的同步。</p>
+</ul>
 </li>
-<li><p>消息传递</p>
-<p> 消息传递是进程间实现通信和同步等待的机制。</p>
-<p> 进程间的交流不需要共享内存，而是利用操作系统提供的消息传递的方法进行进程通信。</p>
-<p> 消息传递是通过发送消息和接受消息两个原语实现的。进程间的数据交换以消息为单位。</p>
-<p> 通信方式分为直接通信和间接通信。</p>
-<p> 直接通信：发送进程直接把消息发送给接收进程，将消息挂在接收进程的消息缓冲队列上。</p>
-<p> 间接通信：发送进程把消息发送到中间实体，接收进程从中间实体获得消息。电子邮件系统就采用这种通信方式。</p>
+<li><p>管道</p>
+<p>  半双工通信方式，双方通信需要建立两个管道；</p>
+<p>  是一个独立的文件系统，只存在在内存中；</p>
+<p>  本质是一个内核缓冲区，可以认为是一个循环队列。进程以先进先出的方式从缓冲区存取数据，一端进程顺序写到队尾，一端进程从队头开始读数据，且每个数据只能被读一次；</p>
+<p>  只能用于亲缘进程之间的通信。（非亲缘进程可以通过有名管道通信） </p>
 </li>
 <li><p>消息队列 </p>
-<p> 消息队列是以消息为单位的链表，存放在内存中并由消息队列标识符标识，能提供不同进程间的全双工通信；</p>
-<p> 与管道不同的第一点：消息队列存在内核中，只有操作系统重启或者显示删除时，才会真正被删除；</p>
-<p> 与管道不同的第二点：   </p>
+<p>  消息队列是以消息（每个消息都被认为是一个管道，接收进程可以独立地接收含有不同管道的数据结构）为单位的链表，存放在内存中并由消息队列标识符标识，能提供不同进程间的全双工通信。</p>
+<ul>
+<li>消息队列 &amp; 管道 对比：<ul>
+<li>管道是跟随进程的，进程结束之后，管道随之销毁；消息队列是跟随内核的，进程结束之后，消息队列还会存在，只有在操作系统关机之后才会销毁；</li>
+<li>管道是文件，存储在磁盘上，消息队列是数据结构，存储在内存上，因此消息队列的性能比管道更高；</li>
+<li>管道是流式存储，消息队列是数据块式存储。</li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>信号</p>
-<p> 信号可以在任何时候发给某一进程，而无需知道该进程的状态。</p>
-<p> SIGINT：程序终止信号。程序运行过程中，按Ctrl+C键将产生该信号。</p>
+<p>  信号可以在任何时候发给某一进程，而无需知道该进程的状态。</p>
+<p>  SIGINT：程序终止信号。程序运行过程中，按Ctrl+C键将产生该信号。</p>
 </li>
 <li><p>socket</p>
-<p> 这种通信方式可以实现跨机器的进程通信。</p>
-<p> socket是对TCP/IP协议簇的接口抽象。</p>
-<p> socket通信的建立过程：</p>
-<pre><code> 服务端：
-     1. 服务器系统调用socket创建一个套接字；
-     2. 服务器进程调用`bind`方法给套接字命名，并等待客户端连接到这个套接字；
-     3. 系统调用`listen`来创建一个队列并将其用于存放来自客户的进入连接；
-     4. 服务器通过系统调用`accept`来接受客户的连接，并创建新的套接字用于特定客户端的连接。
-
- 客户端：
-     1. 客户端系统调用socket创建一个未命名套接字;
-     2. 然后将服务器创建的命名套接字作为地址，调用`connect`与服务器进行连接；
-     3. 建立连接后，就可以用套接字进行数据双向通信。
-</code></pre>
-</li>
+<p>  这种通信方式可以实现跨机器的进程通信。</p>
+<p>  socket是对TCP/IP协议簇的接口抽象。</p>
+<ul>
+<li>socket通信的建立过程：<ul>
+<li>服务端：<ol>
+<li>服务器系统调用socket创建一个套接字；</li>
+<li>服务器进程调用<code>bind</code>方法给套接字命名，并等待客户端连接到这个套接字；</li>
+<li>系统调用<code>listen</code>来创建一个队列并将其用于存放来自客户的进入连接；</li>
+<li>服务器通过系统调用<code>accept</code>来接受客户的连接，并创建新的套接字用于特定客户端的连接。</li>
 </ol>
-<h3 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h3><p><em><strong>临界资源</strong></em></p>
+</li>
+<li>客户端：<ol>
+<li>客户端系统调用socket创建一个未命名套接字;</li>
+<li>然后将服务器创建的命名套接字作为地址，调用<code>connect</code>与服务器进行连接；</li>
+<li>建立连接后，就可以用套接字进行数据双向通信。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h2><h3 id="同步-amp-互斥"><a href="#同步-amp-互斥" class="headerlink" title="同步 &amp; 互斥"></a>同步 &amp; 互斥</h3><p><em><strong>临界资源</strong></em></p>
 <p>一次仅允许一个进程使用的资源称为临界资源。</p>
 <p><em><strong>临界区</strong></em></p>
 <p>访问临界资源的代码块称为临界区。</p>
@@ -349,6 +359,9 @@
 <p><em><strong>实现临界区互斥的方法</strong></em></p>
 <p>软件方法：peterson算法</p>
 <p>硬件方法：中断屏蔽、硬件指令</p>
+<h3 id="经典同步问题"><a href="#经典同步问题" class="headerlink" title="经典同步问题"></a>经典同步问题</h3><p><em><strong>生产者-消费者问题</strong></em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">semaphore mutex = <span class="hljs-number">1</span>; <span class="hljs-comment">// 临界区互斥信号量</span><br>semaphore empty = n; <span class="hljs-comment">// 空闲缓冲区</span><br>semaphore full = <span class="hljs-number">0</span>; <span class="hljs-comment">// 缓冲区初始化为空</span><br>Producer() &#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>        data = produce(); <span class="hljs-comment">// 生产数据</span><br>        P(empty); <span class="hljs-comment">// 要用一个empty，p一下</span><br>        P(mutex); <span class="hljs-comment">// 进入临界区，互斥夹紧</span><br>        buffer.add(data); <span class="hljs-comment">// 将数据放到缓冲区</span><br>        V(mutex); <span class="hljs-comment">// 离开临界区，释放信号量，互斥夹紧</span><br>        V(full); <span class="hljs-comment">// 提供了一个full，v一下</span><br>    &#125;<br>&#125;<br>Consumer() &#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>        P(full); <span class="hljs-comment">// 用full，p一下</span><br>        P(mutex); <span class="hljs-comment">// 进入临界区</span><br>        data = buffer.remove(); <span class="hljs-comment">// 消费一个data</span><br>        V(mutex); <span class="hljs-comment">// 离开临界区，释放信号量</span><br>        V(empty); <span class="hljs-comment">// 提供了一个empty，v一下</span><br>        consume(data); <span class="hljs-comment">// 消费数据</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h3 id="管程"><a href="#管程" class="headerlink" title="管程"></a>管程</h3><p>管程是共享资源抽象出的一组数据结构及在该数据结构是那个实施操作的一组过程所组成的资源管理程序。</p>
 <p>管程包含的要素：</p>
 <ol>
@@ -372,23 +385,24 @@
 <ol>
 <li>死锁预防<ol>
 <li>破坏互斥条件：一般不会破坏互斥的条件，但可以尽量做到尽可能少的进程可以请求资源。</li>
-<li>破坏保持和等待条件：如果在程序执行完成前可以知道要用多少资源，可以使用银行家算法；释放所有资源，再重新获取；</li>
-<li>破坏不可抢占条件：虚拟化</li>
-<li>破坏循环等待条件：制定一个标准，一个进程在任何时候只能使用一种资源。如果需要另外一种资源，必须释放当前资源；资源统一编号，进程可以在任何时间提出请求，但是所有的请求都必须按照资源的顺序提出。如果按照此分配规则的话，那么资源分配之间不会出现环。</li>
+<li>破坏保持和等待条件：让进程在运行前一次申请完它需要的全部资源，会造成“饥饿”。</li>
+<li>破坏不可抢占条件：cpu的中断等，</li>
+<li>破坏循环等待条件：顺序资源分配法，给资源分配编号，每次申请比之前编号大的资源。</li>
 </ol>
 </li>
 <li>死锁避免<ol>
-<li>系统安全状态</li>
 <li>银行家算法</li>
-<li>安全性算法</li>
 </ol>
 </li>
 <li>死锁检测和解除<ol>
-<li>通过资源分配图死锁检测，根据死锁定理进行死锁解除。</li>
+<li>检测方法：根据死锁定理，如果资源分配图可以被完全简化，说明不存在死锁，反之，则会死锁。</li>
 <li>死锁解除的方法：资源剥夺；撤销进程；进程回退。</li>
 </ol>
 </li>
 </ol>
+<p><em><strong>银行家算法</strong></em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 进程集合</span><br><span class="hljs-keyword">static</span> HashSet&lt;Integer&gt; processSet;<br><span class="hljs-comment">// 当前可用资源，m代表资源总类，available[j] 代表第j类资源可用的数量</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] available;<br><span class="hljs-comment">// 已分配资源, allocation[i][j] 代表进程i已经分配到的j资源的数量</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[][] allocation;<br><span class="hljs-comment">// 资源最大请求数，need[i][j]代表进程i对j资源的最大请求数</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[][] need;<br><span class="hljs-comment">// 资源总类</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> m;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 银行家算法</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> i 进程</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> j 资源类别</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> k 进程申请资源数</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Banker</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">if</span> (k &gt;= need[i][j]) &#123;<br>            <span class="hljs-comment">// 抛出异常</span><br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception();<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (k &gt; available[j]) &#123;<br>            <span class="hljs-comment">// 阻塞进程i</span><br>            wait(i);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            available[j] -= k;<br>            allocation[i][j] += k;<br>            need[i][j] -= k;<br>            <span class="hljs-keyword">if</span> (!isSafe()) &#123;<br>                available[j] += k;<br>                allocation[i][j] -= k;<br>                need[i][j] -= k;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 为进程i分配资源</span><br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        <span class="hljs-comment">// 处理异常</span><br>        log.error(e);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> true: 存在安全序列 false: 不存在安全序列</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isSafe</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">boolean</span> found = <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">while</span> (processSet.size() &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">for</span> (Integer i: processSet) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) &#123;<br>                <span class="hljs-keyword">if</span> (available[j] &gt;= need[i][j] - allocation[i][j]) &#123;<br>                    available[j] += allocation[i][j];<br>                    processSet.remove(i);<br>                    found = <span class="hljs-keyword">true</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (! found) <br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h2 id="进程的状态模型"><a href="#进程的状态模型" class="headerlink" title="进程的状态模型"></a>进程的状态模型</h2><h3 id="进程的五种状态"><a href="#进程的五种状态" class="headerlink" title="进程的五种状态"></a>进程的五种状态</h3><p>进程的五种状态：运行态、就绪态、阻塞态、创建态、结束态。</p>
 <ol>
 <li>运行态：进程在处理机上运行；</li>
@@ -469,7 +483,7 @@
 <p><em><strong>程序的链接有哪几种方式？</strong></em></p>
 <ol>
 <li>静态链接：程序在运行之前，先将各目标模块及它们所需的库函数链接成一个完整的可执行程序，以后不再拆开。</li>
-<li>装入时链接：装入内存时，边装入边链接。</li>
+<li>装入时动态链接：装入内存时，边装入边链接。</li>
 <li>运行时动态链接：程序执行中需要该模块时才进行链接。</li>
 </ol>
 <p><em><strong>程序的装入有哪几种方式？</strong></em></p>
@@ -478,15 +492,16 @@
 <li>静态重定位装入：将作业一次性装入内存，装入时对程序的指令和数据的修改，相对于起始位置进行重定位。</li>
 <li>动态重定位装入：程序执行时，再把相对地址转为绝对地址。</li>
 </ol>
-<!--总的来说进程在执行过程中应该是动态装入内存中的-->
-
 <p><em><strong>覆盖 &amp; 交换</strong></em></p>
 <p>覆盖和交换是多道程序下扩充内存的两种方法。</p>
 <p>覆盖用在同一程序和进程中，交换技术用在不同进程之间。</p>
 <p><em><strong>覆盖</strong></em></p>
 <p>把用户空间分成一个固定区和若干个覆盖区，将经常活跃的部分放到固定区，将即将要访问的段放到覆盖区，其他段放在外存，在需要调用前，系统将其从外存调到覆盖区，替换覆盖区原有的段。</p>
 <p><em><strong>交换</strong></em></p>
-<p>把等待状态的程序从内存移到辅存，即<code>唤出</code>；把准备好竞争cpu资源的程序从辅存移到内存，即<code>换入</code>。</p>
+<p>把等待状态的程序从内存移到辅存，即<code>唤出</code>；把准备好竞争cpu资源的程序从辅存移到内存，即<code>唤入</code>。</p>
+<blockquote>
+<p>区别于换页，交换是针对等待资源的程序而言的。</p>
+</blockquote>
 <h2 id="虚拟内存管理"><a href="#虚拟内存管理" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h2><h3 id="按需分页"><a href="#按需分页" class="headerlink" title="按需分页"></a>按需分页</h3><p>在操作系统中，进程是以页为单位加载到内存中的，按需分页是一种虚拟内存的管理方式。</p>
 <p>当操作系统需要访问的页未在内存中，会出现<code>缺页异常</code>。操作系统才会将磁盘页面复制到内存中。</p>
 <h3 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h3><p><em><strong>连续的分配管理方式</strong></em></p>
