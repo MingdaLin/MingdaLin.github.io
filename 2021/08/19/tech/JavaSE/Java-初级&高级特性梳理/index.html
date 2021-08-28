@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>Java-初级&amp;高级特性梳理 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Java-初级&高级特性梳理">
+              
+                Java-初级&高级特性梳理
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-19 14:19" pubdate>
+        2021年8月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      76
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java-初级&amp;高级特性梳理</h1>
+            
+            <div class="markdown-body">
+              <h1 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h1><h2 id="OOP的三大特性"><a href="#OOP的三大特性" class="headerlink" title="OOP的三大特性"></a>OOP的三大特性</h2><p>面向对象的程序设计方法具有三个基本特征：封装、继承、多态。</p>
+<p>封装：将对象的实现细节隐藏起来，然后通过一些公用方法来暴露该对象的功能；</p>
+<p>继承是面向对象实现软件复用的重要手段，当 子类继承父类后，子类作为一种特殊的父类，将直接获得父类的属性和方法；</p>
+<p>多态：分为编译时多态和运行时多态:<br>    - 编译时多态主要指方法的重载<br>    - 运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定，并且有三个条件：<br>      - 继承<br>      - 重写<br>      - 向上转型（父类引用指向子类对象）</p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><h2 id="泛型定义"><a href="#泛型定义" class="headerlink" title="泛型定义"></a>泛型定义</h2><p>泛型是jdk5引入的新特性，本质为了参数化类型，提供了类型安全检测机制，实现了一次编写模板，多次复用。<!--类型安全检测机制？--></p>
+<p>以List为例，List的底层实现是Object[]，传不同的数据类型，要进行强制转换，这会导致容易产生类型转换错误等。如果对不同类型都编写一套模板显然太复杂，这时候泛型就可以解决以上问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayList</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">private</span> T[] array;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> size;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(T e)</span> </span>&#123;...&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>&#123;...&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>&#123;...&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>❗️❗️泛型<T>不是一种基本类型，不能通过<code>getClass()</code>方法获取Class类型。</p>
+<h2 id="编写泛型"><a href="#编写泛型" class="headerlink" title="编写泛型"></a>编写泛型</h2><p>编写泛型方法并不困难，你需要用泛型类型来替代原始类型，比如使用<code>T</code>, <code>E</code> or <code>K</code>,<code>V</code>等被广泛认可的类型占位符。泛型方法的例子请参阅Java集合类框架。在函数返回类型，和入参类型需要使用泛型的地方都需要用占位符占位。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> V <span class="hljs-title">put</span><span class="hljs-params">(K key, V value)</span> </span>&#123;<br><br>        <span class="hljs-keyword">return</span> cache.put(key, value);<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="泛型的Java实现（擦拭法）"><a href="#泛型的Java实现（擦拭法）" class="headerlink" title="泛型的Java实现（擦拭法）"></a>泛型的Java实现（擦拭法）</h2><p>泛型只在编译阶段有效，在编译过程中会进行类型擦除，并在对象进入和离开方法的时候进行类型转换和类型检测，而泛型信息不会进入到运行时阶段。</p>
+<p>Java语言的泛型实现方式是<strong>擦拭法（Type Erasure）</strong>。</p>
+<blockquote>
+<p>擦拭法是指，JVM完全屏蔽泛型，所有的类型转换工作都是编译器做的。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// coding</span><br>Pair&lt;String&gt; p = <span class="hljs-keyword">new</span> Pair&lt;&gt;(<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>);<br>String first = p.getFirst();<br>String last = p.getLast();<br><br><span class="hljs-comment">// jvm</span><br>Pair p = <span class="hljs-keyword">new</span> Pair(<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>);<br>String first = (String) p.getFirst();<br>String last = (String) p.getLast();<br></code></pre></td></tr></table></figure>
+
+<p>擦拭法决定了泛型<T>：</p>
+<ol>
+<li>不能是基本类型，例如：int；</li>
+<li>不能获取带泛型类型的Class，例如：Pair<String>.class；</li>
+<li>不能判断带泛型类型的类型，例如：x instanceof Pair<String>；</li>
+<li>不能实例化T类型，例如：new T()。</li>
+</ol>
+<h2 id="extends-amp-super通配符"><a href="#extends-amp-super通配符" class="headerlink" title="extends &amp; super通配符"></a>extends &amp; super通配符</h2><h3 id="向上转型"><a href="#向上转型" class="headerlink" title="向上转型"></a>向上转型</h3><p>❗️❗️向上转型是谁转？是外层的类型转，而不是&lt;&gt;里的类型转！</p>
+<p>对于<code>ArrayList&lt;String&gt;</code>来说，向上转型的结果就是<code>List&lt;String&gt;</code>。</p>
+<p>但是对于<code>ArrayList&lt;Integer&gt;</code>，<code>ArrayList&lt;Number&gt;</code>并不是其向上转型的结果！</p>
+<p>如果想对<code>&lt;&gt;</code>里面的内容进行向上或向下类型转换，要怎么做？ 向上转-&gt;extends，向下转-&gt;super</p>
+<h3 id="extends-上界通配符"><a href="#extends-上界通配符" class="headerlink" title="extends 上界通配符"></a>extends 上界通配符</h3><? extends Number>通配符的一个重要限制：方法参数签名setFirst(? extends Number)无法传递任何Number的子类型给setFirst(? extends Number)
+
+使用<? extends Number>通配符表示：
+1. 使用extends通配符表示可以读，不能写；
+2. 使用类似< T extends Number>定义泛型类时表示：泛型类型限定为Number以及Number的子类。
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// extends的作用是限制set，只get</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sumOfList</span><span class="hljs-params">(List&lt;? extends Integer&gt; list)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++) &#123;<br>        Integer n = list.get(i);<br>        sum = sum + n;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sum;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+### super 下界通配符
+
+使用<? super Integer>通配符表示：
+1. 允许调用set(? super Integer)方法传入Integer的引用；
+2. 不允许调用get()方法获得Integer的引用。
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Collections</span> </span>&#123;<br>    <span class="hljs-comment">// 把src的每个元素复制到dest中:</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">copy</span><span class="hljs-params">(List&lt;? <span class="hljs-keyword">super</span> T&gt; dest, List&lt;? extends T&gt; src)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;src.size(); i++) &#123;<br>            T t = src.get(i);<br>            dest.add(t);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+`Collections.copy`的作用是把一个List的每个元素依次添加到另一个List中。它的第一个参数是`List<? super T>`，表示目标List，第二个参数`List<? extends T>`，表示要复制的List。我们可以简单地用for循环实现复制。在for循环中，我们可以看到，对于类型`<? extends T>`的变量src，我们可以安全地获取类型T的引用，而对于类型`<? super T>`的变量dest，我们可以安全地传入T的引用。
+
+这个`copy()`方法的定义就完美地展示了extends和super的意图：
+
+`copy()`方法内部不会读取dest，因为不能调用`dest.get()`来获取T的引用；
+
+`copy()`方法内部也不会修改src，因为不能调用`src.add(T)`。
+
+### ? 无边界通配符 
+
+<?><p>通配符既没有extends，也没有super，因此：</p>
+<ol>
+<li>不允许调用set(T)方法并传入引用（null除外）；</li>
+<li>不允许调用T get()方法并获取T引用（只能获取Object引用）。</li>
+</ol>
+<p>无限定通配符&lt;?&gt;很少使用，可以用<T>替换，同时它是所有<T>类型的超类。</p>
+<h3 id="泛型的使用"><a href="#泛型的使用" class="headerlink" title="泛型的使用"></a>泛型的使用</h3><blockquote>
+<p>Q：在哪些地方可以使用泛型？泛型有哪些使用方式？</p>
+</blockquote>
+<p>泛型有三种使用方式，分别为：泛型类、泛型接口、泛型方法。</p>
+<p><em><strong>泛型类</strong></em></p>
+<p>泛型类，就是用泛型来定义类。通过泛型可以完成对一组类的操作对外开放相同的接口。</p>
+<p>最典型的就是各种容器类，如：List、Set、Map。</p>
+<p><em><strong>泛型接口</strong></em></p>
+<p>泛型接口，就是用泛型来定义接口。泛型接口常被用在各种类的生成器中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//定义一个泛型接口</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Generator</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">next</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><em><strong>泛型方法</strong></em></p>
+<ol>
+<li><p>基本用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 这才是一个真正的泛型方法。</span><br><span class="hljs-comment"> * 首先在public与返回值之间的&lt;T&gt;必不可少，这表明这是一个泛型方法，并且声明了一个泛型T</span><br><span class="hljs-comment"> * 这个T可以出现在这个泛型方法的任意位置.</span><br><span class="hljs-comment"> * 泛型的数量也可以为任意多个 </span><br><span class="hljs-comment"> *    如：public &lt;T,K&gt; K showKeyName(Generic&lt;T&gt; container)&#123;</span><br><span class="hljs-comment"> *        ...</span><br><span class="hljs-comment"> *        &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">showKeyName</span><span class="hljs-params">(Generic&lt;T&gt; container)</span></span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;container key :&quot;</span> + container.getKey());<br>    <span class="hljs-comment">//当然这个例子举的不太合适，只是为了说明泛型方法的特性。</span><br>    T test = container.getKey();<br>    <span class="hljs-keyword">return</span> test;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>泛型类中的泛型方法 </p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GenerateTest</span>&lt;<span class="hljs-title">T</span>&gt;</span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show_1</span><span class="hljs-params">(T t)</span></span>&#123;<br>        System.out.println(t.toString());<br>    &#125;<br><br>    <span class="hljs-comment">//在泛型类中声明了一个泛型方法，使用泛型E，这种泛型E可以为任意类型。可以类型与T相同，也可以不同。</span><br>    <span class="hljs-comment">//由于泛型方法在声明的时候会声明泛型&lt;E&gt;，因此即使在泛型类中并未声明泛型，编译器也能够正确识别泛型方法中识别的泛型。</span><br>    <span class="hljs-keyword">public</span> &lt;E&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show_3</span><span class="hljs-params">(E t)</span></span>&#123;<br>        System.out.println(t.toString());<br>    &#125;<br><br>    <span class="hljs-comment">//在泛型类中声明了一个泛型方法，使用泛型T，注意这个T是一种全新的类型，可以与泛型类中声明的T不是同一种类型。</span><br>    <span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show_2</span><span class="hljs-params">(T t)</span></span>&#123;<br>        System.out.println(t.toString());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>可变参数的泛型方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printMsg</span><span class="hljs-params">( T... args)</span></span>&#123;<br>    <span class="hljs-keyword">for</span>(T t : args)&#123;<br>        Log.d(<span class="hljs-string">&quot;泛型测试&quot;</span>,<span class="hljs-string">&quot;t is &quot;</span> + t);<br>    &#125;<br>&#125;<br>printMsg(<span class="hljs-string">&quot;111&quot;</span>,<span class="hljs-number">222</span>,<span class="hljs-string">&quot;aaaa&quot;</span>,<span class="hljs-string">&quot;2323.4&quot;</span>,<span class="hljs-number">55.55</span>);<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>静态泛型方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StaticGenerator</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    ....<br>    ....<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 如果在类中定义使用泛型的静态方法，需要添加额外的泛型声明（将这个方法定义成泛型方法）</span><br><span class="hljs-comment">     * 即使静态方法要使用泛型类中已经声明过的泛型也不可以。</span><br><span class="hljs-comment">     * 如：public static void show(T t)&#123;..&#125;,此时编译器会提示错误信息：</span><br><span class="hljs-comment">          &quot;StaticGenerator cannot be refrenced from static context&quot;</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(T t)</span></span>&#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><em><strong>泛型数组</strong></em></p>
+<blockquote>
+<p>不能创建一个确切的泛型类型的数组！原因在于JVM泛型擦除在运行时装入一个元素不会异常，但是在取值的时候可能会出现不一致的情况。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;String&gt;[] ls = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;[<span class="hljs-number">10</span>];   <span class="hljs-comment">// not allowed !</span><br>List&lt;?&gt;[] ls = <span class="hljs-keyword">new</span> ArrayList&lt;?&gt;[<span class="hljs-number">10</span>];  <span class="hljs-comment">// allowed !</span><br>List&lt;String&gt;[] ls = <span class="hljs-keyword">new</span> ArrayList[<span class="hljs-number">10</span>]; <span class="hljs-comment">// alllowed !</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ol>
+<li>Array中可以用泛型吗?<br> Array是不可以使用泛型的。这是因为List可以提供编译期的类型安全保证，而Array却不能。</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/s10461/article/details/53941091">https://blog.csdn.net/s10461/article/details/53941091</a></li>
+<li></li>
+</ol>
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><h2 id="核心知识点"><a href="#核心知识点" class="headerlink" title="核心知识点"></a>核心知识点</h2><p>反射是Java在运行时，可以动态地获取对象的所有属性和方法的一种机制。</p>
+<p>反射通过Class类获取类的class对象；通过Constructor类反映类的构造方法；通过Field类反映类的属性；通过Method类反映类的方法。</p>
+<blockquote>
+<p>Class类是一个类（java.lang），其实例表示java运行时的类或接口。</p>
+</blockquote>
+<h2 id="反射的使用"><a href="#反射的使用" class="headerlink" title="反射的使用"></a>反射的使用</h2><h3 id="Class类对象的获取"><a href="#Class类对象的获取" class="headerlink" title="Class类对象的获取"></a>Class类对象的获取</h3><p>在类加载的时候，jvm会创建一个class对象。</p>
+<p>获取class对象的方式的主要有三种：</p>
+<ol>
+<li>根据类名：类名.class </li>
+<li>根据对象：对象.getClass() </li>
+<li>根据全限定类名：Class.forName(全限定类名)</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">classTest</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    <span class="hljs-comment">// 获取Class对象的三种方式</span><br>    logger.info(<span class="hljs-string">&quot;根据类名:  \t&quot;</span> + User.class);<br>    logger.info(<span class="hljs-string">&quot;根据对象:  \t&quot;</span> + <span class="hljs-keyword">new</span> User().getClass());<br>    logger.info(<span class="hljs-string">&quot;根据全限定类名:\t&quot;</span> + Class.forName(<span class="hljs-string">&quot;com.test.User&quot;</span>));<br>    <span class="hljs-comment">// 常用的方法</span><br>    logger.info(<span class="hljs-string">&quot;获取全限定类名:\t&quot;</span> + userClass.getName());<br>    logger.info(<span class="hljs-string">&quot;获取类名:\t&quot;</span> + userClass.getSimpleName());<br>    logger.info(<span class="hljs-string">&quot;实例化:\t&quot;</span> + userClass.newInstance());<br>&#125;<br><br><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">package</span> com.test;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String name = <span class="hljs-string">&quot;init&quot;</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">User</span><span class="hljs-params">()</span> </span>&#123;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">User</span><span class="hljs-params">(String name, <span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>();<br>        <span class="hljs-keyword">this</span>.name = name;<br>        <span class="hljs-keyword">this</span>.age = age;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">private</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> age;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.age = age;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;User [name=&quot;</span> + name + <span class="hljs-string">&quot;, age=&quot;</span> + age + <span class="hljs-string">&quot;]&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Constructor类"><a href="#Constructor类" class="headerlink" title="Constructor类"></a>Constructor类</h3><p>获取<code>Constructor</code>对象是通过<code>Class</code>类中的方法获取的。</p>
+<table>
+<thead>
+<tr>
+<th>方法返回值</th>
+<th>方法名称</th>
+<th>方法说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static Class&lt;?&gt;</td>
+<td>forName(String className)</td>
+<td>返回与带有给定字符串名的类或接口相关联的 Class 对象。</td>
+</tr>
+<tr>
+<td>Constructor</td>
+<td>getConstructor(Class&lt;?&gt;… parameterTypes)</td>
+<td>返回指定参数类型、具有public访问权限的构造函数对象</td>
+</tr>
+<tr>
+<td>Constructor&lt;?&gt;[]</td>
+<td>getConstructors()</td>
+<td>返回所有具有public访问权限的构造函数的Constructor对象数组</td>
+</tr>
+<tr>
+<td>Constructor</td>
+<td>getDeclaredConstructor(Class&lt;?&gt;… parameterTypes)</td>
+<td>返回指定参数类型、所有声明的（包括private）构造函数对象</td>
+</tr>
+<tr>
+<td>Constructor&lt;?&gt;[]</td>
+<td>getDeclaredConstructor()</td>
+<td>返回所有声明的（包括private）构造函数对象</td>
+</tr>
+<tr>
+<td>T</td>
+<td>newInstance()</td>
+<td>调用无参构造器创建此 Class 对象所表示的类的一个新实例。</td>
+</tr>
+</tbody></table>
+<p><code>Constructor</code>类常用的API：</p>
+<table>
+<thead>
+<tr>
+<th>方法返回值</th>
+<th>方法名称</th>
+<th>方法说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Class</td>
+<td>getDeclaringClass()</td>
+<td>返回 Class 对象，该对象表示声明由此 Constructor 对象表示的构造方法的类,其实就是返回真实类型（不包含参数）</td>
+</tr>
+<tr>
+<td>Type[]</td>
+<td>getGenericParameterTypes()</td>
+<td>按照声明顺序返回一组 Type 对象，返回的就是 Constructor对象构造函数的形参类型。</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getName()</td>
+<td>以字符串形式返回此构造方法的名称。</td>
+</tr>
+<tr>
+<td>Class&lt;?&gt;[]</td>
+<td>getParameterTypes()</td>
+<td>按照声明顺序返回一组 Class 对象，即返回Constructor 对象所表示构造方法的形参类型</td>
+</tr>
+<tr>
+<td>T</td>
+<td>newInstance(Object… initargs)</td>
+<td>使用此 Constructor对象表示的构造函数来创建新实例</td>
+</tr>
+<tr>
+<td>String</td>
+<td>toGenericString()</td>
+<td>返回描述此 Constructor 的字符串，其中包括类型参数。</td>
+</tr>
+</tbody></table>
+<h3 id="Field类"><a href="#Field类" class="headerlink" title="Field类"></a>Field类</h3><p>获取<code>Field</code>对象是通过<code>Class</code>类中的方法获取的。</p>
+<table>
+<thead>
+<tr>
+<th>方法返回值</th>
+<th>方法名称</th>
+<th>方法说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Field</td>
+<td>getDeclaredField(String name)</td>
+<td>获取指定name名称的(包含private修饰的)字段，不包括继承的字段</td>
+</tr>
+<tr>
+<td>Field[]</td>
+<td>getDeclaredField()</td>
+<td>获取Class对象所表示的类或接口的所有(包含private修饰的)字段,不包括继承的字段</td>
+</tr>
+<tr>
+<td>Field</td>
+<td>getField(String name)</td>
+<td>获取指定name名称、具有public修饰的字段，包含继承字段</td>
+</tr>
+<tr>
+<td>Field[]</td>
+<td>getField()</td>
+<td>获取修饰符为public的字段，包含继承字段</td>
+</tr>
+</tbody></table>
+<p><code>Field</code>类常用的API：</p>
+<table>
+<thead>
+<tr>
+<th>方法返回值</th>
+<th>方法名称</th>
+<th>方法说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>set(Object obj, Object value)</td>
+<td>将指定对象变量上此 Field 对象表示的字段设置为指定的新值。</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>get(Object obj)</td>
+<td>返回指定对象上此 Field 表示的字段的值</td>
+</tr>
+<tr>
+<td>Class&lt;?&gt;</td>
+<td>getType()</td>
+<td>返回一个 Class 对象，它标识了此Field 对象所表示字段的声明类型。</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>isEnumConstant()</td>
+<td>如果此字段表示枚举类型的元素则返回 true；否则返回 false</td>
+</tr>
+<tr>
+<td>String</td>
+<td>toGenericString()</td>
+<td>返回一个描述此 Field（包括其一般类型）的字符串</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getName()</td>
+<td>返回此 Field 对象表示的字段的名称</td>
+</tr>
+<tr>
+<td>Class&lt;?&gt;</td>
+<td>getDeclaringClass()</td>
+<td>返回表示类或接口的 Class 对象，该类或接口声明由此 Field 对象表示的字段</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setAccessible(boolean flag)</td>
+<td>将此对象的 accessible 标志设置为指示的布尔值,即设置其可访问性</td>
+</tr>
+</tbody></table>
+<h3 id="Method类"><a href="#Method类" class="headerlink" title="Method类"></a>Method类</h3><p>获取<code>Method</code>对象是通过<code>Class</code>类中的方法获取的。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>方法名称</th>
+<th>方法说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Method</td>
+<td>getDeclaredMethod(String name, Class&lt;?&gt;… parameterTypes)</td>
+<td>返回一个指定参数的Method对象，该对象反映此 Class 对象所表示的类或接口的指定已声明方法。</td>
+</tr>
+<tr>
+<td>Method[]</td>
+<td>getDeclaredMethod()</td>
+<td>返回 Method 对象的一个数组，这些对象反映此 Class 对象表示的类或接口声明的所有方法，包括公共、保护、默认（包）访问和私有方法，但不包括继承的方法。</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>getMethod(String name, Class&lt;?&gt;… parameterTypes)</td>
+<td>返回一个 Method 对象，它反映此 Class 对象所表示的类或接口的指定公共成员方法。</td>
+</tr>
+<tr>
+<td>Method[]</td>
+<td>getMethods()</td>
+<td>返回一个包含某些 Method 对象的数组，这些对象反映此 Class 对象所表示的类或接口（包括那些由该类或接口声明的以及从超类和超接口继承的那些的类或接口）的公共 member 方法。</td>
+</tr>
+</tbody></table>
+<p><code>Method</code>类常用的API：</p>
+<table>
+<thead>
+<tr>
+<th>方法返回值</th>
+<th>方法名称</th>
+<th>方法说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Object</td>
+<td>invoke(Object obj, Object… args)</td>
+<td>对带有指定参数的指定对象调用由此 Method 对象表示的底层方法。</td>
+</tr>
+<tr>
+<td>Class&lt;?&gt;</td>
+<td>getReturnType()</td>
+<td>返回一个 Class 对象，该对象描述了此 Method 对象所表示的方法的正式返回类型,即方法的返回类型</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>getGenericReturnType()</td>
+<td>返回表示由此 Method 对象所表示方法的正式返回类型的 Type 对象，也是方法的返回类型。</td>
+</tr>
+<tr>
+<td>Class&lt;?&gt;[]</td>
+<td>getParameterTypes()</td>
+<td>按照声明顺序返回 Class 对象的数组，这些对象描述了此 Method 对象所表示的方法的形参类型。即返回方法的参数类型组成的数组</td>
+</tr>
+<tr>
+<td>Type[]</td>
+<td>getGenericParameterTypes()</td>
+<td>按照声明顺序返回 Type 对象的数组，这些对象描述了此 Method 对象所表示的方法的形参类型的，也是返回方法的参数类型</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getName()</td>
+<td>以 String 形式返回此 Method 对象表示的方法名称，即返回方法的名称</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>isVarArgs()</td>
+<td>判断方法是否带可变参数，如果将此方法声明为带有可变数量的参数，则返回 true；否则，返回 false。</td>
+</tr>
+<tr>
+<td>String</td>
+<td>toGenericString()</td>
+<td>返回描述此 Method 的字符串，包括类型参数。</td>
+</tr>
+</tbody></table>
+<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>todo</p>
+<h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p><em><strong>序列化</strong></em>是指把一个Java对象变成二进制内容，本质上就是一个byte[]数组。</p>
+<p>一个Java对象要能序列化，必须实现一个特殊的<code>java.io.Serializable</code>接口。</p>
+<p>把一个Java对象变为byte[]数组，需要使用<code>ObjectOutputStream</code>，从一个字节流读取Java对象用<code>ObjectInputStream</code>。</p>
+<h2 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h2><p>todo</p>
+<h2 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h2><p>todo</p>
+<h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h2 id="容器间的继承关系"><a href="#容器间的继承关系" class="headerlink" title="容器间的继承关系"></a>容器间的继承关系</h2><p><img src="/img/2021/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB.png" srcset="/img/loading.gif" lazyload alt="Java集合框架体系"></p>
+<p><img src="/img/2021/Java%E5%AE%B9%E5%99%A8%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="Java容器继承关系图"></p>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><h3 id="put-过程分析"><a href="#put-过程分析" class="headerlink" title="put 过程分析"></a>put 过程分析</h3><ol>
+<li>第一次put的时候，会触发resize操作，第一次resize默认的数组大小是16；</li>
+<li>通过hash映射，得到当前key要put到的数组位置（数组下标是 arrlen &amp; hash(key) 得到的）；</li>
+<li>如果当前数组里的位置为空，新建一个KV的node放到数组里；（node 包含的属性有key, value, next, hash）</li>
+<li>如果数组里已经有数据，取出当前结点判断key与要put的key是否一致，如果一致说明要覆盖旧值，如果不一致，说明哈希冲突；</li>
+<li>如果哈希冲突，需要对冲突的node进行类型判断，如果是红黑树，需要通过红黑树的插值方法完成put操作；否则是链表，通过拉链法完成插值；</li>
+<li>拉链法插值的过程为：要遍历链表，如果找到node的key与当前put的node的key一致，进行覆盖；否则将node加到链表尾部；链表长度超过8要转成红黑树的操作；</li>
+<li>哈希冲突判断完，接下来剩下两个判断操作；一个是在key相等时进行覆盖；另一个是如果因为put达到阈值要进行扩容。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> V <span class="hljs-title">put</span><span class="hljs-params">(K key, V value)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> putVal(hash(key), key, value, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>);<br>&#125;<br><br><span class="hljs-comment">// 第四个参数 onlyIfAbsent 如果是 true，那么只有在不存在该 key 时才会进行 put 操作</span><br><span class="hljs-comment">// 第五个参数 evict 我们这里不关心</span><br><span class="hljs-function"><span class="hljs-keyword">final</span> V <span class="hljs-title">putVal</span><span class="hljs-params">(<span class="hljs-keyword">int</span> hash, K key, V value, <span class="hljs-keyword">boolean</span> onlyIfAbsent,</span></span><br><span class="hljs-function"><span class="hljs-params">               <span class="hljs-keyword">boolean</span> evict)</span> </span>&#123;<br>    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="hljs-keyword">int</span> n, i;<br>    <span class="hljs-comment">// 第一次 put 值的时候，会触发下面的 resize()，类似 java7 的第一次 put 也要初始化数组长度</span><br>    <span class="hljs-comment">// 第一次 resize 和后续的扩容有些不一样，因为这次是数组从 null 初始化到默认的 16 或自定义的初始容量</span><br>    <span class="hljs-keyword">if</span> ((tab = table) == <span class="hljs-keyword">null</span> || (n = tab.length) == <span class="hljs-number">0</span>)<br>        n = (tab = resize()).length;<br>    <span class="hljs-comment">// 找到具体的数组下标，如果此位置没有值，那么直接初始化一下 Node 并放置在这个位置就可以了</span><br>    <span class="hljs-keyword">if</span> ((p = tab[i = (n - <span class="hljs-number">1</span>) &amp; hash]) == <span class="hljs-keyword">null</span>)<br>        tab[i] = newNode(hash, key, value, <span class="hljs-keyword">null</span>);<br><br>    <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">// 数组该位置有数据</span><br>        Node&lt;K,V&gt; e; K k;<br>        <span class="hljs-comment">// 首先，判断该位置的第一个数据和我们要插入的数据，key 是不是&quot;相等&quot;，如果是，取出这个节点</span><br>        <span class="hljs-keyword">if</span> (p.hash == hash &amp;&amp;<br>            ((k = p.key) == key || (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k))))<br>            e = p;<br>        <span class="hljs-comment">// 如果该节点是代表红黑树的节点，调用红黑树的插值方法，本文不展开说红黑树</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p <span class="hljs-keyword">instanceof</span> TreeNode)<br>            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="hljs-keyword">this</span>, tab, hash, key, value);<br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 到这里，说明数组该位置上是一个链表</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> binCount = <span class="hljs-number">0</span>; ; ++binCount) &#123;<br>                <span class="hljs-comment">// 插入到链表的最后面(Java7 是插入到链表的最前面)</span><br>                <span class="hljs-keyword">if</span> ((e = p.next) == <span class="hljs-keyword">null</span>) &#123;<br>                    p.next = newNode(hash, key, value, <span class="hljs-keyword">null</span>);<br>                    <span class="hljs-comment">// TREEIFY_THRESHOLD 为 8，所以，如果新插入的值是链表中的第 8 个</span><br>                    <span class="hljs-comment">// 会触发下面的 treeifyBin，也就是将链表转换为红黑树</span><br>                    <span class="hljs-keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="hljs-number">1</span>) <span class="hljs-comment">// -1 for 1st</span><br>                        treeifyBin(tab, hash);<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-comment">// 如果在该链表中找到了&quot;相等&quot;的 key(== 或 equals)</span><br>                <span class="hljs-keyword">if</span> (e.hash == hash &amp;&amp;<br>                    ((k = e.key) == key || (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k))))<br>                    <span class="hljs-comment">// 此时 break，那么 e 为链表中[与要插入的新值的 key &quot;相等&quot;]的 node</span><br>                    <span class="hljs-keyword">break</span>;<br>                p = e;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// e!=null 说明存在旧值的key与要插入的key&quot;相等&quot;</span><br>        <span class="hljs-comment">// 对于我们分析的put操作，下面这个 if 其实就是进行 &quot;值覆盖&quot;，然后返回旧值</span><br>        <span class="hljs-keyword">if</span> (e != <span class="hljs-keyword">null</span>) &#123;<br>            V oldValue = e.value;<br>            <span class="hljs-keyword">if</span> (!onlyIfAbsent || oldValue == <span class="hljs-keyword">null</span>)<br>                e.value = value;<br>            afterNodeAccess(e);<br>            <span class="hljs-keyword">return</span> oldValue;<br>        &#125;<br>    &#125;<br>    ++modCount;<br>    <span class="hljs-comment">// 如果 HashMap 由于新插入这个值导致 size 已经超过了阈值，需要进行扩容</span><br>    <span class="hljs-keyword">if</span> (++size &gt; threshold)<br>        resize();<br>    afterNodeInsertion(evict);<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="扩容分析"><a href="#扩容分析" class="headerlink" title="扩容分析"></a>扩容分析</h3><ol>
+<li>在扩容代码里，主要有两个内容；1、针对capacity 和threshold 进行更新；2、进行数据迁移；</li>
+<li>针对容量和阈值进行更新的时候，有两种情况；1、第一次put 数组初始化的hashmap；2、对有值的数组进行扩容；</li>
+<li>对有值的数组进行扩容为一般情况，采取的扩容策略为将cap和thr分别扩大一倍（边界case：对&gt;=2^30的cap直接扩容到Integer.MAX_VALUE）；</li>
+<li>如果是初始化的数组，就直接返回了；如果是已经有值的数组，需要进行数据迁移；</li>
+<li>在数据迁移的时候，要将链表拆成两个链接。具体操作有两步；1、将数据迁移，用拉链法解决hash冲突；2、将两条链表分别挂在数组对应的下标上；</li>
+<li>数据迁移时，遍历数组每一个元素：1、如果只有一个值，按key进行hash映射到新的地址就可以了；2、如果是红黑树，不展开；3、如果是链表，拿key的hash与oldcap做&amp;，将最高位为0or1作为两个链表其中的一个的区分，在新得到的位置用拉链法解决哈希冲突（如果需要的话）；</li>
+<li>将链表挂载数组时，将低位链表挂在原位置上，将高位链表挂在原位置高一个oldcap的位置上。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> Node&lt;K,V&gt;[] resize() &#123;<br>    Node&lt;K,V&gt;[] oldTab = table;<br>    <span class="hljs-keyword">int</span> oldCap = (oldTab == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : oldTab.length;<br>    <span class="hljs-keyword">int</span> oldThr = threshold;<br>    <span class="hljs-keyword">int</span> newCap, newThr = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span> (oldCap &gt; <span class="hljs-number">0</span>) &#123; <span class="hljs-comment">// 对应数组扩容</span><br>        <span class="hljs-keyword">if</span> (oldCap &gt;= MAXIMUM_CAPACITY) &#123;<br>            threshold = Integer.MAX_VALUE;<br>            <span class="hljs-keyword">return</span> oldTab;<br>        &#125;<br>        <span class="hljs-comment">// 将数组大小扩大一倍</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((newCap = oldCap &lt;&lt; <span class="hljs-number">1</span>) &lt; MAXIMUM_CAPACITY &amp;&amp;<br>                 oldCap &gt;= DEFAULT_INITIAL_CAPACITY)<br>            <span class="hljs-comment">// 将阈值扩大一倍</span><br>            newThr = oldThr &lt;&lt; <span class="hljs-number">1</span>; <span class="hljs-comment">// double threshold</span><br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (oldThr &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// 对应使用 new HashMap(int initialCapacity) 初始化后，第一次 put 的时候</span><br>        newCap = oldThr;<br>    <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">// 对应使用 new HashMap() 初始化后，第一次 put 的时候</span><br>        newCap = DEFAULT_INITIAL_CAPACITY;<br>        newThr = (<span class="hljs-keyword">int</span>)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (newThr == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">float</span> ft = (<span class="hljs-keyword">float</span>)newCap * loadFactor;<br>        newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (<span class="hljs-keyword">float</span>)MAXIMUM_CAPACITY ?<br>                  (<span class="hljs-keyword">int</span>)ft : Integer.MAX_VALUE);<br>    &#125;<br>    threshold = newThr;<br><br>    <span class="hljs-comment">// 用新的数组大小初始化新的数组</span><br>    Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])<span class="hljs-keyword">new</span> Node[newCap];<br>    table = newTab; <span class="hljs-comment">// 如果是初始化数组，到这里就结束了，返回 newTab 即可</span><br><br>    <span class="hljs-keyword">if</span> (oldTab != <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-comment">// 开始遍历原数组，进行数据迁移。</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; oldCap; ++j) &#123;<br>            Node&lt;K,V&gt; e;<br>            <span class="hljs-keyword">if</span> ((e = oldTab[j]) != <span class="hljs-keyword">null</span>) &#123;<br>                oldTab[j] = <span class="hljs-keyword">null</span>;<br>                <span class="hljs-comment">// 如果该数组位置上只有单个元素，那就简单了，简单迁移这个元素就可以了</span><br>                <span class="hljs-keyword">if</span> (e.next == <span class="hljs-keyword">null</span>)<br>                    newTab[e.hash &amp; (newCap - <span class="hljs-number">1</span>)] = e;<br>                <span class="hljs-comment">// 如果是红黑树，具体我们就不展开了</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (e <span class="hljs-keyword">instanceof</span> TreeNode)<br>                    ((TreeNode&lt;K,V&gt;)e).split(<span class="hljs-keyword">this</span>, newTab, j, oldCap);<br>                <span class="hljs-keyword">else</span> &#123; <br>                    <span class="hljs-comment">// 这块是处理链表的情况，</span><br>                    <span class="hljs-comment">// 需要将此链表拆成两个链表，放到新的数组中，并且保留原来的先后顺序</span><br>                    <span class="hljs-comment">// loHead、loTail 对应一条链表，hiHead、hiTail 对应另一条链表，代码还是比较简单的</span><br>                    Node&lt;K,V&gt; loHead = <span class="hljs-keyword">null</span>, loTail = <span class="hljs-keyword">null</span>;<br>                    Node&lt;K,V&gt; hiHead = <span class="hljs-keyword">null</span>, hiTail = <span class="hljs-keyword">null</span>;<br>                    Node&lt;K,V&gt; next;<br>                    <span class="hljs-keyword">do</span> &#123;<br>                        next = e.next;<br>                        <span class="hljs-keyword">if</span> ((e.hash &amp; oldCap) == <span class="hljs-number">0</span>) &#123;<br>                            <span class="hljs-keyword">if</span> (loTail == <span class="hljs-keyword">null</span>)<br>                                loHead = e;<br>                            <span class="hljs-keyword">else</span><br>                                loTail.next = e;<br>                            loTail = e;<br>                        &#125;<br>                        <span class="hljs-keyword">else</span> &#123;<br>                            <span class="hljs-keyword">if</span> (hiTail == <span class="hljs-keyword">null</span>)<br>                                hiHead = e;<br>                            <span class="hljs-keyword">else</span><br>                                hiTail.next = e;<br>                            hiTail = e;<br>                        &#125;<br>                    &#125; <span class="hljs-keyword">while</span> ((e = next) != <span class="hljs-keyword">null</span>);<br>                    <span class="hljs-keyword">if</span> (loTail != <span class="hljs-keyword">null</span>) &#123;<br>                        loTail.next = <span class="hljs-keyword">null</span>;<br>                        <span class="hljs-comment">// 第一条链表</span><br>                        newTab[j] = loHead;<br>                    &#125;<br>                    <span class="hljs-keyword">if</span> (hiTail != <span class="hljs-keyword">null</span>) &#123;<br>                        hiTail.next = <span class="hljs-keyword">null</span>;<br>                        <span class="hljs-comment">// 第二条链表的新的位置是 j + oldCap，这个很好理解</span><br>                        newTab[j + oldCap] = hiHead;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newTab;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="get-过程分析"><a href="#get-过程分析" class="headerlink" title="get 过程分析"></a>get 过程分析</h3><ol>
+<li>根据key做hash与当前数组容量做&amp; 确定下标位置；</li>
+<li>如果当前位置的元素的key和get的key一致，直接返回；</li>
+<li>否则看当前元素类型，如果是红黑树，调用红黑树的查找方法查找；如果是链表，遍历拉链进行查找返回；</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> V <span class="hljs-title">get</span><span class="hljs-params">(Object key)</span> </span>&#123;<br>    Node&lt;K,V&gt; e;<br>    <span class="hljs-keyword">return</span> (e = getNode(hash(key), key)) == <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">null</span> : e.value;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">final</span> Node&lt;K,V&gt; <span class="hljs-title">getNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> hash, Object key)</span> </span>&#123;<br>    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; first, e; <span class="hljs-keyword">int</span> n; K k;<br>    <span class="hljs-keyword">if</span> ((tab = table) != <span class="hljs-keyword">null</span> &amp;&amp; (n = tab.length) &gt; <span class="hljs-number">0</span> &amp;&amp;<br>        (first = tab[(n - <span class="hljs-number">1</span>) &amp; hash]) != <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-comment">// 判断第一个节点是不是就是需要的</span><br>        <span class="hljs-keyword">if</span> (first.hash == hash &amp;&amp; <span class="hljs-comment">// always check first node</span><br>            ((k = first.key) == key || (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k))))<br>            <span class="hljs-keyword">return</span> first;<br>        <span class="hljs-keyword">if</span> ((e = first.next) != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">// 判断是否是红黑树</span><br>            <span class="hljs-keyword">if</span> (first <span class="hljs-keyword">instanceof</span> TreeNode)<br>                <span class="hljs-keyword">return</span> ((TreeNode&lt;K,V&gt;)first).getTreeNode(hash, key);<br><br>            <span class="hljs-comment">// 链表遍历</span><br>            <span class="hljs-keyword">do</span> &#123;<br>                <span class="hljs-keyword">if</span> (e.hash == hash &amp;&amp;<br>                    ((k = e.key) == key || (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k))))<br>                    <span class="hljs-keyword">return</span> e;<br>            &#125; <span class="hljs-keyword">while</span> ((e = e.next) != <span class="hljs-keyword">null</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><p>todo</p>
+<h2 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h2><p>todo</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/JavaSE/">JavaSE</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/20/tech/JavaSE/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A2%B3%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java多线程梳理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/17/tech/CSBase/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/">
+                        <span class="hidden-mobile">分布式系统知识点梳理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

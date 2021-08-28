@@ -1,0 +1,551 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>Spring知识点梳理 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Spring知识点梳理">
+              
+                Spring知识点梳理
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-25 14:24" pubdate>
+        2021年8月25日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Spring知识点梳理</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Spring-IoC"><a href="#Spring-IoC" class="headerlink" title="Spring IoC"></a>Spring IoC</h1><h2 id="IoC"><a href="#IoC" class="headerlink" title="IoC"></a>IoC</h2><p>IoC：控制反转（Inversion of Control）容器，是一种设计思想。它意味着将对象交给容器控制，而不是开发者在对象内部控制。IoC是通过DI来实现的。</p>
+<blockquote>
+<p>谁控制谁？IoC容器来控制对象。<br>控制什么？控制了外部资源获取（不只是对象包括比如文件等）<br>为什么是反转？因为由容器帮我们查找及注入依赖对象，对象只是被动的接受依赖对象，所以是反转。<br>什么被反转了？依赖对象的获取被反转了。</p>
+</blockquote>
+<p>DI：依赖注入（Dependency Injection），组件之间依赖关系由容器在运行期决定，即由容器动态的将某个依赖关系注入到组件之中。IoC和DI其实是同一个概念的不同角度描述。</p>
+<p>DI是通过IoC容器来实现的。</p>
+<p><img src="/img/2021/%E4%BC%A0%E7%BB%9F%E8%8E%B7%E5%8F%96%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F%E4%B8%8EIoC%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94.png" srcset="/img/loading.gif" lazyload alt="传统获取对象的方式与IoC方式对比"></p>
+<h2 id="IoC容器"><a href="#IoC容器" class="headerlink" title="IoC容器"></a>IoC容器</h2><p>IoC容器本质是一个工厂。Spring主要提供了两种类型的容器。</p>
+<p><em><strong>BeanFactory</strong></em></p>
+<p>BeanFactory是IoC容器的顶层接口，ApplicationContext是在BeanFactory之上创建的。</p>
+<p>BeanFactory一般采用延迟初始化的策略。只有当客户端访问容器里的对象的时候，才对对象进行初始化和依赖注入。因此容器启动初期速度较快。</p>
+<p><em><strong>ApplicationContext</strong></em></p>
+<p>ApplicationContext 在BeanFactory功能至上，还有事件发布等功能。</p>
+<p>ApplicationContext 在容器启动时就完成所有对象的初始化，因此启动需要的资源多，启动慢。  </p>
+<h2 id="Bean的管理"><a href="#Bean的管理" class="headerlink" title="Bean的管理"></a>Bean的管理</h2><p> Spring通过Ioc容器对Bean进行管理。可以通过注解或者xml文件的方式进行配置。</p>
+<p> 管理Bean常用的注解：</p>
+<ul>
+<li><code>@ComponentScan</code>用于声名扫描Bean的策略，对哪些包哪些类型的Bean进行扫描；</li>
+<li><code>@Component``Repository``Service``Controller</code>用于声明Bean；</li>
+<li><code>@Autowired``@Qualifier</code>用于注入Bean；<code>Autowired</code>按照Bean的类型进行匹配，如果同一类型的Bean有多个，可以通过<code>@Qualifier</code>按Bean的名称进行匹配；</li>
+<li><code>@Scope</code>用于声明Bean的作用域，Bean默认是单例的</li>
+<li><code>PostConstruct``PreDestory</code>用于声明Bean的生命周期，<code>PostConstruct</code>在Bean初始化后调用，<code>PreDestory</code>在销毁Bean之前调用；</li>
+</ul>
+<h2 id="Bean的创建"><a href="#Bean的创建" class="headerlink" title="Bean的创建"></a>Bean的创建</h2><h2 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h2><p>Spring 只管理单例模式Bean的完整生命周期。</p>
+<p><code>@PostConstruct</code> 和 <code>@PreDestroy</code> 注解在Bean创建和销毁阶段调用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnnotationBean</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> Logger LOGGER = LoggerFactory.getLogger(AnnotationBean.class);<br><br>    <span class="hljs-meta">@PostConstruct</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span></span>&#123;<br>        LOGGER.info(<span class="hljs-string">&quot;AnnotationBean start&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@PreDestroy</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroy</span><span class="hljs-params">()</span></span>&#123;<br>        LOGGER.info(<span class="hljs-string">&quot;AnnotationBean destroy&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h1><h2 id="AOP介绍"><a href="#AOP介绍" class="headerlink" title="AOP介绍"></a>AOP介绍</h2><h3 id="aop-amp-spring-aop"><a href="#aop-amp-spring-aop" class="headerlink" title="aop &amp; spring aop"></a>aop &amp; spring aop</h3><p>AOP(Aspect oriented programming)面向切面编程，是OOP的一种补充。</p>
+<p>OOP的一大特性——继承，体现了对象之间的“上下关系”，而AOP的切面之间则可以为分散的对象提供公共行为，是一种“左右关系”。</p>
+<p>利用AOP可以为业务逻辑进行解耦，提高开发效率。</p>
+<p>spring aop 有两种实现方式：</p>
+<ul>
+<li>JDK动态代理:这是Java提供的动态代理技术，可以在运行时创建接口的代理实例。Spring AOP默 认采用这种方式，在接口的代理实例中织入代码。 </li>
+<li>CGLib动态代理:采用底层的字节码技术，在运行时创建子类代理的实例。当目标对象不存在接口时，Spring AOP就会采用这种方式，在子类实例中织入代码。</li>
+</ul>
+<p><img src="/img/2021/AOP&OOP.png" srcset="/img/loading.gif" lazyload alt="AOP &amp; OOP"></p>
+<h3 id="filter-amp-interceptor-amp-aop"><a href="#filter-amp-interceptor-amp-aop" class="headerlink" title="filter &amp; interceptor &amp; aop"></a>filter &amp; interceptor &amp; aop</h3><ul>
+<li>Filter：和框架无关，过滤器拦截的是URL，可以控制最初的http请求，但是更细一点的类和方法控制不了。</li>
+<li>Interceptor：拦截器拦截的也是URL，拦截器有三个方法，相对于过滤器更加细致，有被拦截逻辑执行前、后等。</li>
+<li>AOP: 面向切面拦截的是类的元数据（包、类、方法名、参数等） 相对于拦截器更加细致，而且非常灵活，拦截器只能针对URL做拦截，而AOP针对具体的代码，能够实现更加复杂的业务逻辑。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>filter</th>
+<th>interceptor</th>
+<th>aop</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用方式</td>
+<td>函数回调</td>
+<td>反射机制</td>
+<td>动态代理</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>处理URL，过滤一些非法URL、非法字符，</td>
+<td>日志记录、权限检查</td>
+<td>日志记录、性能监控、权限控制、缓存优化、事务管理（声明式事务）</td>
+</tr>
+<tr>
+<td>粒度</td>
+<td>粗</td>
+<td>中</td>
+<td>细</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://www.huaweicloud.com/articles/9554509.html">filter interceptor 使用场景</a></p>
+<h2 id="AOP术语"><a href="#AOP术语" class="headerlink" title="AOP术语"></a>AOP术语</h2><ol>
+<li>通知（Advice）: AOP 框架中的增强处理。通知描述了切面何时执行以及如何执行增强处理；通知类型，主要有以下几种：<ul>
+<li>Before ：前置通知，在连接点方法前调用；对应Spring中@Before注解；</li>
+<li>After ：后置通知，在连接点方法后调用；对应Spring中的@After注解；</li>
+<li>AfterReturning：返回通知，在连接点方法执行并正常返回后调用，要求连接点方法在执行过程中没有发生异常；对应Spring中的@AfterReturning注解；</li>
+<li>AfterThrowing：异常通知，当连接点方法异常时调用；对应Spring中的@AfterThrowing注解；</li>
+<li>Around：环绕通知，它将覆盖原有方法，但是允许你通过反射调用原有方法；对应Spring中的@Around注解；</li>
+</ul>
+</li>
+<li>连接点（Join Point）: 连接点表示应用执行过程中能够插入切面的一个点，这个点可以是方法的调用、异常的抛出。在 Spring AOP 中，连接点总是方法的调用，可以说目标对象中的方法就是一个连接点；</li>
+<li>切点（Pointcut）: 就是连接点的集合；对应Spring中的@Pointcut注解；</li>
+<li>切面（Aspect）: 切面是通知和切点的结合；对应Spring中的注解@Aspect修饰的一个类；</li>
+<li>目标对象（Target object）：即被代理的对象；</li>
+<li>代理对象（AOP proxy）：包含了目标对象的代码和增强后的代码的那个对象；</li>
+</ol>
+<h2 id="AOP实现"><a href="#AOP实现" class="headerlink" title="AOP实现"></a>AOP实现</h2><h2 id="spring-aop的使用"><a href="#spring-aop的使用" class="headerlink" title="spring aop的使用"></a>spring aop的使用</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zyly/p/13171660.html">https://www.cnblogs.com/zyly/p/13171660.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/joy99/p/10941543.html">https://www.cnblogs.com/joy99/p/10941543.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/spring/spring-aop.html">https://www.pdai.tech/md/spring/spring-aop.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://tech.meituan.com/2019/09/05/java-bytecode-enhancement.html">https://tech.meituan.com/2019/09/05/java-bytecode-enhancement.html</a></li>
+</ol>
+<h1 id="SpringBoot注解"><a href="#SpringBoot注解" class="headerlink" title="SpringBoot注解"></a>SpringBoot注解</h1><h2 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h2><p><code>@RequestMapping</code>是用于处理请求地址映射的注解，请求地址为类地址和方法地址的拼接（如果类上没有该注解则直接为方法地址）。</p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ol>
+<li><code>value</code>：指定请求的实际地址，指定的地址可以是URI Template 模式；</li>
+<li><code>method</code>： 指定请求的method类型， GET、POST、PUT、DELETE等；</li>
+<li><code>consumes</code>： 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;</li>
+<li><code>produces</code>: 指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；</li>
+<li><code>params</code>： 指定request中<strong>必须</strong>包含某些参数值时，才让该方法处理。</li>
+<li><code>headers</code>： 指定request中<strong>必须</strong>包含某些指定的header值，才能让该方法处理请求。</li>
+</ol>
+<blockquote>
+<p>在设置<code>value</code>参数的时候，可能涉及的相关注解为：<a href="#PathVariable">@PathVariable</a>；<br>在设置<code>params</code>参数的时候，可能涉及的相关注解为：<a href="#RequestParam">@RequestParam</a>；</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// value可以是一个具体的URI，也可以是含有变量的URI（URI Template Patterns with Path Variables–restful风格）。</span><br><span class="hljs-meta">@RequestMapping(&quot;/testPathVariable/&#123;id&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testPathVariable</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> Integer id2)</span> </span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;testPathVariable: &quot;</span> + id2);<br>    <span class="hljs-keyword">return</span> SUCCESS;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/J080624/article/details/55193269">参考</a></p>
+<h2 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a>@PathVariable</h2><p><code>@PathVariable</code>用来获得请求url中的动态参数，一般修饰于方法中的入参。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestController</span> </span>&#123;  <br><br>     <span class="hljs-meta">@RequestMapping(value=&quot;/user/&#123;userId&#125;/roles/&#123;roleId&#125;&quot;,method = RequestMethod.GET)</span>  <br>     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getLogin</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;userId&quot;)</span> String userId,  </span></span><br><span class="hljs-function"><span class="hljs-params">         <span class="hljs-meta">@PathVariable(&quot;roleId&quot;)</span> String roleId)</span></span>&#123;<br>           <br>         System.out.println(<span class="hljs-string">&quot;User Id : &quot;</span> + userId);  <br>         System.out.println(<span class="hljs-string">&quot;Role Id : &quot;</span> + roleId);  <br>         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello&quot;</span>;  <br>     <br>     &#125;  <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="RequestParam"><a href="#RequestParam" class="headerlink" title="@RequestParam"></a>@RequestParam</h2><p><code>@RequestParam</code>用于获取request请求的参数值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;CopperVO&gt; <span class="hljs-title">getOpList</span><span class="hljs-params">(HttpServletRequest request,</span></span><br><span class="hljs-function"><span class="hljs-params">                                   <span class="hljs-meta">@RequestParam(value = &quot;pageIndex&quot;, required = false)</span> Integer pageIndex,</span></span><br><span class="hljs-function"><span class="hljs-params">                                   <span class="hljs-meta">@RequestParam(value = &quot;pageSize&quot;, required = false)</span> Integer pageSize)</span> </span>&#123;<br><br> &#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="ResponseBody-amp-RequestBody"><a href="#ResponseBody-amp-RequestBody" class="headerlink" title="@ResponseBody &amp; @RequestBody"></a>@ResponseBody &amp; @RequestBody</h2><p><code>@ResponseBody</code>用于将Controller的方法返回的对象，根据HTTP Request Header的Accept的内容,通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。</p>
+<p><code>@ResponseBody</code>使用在返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用.</p>
+<p><code>@RequestBody</code>用于将Controller的方法参数，根据HTTP Request Header的content-Type的内容,通过适当的HttpMessageConverter转换为JAVA类</p>
+<p><code>@RequestBody</code>使用在POST或者PUT的数据是JSON格式或者XML格式,而不是普通的键值对形式.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/testRequestBody&quot;, method= RequestMethod.POST)</span><br>    <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Person <span class="hljs-title">testRequestBody</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> Person p)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;creating a employee:&quot;</span> + p);<br>        <span class="hljs-keyword">return</span> p;<br>    &#125;   <br></code></pre></td></tr></table></figure>
+<p><img src="/img/2021/@ResponseBody&@RequestBody%E4%BD%BF%E7%94%A8.png" srcset="/img/loading.gif" lazyload alt="数据的格式的转换过程"></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7097fea8ce3f">参考</a></p>
+<h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><p><code>@RestController</code>和<code>@ResponseBody</code>注解都会处理返回的数据格式，使用了该类型注解后返回的不再是视图，不会进行转跳，而是返回json或xml数据格式，输出在页面上。</p>
+<p>二者的区别在于：<code>@ResponseBody</code>，一般是使用在单独的方法上的，需要哪个方法返回json数据格式，就在哪个方法上使用，具有针对性；<code>@RestController</code>，一般是使用在类上的，它表示的意思其实就是结合了<code>@Controller</code>和<code>@ResponseBody</code>两个注解，如果哪个类下的所有方法需要返回json数据格式的，就在哪个类上使用该注解，具有统一性；</p>
+<p>使用了<code>@RestController</code>注解之后，其本质相当于在该类的所有方法上都统一使用了@ResponseBody注解，所以该类下的所有方法都会返回json数据格式，输出在页面上，而不会再返回视图。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/JavaEE/">JavaEE</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/26/tech/project/%E9%A1%B9%E7%9B%AE%E6%A2%B3%E7%90%86-%E7%A4%BE%E5%8C%BA%E8%AE%BA%E5%9D%9B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">项目梳理-社区论坛系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/21/tech/JavaSE/Java-JUC%E6%A2%B3%E7%90%86/">
+                        <span class="hidden-mobile">Java-J.U.C梳理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

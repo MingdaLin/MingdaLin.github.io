@@ -182,185 +182,6 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/09/27/tech/leetcode/437-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-III/" target="_self">
-          <img src="/img/tech/leetcode-index.png" srcset="/img/loading.gif" lazyload alt="437. 路径总和 III">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/27/tech/leetcode/437-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-III/" target="_self">
-          437. 路径总和 III
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/27/tech/leetcode/437-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-III/" target="_self">
-          
-          
-            
-          
-          题解
-问题
-
-分析
-A和B是一条路径上的节点，root到A的路径和为a，root到B的路径和为b，如果b - a = target，那么A到B就是满足题目要求的一条路径；
-从root到当前节点B路径和为target的数量为B之前有几个路径和为b - target的节点；
-
-123456789101112131415161718192021222324252627282930313233343536
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-27 00:25" pubdate>
-              2020-09-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
-            
-              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/leetcode/">leetcode</a>
-            
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/09/26/tech/leetcode/113-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-II/" target="_self">
-          <img src="/img/tech/leetcode-index.png" srcset="/img/loading.gif" lazyload alt="113. 路径总和 II">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/26/tech/leetcode/113-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-II/" target="_self">
-          113. 路径总和 II
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/26/tech/leetcode/113-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-II/" target="_self">
-          
-          
-            
-          
-          题解参考
-本题同 剑指 Offer 34. 二叉树中和为某一值的路径
-问题
-
-分析
-节点值可能有正有负，必须dfs把能走的节点都走一遍；
-一定是从根节点到叶子结点，考虑输入为：[1,2]  1，输出为：[] 的情况；
-
-在具体编写代码的时候要考虑的问题：
-
-什么时候回溯？
-
-对于一般的dfs，在左右递归之后，要回溯，把当前节点从path中删除；
-
-如果在一定条件下可以提前return，在if语句里
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-26 13:12" pubdate>
-              2020-09-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
-            
-              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/leetcode/">leetcode</a>
-            
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/09/22/tech/leetcode/90-%E5%AD%90%E9%9B%86-II/" target="_self">
-          <img src="/img/tech/leetcode-index.png" srcset="/img/loading.gif" lazyload alt="90. 子集 II">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/22/tech/leetcode/90-%E5%AD%90%E9%9B%86-II/" target="_self">
-          90. 子集 II
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/22/tech/leetcode/90-%E5%AD%90%E9%9B%86-II/" target="_self">
-          
-          
-            
-          
-          90. 子集 II问题给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
-说明：解集不能包含重复的子集。
-示例:
-输入: [1,2,2]输出:[  [2],  [1],  [1,2,2],  [2,2],  [1,2],  []]
-分析相对78. 子集，需要上来对nums进行排序，然后对当前的path进行判断是否已经存在在res中。
-12345678910111213
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-22 22:36" pubdate>
-              2020-09-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
-            
-              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/leetcode/">leetcode</a>
-            
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/09/21/tech/leetcode/78-%E5%AD%90%E9%9B%86/" target="_self">
           <img src="/img/tech/leetcode-index.png" srcset="/img/loading.gif" lazyload alt="78. 子集">
         </a>
@@ -751,11 +572,121 @@ A和B是一条路径上的节点，root到A的路径和为a，root到B的路径�
     </article>
   </div>
 
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/09/18/tech/leetcode/%E5%89%91%E6%8C%87-Offer-51-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/" target="_self">
+          <img src="/img/tech/leetcode-index.png" srcset="/img/loading.gif" lazyload alt="剑指 Offer 51. 数组中的逆序对">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/18/tech/leetcode/%E5%89%91%E6%8C%87-Offer-51-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/" target="_self">
+          剑指 Offer 51. 数组中的逆序对
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/18/tech/leetcode/%E5%89%91%E6%8C%87-Offer-51-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/" target="_self">
+          
+          
+            
+          
+          剑指 Offer 51. 数组中的逆序对问题在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。
+示例 1:
+12输入: [7,5,6,4]输出: 5
+
+限制：
+10 &lt;= 数组长度 &lt;= 50000
+
+分析涉及数组元素两两比较，想归并排序；结合归并排序过程，求解问题。
+复杂度：$T(n) = O(nlogn); 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-18 20:29" pubdate>
+              2020-09-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/leetcode/">leetcode</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/09/09/tech/leetcode/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" target="_self">
+          <img src="/img/tech/leetcode-index.png" srcset="/img/loading.gif" lazyload alt="背包问题集合">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/09/tech/leetcode/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" target="_self">
+          背包问题集合
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/09/tech/leetcode/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" target="_self">
+          
+          
+            
+          
+          12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-09 16:17" pubdate>
+              2020-09-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/leetcode/">leetcode</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/7/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span>
     </span>
   </nav>
 
