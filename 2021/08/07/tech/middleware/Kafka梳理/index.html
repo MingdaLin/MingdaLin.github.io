@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.8k 字
+      5k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      51
+      53
        分钟
     </span>
   
@@ -367,20 +367,21 @@
 </tbody></table>
 <p><em><strong>Kafka的使用场景</strong></em></p>
 <ul>
-<li>日志收集：一个公司可以用Kafka可以收集各种服务的log，通过kafka以统一接口服务的方式开放给各种consumer，例如hadoop、HBase、Solr等。</li>
-<li>消息系统：解耦和生产者和消费者、缓存消息等。</li>
-<li>实时计算：比如spark streaming和 Flink等流式处理</li>
-<li>用户活动跟踪：Kafka经常被用来记录web用户或者app用户的各种活动，如浏览网页、搜索、点击等活动，这些活动信息被各个服务器发布到kafka的topic中，然后订阅者通过订阅这些topic来做实时的监控分析，或者装载到hadoop、数据仓库中做离线分析和挖掘。</li>
+<li>日志收集：一个公司可以用Kafka收集各种服务的log，通过kafka以统一接口服务的方式开放给各种consumer，例如hadoop、HBase、Solr等；</li>
+<li>消息系统：解耦和生产者和消费者、缓存消息等；</li>
+<li>实时计算：比如spark streaming和 Flink等流式处理；</li>
+<li>用户活动跟踪：Kafka经常被用来记录web用户或者app用户的各种活动，如浏览网页、搜索、点击等活动，这些活动信息被各个服务器发布到kafka的topic中，然后订阅者通过订阅这些topic来做实时的监控分析，或者装载到hadoop、数据仓库中做离线分析和挖掘；</li>
 <li>运营指标：Kafka也经常用来记录运营监控数据。包括收集各种分布式应用的数据，生产各种操作的集中反馈，比如报警和报告。</li>
 </ul>
-<p><em><strong>Kafka为什么速度快？</strong></em></p>
+<p> <em><strong>Kafka为什么速度快？</strong></em>  <!--todo--></p>
+<p><a target="_blank" rel="noopener" href="https://www.huaweicloud.com/articles/b68a23323d0f11b474b965f435a94c97.html">参考链接</a></p>
 <ol>
-<li><p>顺序写磁盘</p>
-</li>
-<li><p>使用了零拷贝技术</p>
-</li>
-<li><p>分区机制（以Partition为单元顺序写）</p>
-</li>
+<li>顺序读写磁盘：一般而言要高出磁盘随机读写三个数量级，一些情况下磁盘顺序读写性能甚至要高于内存随机读写。</li>
+<li>Page Cache：</li>
+<li>零拷贝</li>
+<li>分区分段+索引</li>
+<li>批量读写</li>
+<li>批量压缩</li>
 </ol>
 <p><em><strong>ZooKeeper是如何管理Kafka的</strong></em></p>
 <p>Kafka 集群中有一个 broker 会被选举为 Controller，负责管理集群 broker 的上下线，所有topic的分区副本分配和leader选举等工作。 Controller的管理工作都是依赖于 Zookeeper的。</p>
@@ -398,6 +399,8 @@
 <p>Kafka支持以消息集合为单位进行批量发送，以提高效率。</p>
 <p><em><strong>Push &amp; Pull</strong></em></p>
 <p>Kafka采用的是拉模式。</p>
+<p>push（推）模式很难适应消费速率不同的消费者，因为消息发送速率是由broker决定的。它的目标是尽可能以最快速度传递消息，但是这样很容易造成consumer来不及处理消息，典型的表现就是拒绝服务以及网络拥塞。而pull模式则可以根据consumer的消费能力以适当的速率消费消息。</p>
+<p>pull模式不足之处是，如果kafka没有数据，消费者可能会陷入循环中，一直返回空数据。针对这一点，Kafka的消费者在消费数据时会传入一个时长参数<code>timeout</code>，如果当前没有数据可供消费，consumer会等待一段时间之后再返回，这段时长即为<code>timeout</code>。</p>
 <p><em><strong>分区机制</strong></em></p>
 <p>Kafka的Broker端支持消息分区，Producer可以决定把消息发到哪个Partition，在一个Partition中消息的顺序就是Producer发送消息的顺序，一个Topic中的Partition数是可配置的，Partition是Kafka高吞吐量的重要保证。</p>
 <p><img src="/img/2021/Kafka%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AE%80%E5%9B%BE.jpg" srcset="/img/loading.gif" lazyload alt="Kafka工作流程简图"></p>
@@ -511,10 +514,13 @@
 <li>先修复 consumer的问题,确保其恢复消费速度,然后将现有 consumer都停掉。</li>
 <li>新建一个 topic, partition是原来的10倍,临时建立好原先10倍的 queue数量</li>
 <li>然后写一个临时的分发数据的 consumer程序,这个程序部署上去消费积压的数据,消费之 后不做耗时的处理,直接均匀轮询写入临时建立好的10倍数量的 queue。</li>
-<li>接着临时征用10倍的机器来部署 consumer,每一批 consumer消费一个临时 queue的数 据。这种做法相当于是临时将 queue资源和 consumer资源扩大10倍,以正常的10倍速度 来消费数据。</li>
+<li>接着临时征用10倍的机器来部署 consumer,每一批 consumer消费一个临时 queue的数据。这种做法相当于是临时将 queue资源和 consumer资源扩大10倍,以正常的10倍速度来消费数据。</li>
 <li>等快速消费完积压数据之后,得恢复原先部署的架构,重新用原先的 consumer机器来消费消息。</li>
 </ol>
-
+<!-- toread：
+1. https://tech.meituan.com/2016/07/01/mq-design.html
+2.  
+3.  -->
             </div>
             <hr>
             <div>

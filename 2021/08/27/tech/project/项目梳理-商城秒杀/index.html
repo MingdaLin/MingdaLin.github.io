@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      1.8k 字
     </span>
   
 
@@ -230,7 +230,8 @@
             <h1 style="display: none">项目梳理-商城秒杀系统</h1>
             
             <div class="markdown-body">
-              <h1 id="商城秒杀"><a href="#商城秒杀" class="headerlink" title="商城秒杀"></a>商城秒杀</h1><h2 id="需求点梳理"><a href="#需求点梳理" class="headerlink" title="需求点梳理"></a>需求点梳理</h2><h3 id="项目简介-amp-重点模块梳理"><a href="#项目简介-amp-重点模块梳理" class="headerlink" title="项目简介 &amp; 重点模块梳理"></a>项目简介 &amp; 重点模块梳理</h3><p>该项目是一个高并发场景下的商品秒杀活动。</p>
+              <h1 id="商城秒杀"><a href="#商城秒杀" class="headerlink" title="商城秒杀"></a>商城秒杀</h1><h2 id="业务逻辑图"><a href="#业务逻辑图" class="headerlink" title="业务逻辑图"></a>业务逻辑图</h2><p><img src="/img/2021/business_service.png" srcset="/img/loading.gif" lazyload alt="商城系统业务逻辑"></p>
+<h2 id="需求点梳理"><a href="#需求点梳理" class="headerlink" title="需求点梳理"></a>需求点梳理</h2><h3 id="项目简介-amp-重点模块梳理"><a href="#项目简介-amp-重点模块梳理" class="headerlink" title="项目简介 &amp; 重点模块梳理"></a>项目简介 &amp; 重点模块梳理</h3><p>该项目是一个高并发场景下的商品秒杀活动。</p>
 <p>除了一些边缘模块外，项目核心内容有两个：分别是下单秒杀前的削峰限流，和下单后保证用事务异步更新销量和扣减库存。</p>
 <p><em><strong>削峰限流</strong></em></p>
 <p>削峰限流主要是在用户下单前通过验证、限流等策略大都缓冲、平滑流量的目的。具体实现流程和用到的技术为：</p>
@@ -245,6 +246,7 @@
 <p>由于更新销量不影响用户秒杀操作，所以可以放到MQ里异步更新。否则直接操作数据库要加锁，影响性能。</p>
 <p><em><strong>扣减库存</strong></em></p>
 <p>由于秒杀是在高并发场景下进行的，在较短时间间隔有大量用户对同一商品资源进行互斥访问，数据库加锁的方式吞吐量太低，因此考虑先用Redis缓存库存，再最终将库存信息通过MQ异步写入数据库中。</p>
+<p><img src="/img/2021/business_transaction.png" srcset="/img/loading.gif" lazyload alt="事务消息开发逻辑"></p>
 <h3 id="超卖-amp-少卖"><a href="#超卖-amp-少卖" class="headerlink" title="超卖 &amp; 少卖"></a>超卖 &amp; 少卖</h3><p><em><strong>超卖</strong></em>：超卖是说用户下单量超过商品的库存量。在真实场景中，对用户下单并未完全达成同步，导致少扣库存了，这将导致用户体验不佳，在实际中很少采用。</p>
 <p><em><strong>少卖</strong></em>：少卖是说最终用户的付款量少于商品的库存。在实际中，用户可能下单后又退款了，这对收益不会有很严重的影响，但是不会有超卖的用户体验不佳的问题，在实际中大多采用少卖。</p>
 <p>少卖的解决方案：</p>
@@ -412,9 +414,11 @@
 <li>根据本地事务状态，重新Commit或者Rollback</li>
 </ul>
 <p>其中，补偿阶段用于解决消息Commit或者Rollback发生超时或者失败的情况。</p>
-<p><img src="/img/2021/ROCKETMQ%E4%BA%8B%E5%8A%A1%E5%9E%8B%E6%B6%88%E6%81%AF.png" srcset="/img/loading.gif" lazyload alt="ROCKETMQ事务型消息"></p>
 <h3 id="mq的使用场景"><a href="#mq的使用场景" class="headerlink" title="mq的使用场景"></a>mq的使用场景</h3><p>producer：发送本地事务；回查</p>
 <p>consumer：增加销量、扣减库存</p>
+<h3 id="令牌桶-amp-漏桶"><a href="#令牌桶-amp-漏桶" class="headerlink" title="令牌桶 &amp; 漏桶"></a>令牌桶 &amp; 漏桶</h3><p>令牌桶：业务组件会出现高峰，能短期处理些高发情况；<br>漏桶算法：业务组件处理速率恒定；</p>
+<p><img src="/img/2021/%E6%BC%8F%E6%A1%B6%E7%AE%97%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt="漏桶算法"></p>
+<p><img src="/img/2021/%E4%BB%A4%E7%89%8C%E6%A1%B6%E7%AE%97%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt="令牌桶算法"></p>
 <h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><p>结合代码对业务逻辑进行梳理；<br>结合业务实现对涉及到的技术点进行梳理；</p>
 
             </div>

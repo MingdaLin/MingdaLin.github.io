@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6k 字
+      7.6k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      76
+      92
        分钟
     </span>
   
@@ -231,9 +231,66 @@
             
             <div class="markdown-body">
               <h1 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h1><h2 id="OOP的三大特性"><a href="#OOP的三大特性" class="headerlink" title="OOP的三大特性"></a>OOP的三大特性</h2><p>面向对象的程序设计方法具有三个基本特征：封装、继承、多态。</p>
-<p>封装：将对象的实现细节隐藏起来，然后通过一些公用方法来暴露该对象的功能；</p>
-<p>继承是面向对象实现软件复用的重要手段，当 子类继承父类后，子类作为一种特殊的父类，将直接获得父类的属性和方法；</p>
-<p>多态：分为编译时多态和运行时多态:<br>    - 编译时多态主要指方法的重载<br>    - 运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定，并且有三个条件：<br>      - 继承<br>      - 重写<br>      - 向上转型（父类引用指向子类对象）</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>封装：将对象的实现细节隐藏起来，然后通过一些公用方法来暴露该对象的功能。</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承是面向对象实现软件复用的重要手段，当子类继承父类后，子类作为一种特殊的父类，将直接获得父类的属性和方法；</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>多态分为编译时多态和运行时多态。</p>
+<p>编译时多态表现为重载，重载是同一类下的不同方法，通过同一函数名不同的参数列表表现出对象的多样性。</p>
+<p>运行时多态表现为继承、重写、向上转型。子类继承父类之后，重写父类方法后通过向上转型，调用重写方法时表现出不同的子类的行为特征。</p>
+<h3 id="向上转型-amp-向下转型"><a href="#向上转型-amp-向下转型" class="headerlink" title="向上转型 &amp; 向下转型"></a>向上转型 &amp; 向下转型</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lifexy/p/10812841.html#:~:text=%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B.%20%E5%9C%A8java%E4%B8%AD%2C%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B%E5%88%99%E6%98%AF%E4%B8%BA%E4%BA%86%2C%E9%80%9A%E8%BF%87%E7%88%B6%E7%B1%BB%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%90%E7%B1%BB%2C%E4%BB%8E%E8%80%8C%E6%9D%A5%E8%B0%83%E7%94%A8%E5%AD%90%E7%B1%BB%E7%8B%AC%E6%9C%89%E7%9A%84%E6%96%B9%E6%B3%95%28%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B%2C%E5%9C%A8%E5%B7%A5%E7%A8%8B%E4%B8%AD%E5%BE%88%E5%B0%91%E7%94%A8%E5%88%B0%29.%20%E4%B8%BA%E4%BA%86%E4%BF%9D%E8%AF%81%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B%E7%9A%84%E9%A1%BA%E5%88%A9%E5%AE%8C%E6%88%90%2C%E5%9C%A8java%E4%B8%AD%E6%8F%90%E4%BE%9B%E4%BA%86%E4%B8%80%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%3Ainstanceof%2C%E9%80%9A%E8%BF%87instanceof%E5%8F%AF%E4%BB%A5%E5%88%A4%E6%96%AD%E6%9F%90%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E6%98%AF%E6%9F%90%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%2C%E5%A6%82%E6%9E%9C%E6%98%AF%E5%88%99%E8%BF%94%E5%9B%9Etrue%2C%E5%90%A6%E5%88%99%E4%B8%BAfalse%2Cinstanceof%E4%BD%BF%E7%94%A8%E5%A6%82%E4%B8%8B%3A%20A%20a%20%3D%20new%20B,A%3B%20%2F%2F%E8%BF%94%E5%9B%9Etrue.%20a%20instanceof%20B%3B%20%2F%2F%E8%BF%94%E5%9B%9Etrue%20a%20">例子参考</a></p>
+<p><em><strong>向上转型</strong></em></p>
+<p>用子类实例化父类对象，属于自动转换。</p>
+<p>向上转型的意义在于不同子类可以重写父类方法，可以统一用定义的父类对象调用得到子类方法的结果，减少了代码量，体现了抽象编程的思想。</p>
+<blockquote>
+<p>子类重写父类方法的条件：1、父类方法对子类可见(不能是private)；2、子类和父类的方法必须是实例方法(不能是static)；3、父类和子类的方法需要有相同的函数名、参数列表、返回类型(子类可以是父类的子类型)；4、子类访问权限不能小于父类；5、子类不能抛出比父类范围更大的异常；<a target="_blank" rel="noopener" href="https://blog.csdn.net/tongyuehong137/article/details/45287247">参考地址</a></p>
+</blockquote>
+<p><em><strong>向下转型</strong></em></p>
+<p>用父类实例化子类对象，强制转换。用 <code>instance of</code> 进行判断后强转。</p>
+<h3 id="重载-amp-重写"><a href="#重载-amp-重写" class="headerlink" title="重载 &amp; 重写"></a>重载 &amp; 重写</h3><p><em><strong>重载</strong></em></p>
+<p>重载是同一个类中的不同方法，方法名相同而参数列表不同，与返回类型和作用域无关。</p>
+<p><em><strong>重写</strong></em></p>
+<p>重写发生在子类父类中，子类对父类的方法重写时，函数名和参数列表要相同，返回类型要小于等于父类，作用域要大于等于父类，抛出异常的范围要小于等于父类。</p>
+<p><em><strong>Q：构造方法能重写吗？</strong></em></p>
+<p>构造方法不能重写。</p>
+<p>首先，子类重写父类方法时，方法名要保持一致(子类的构造函数名要和父类的构造函数名一致)；其次，构造方法要和类名保持一致(子类构造方法要和子类名保持一致，父类构造方法要和父类名一致)；这就推出子类名要和父类名一致，但是二者是不同的，所以构造方法不能重写。</p>
+<h2 id="Object类的方法"><a href="#Object类的方法" class="headerlink" title="Object类的方法"></a>Object类的方法</h2><ol>
+<li><code>clone()</code> : 浅拷贝，需要实现<code>Cloneable</code>接口。</li>
+<li><code>toString()</code></li>
+<li><code>hashCode()</code> : 获取对象的哈希值，一般用于比较两个对象是否相等的初判断条件</li>
+<li><code>equals()</code> : 判断两个对象是否相等，一般情况下<code>equals()</code>和<code>==</code>是不一样的，只有在Object中两者才是一样的</li>
+<li><code>getClass()</code> : 获取运行时类型</li>
+<li><code>wait()</code> : 是当前线程等待该对象的锁</li>
+<li><code>notify()</code> : 唤醒在该对象等待的某线程</li>
+<li><code>notifyAll()</code> : 唤醒在该对象等待的所有线程</li>
+</ol>
+<h3 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h3><p><a target="_blank" rel="noopener" href="https://www.huaweicloud.com/articles/86525657c3243f448bbbb000e5345828.html">实例参考</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/caoxiaohong1005/article/details/78704890">深拷贝实现参考</a></p>
+<p>浅拷贝：只是对被拷贝对象的变量进行拷贝，如果被拷贝对象的变量指向上一层对象，那拷贝对象的变量也只想那个上层对象，此时修改上层对象，拷贝对象的变量和被拷贝的对象的变量同时修改。</p>
+<p>深拷贝：对被拷贝的变量所指向的上层对象也进行拷贝，此时如果修改被拷贝对象上层对象属性，拷贝后的对象不会受到影响。</p>
+<p>深拷贝的实现：</p>
+<ol>
+<li>通过重写Cloneable的clone方法，对拷贝对象引用的所有对象也进行拷贝</li>
+<li>通过序列化的方式，写到输出流，再读取出来，自然得到的是一个新对象</li>
+</ol>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><p>super关键字是一个引用变量，用于引用直接父类对象。</p>
+<ol>
+<li><code>super.fatherAttribute</code> ：访问父类属性</li>
+<li><code>super.fatherMethod()</code> ：访问父类方法</li>
+<li><code>super()</code> ：访问父类构造方法</li>
+</ol>
+<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><p>static是为了满足两个需求产生的：1、为特定域分配单一存储空间；2、不需要通过反复创建对象调用方法。</p>
+<p>java类有五个组成部分：属性、成员方法、构造方法、初始化块、内部类。static可以作用在除构造方法的其他成分上，被static修饰的成分是属于类的，而非某个实例。</p>
+<p>对static使用的说明：</p>
+<ol>
+<li>static类可以被继承，但被static修饰的方法不能在子类被重写(方法重写是运行绑定的，而static方法是编译时绑定的)；</li>
+<li>static方法不能引用非static资源，但非static方法可以引用static资源；</li>
+<li>static修饰内部类也可以被外部类的实例访问，因为static作用的成分属于公共资源；</li>
+</ol>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>final修饰在不同成分上表现出不同的特征。</p>
+<ol>
+<li>修饰类：不可以被继承；</li>
+<li>修饰方法：不可以被重写；</li>
+<li>修饰变量：获得初始值，就不可以被修改。</li>
+</ol>
+<p>被final修饰的常见的类：八大封装类，void，字符串类(String, Stringbuffer, StringBuilder)，Array等。</p>
 <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><h2 id="泛型定义"><a href="#泛型定义" class="headerlink" title="泛型定义"></a>泛型定义</h2><p>泛型是jdk5引入的新特性，本质为了参数化类型，提供了类型安全检测机制，实现了一次编写模板，多次复用。<!--类型安全检测机制？--></p>
 <p>以List为例，List的底层实现是Object[]，传不同的数据类型，要进行强制转换，这会导致容易产生类型转换错误等。如果对不同类型都编写一套模板显然太复杂，这时候泛型就可以解决以上问题。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayList</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">private</span> T[] array;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> size;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(T e)</span> </span>&#123;...&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>&#123;...&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>&#123;...&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -589,8 +646,32 @@
 <td>返回描述此 Method 的字符串，包括类型参数。</td>
 </tr>
 </tbody></table>
-<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>todo</p>
-<h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p><em><strong>序列化</strong></em>是指把一个Java对象变成二进制内容，本质上就是一个byte[]数组。</p>
+<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><h2 id="异常的层次结构"><a href="#异常的层次结构" class="headerlink" title="异常的层次结构"></a>异常的层次结构</h2><p><img src="/img/2021/Java%E5%BC%82%E5%B8%B8%E7%BB%93%E6%9E%84%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="Java异常结构图"></p>
+<p><em><strong>结构图解析</strong></em></p>
+<ul>
+<li><code>Throwable</code> ：异常和错误的超类，只有Throwable的实例才能被throw或者catch。  <ul>
+<li><code>Error</code> : 程序中无法处理的错误，表示程序运行时JVM出现问题。比如OOM、StackOverflow；</li>
+<li><code>Exception</code> : 程序本身可以捕获并且可以处理的异常。<ul>
+<li><code>RuntimeException</code> : 由程序逻辑错误引起的，编译器不会检查，也不会捕获处理。(NullPointerExceptio,IndexOutOfBoundsException)</li>
+<li><code>非运行时异常</code> ：必须进行处理的异常，如果不处理，程序就不能编译通过。(IOException, SQLException)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>checkedExceptions</code> ：除了<code>RuntimeException</code>外的<code>Exception</code>类及其子类；这种是编译器可以检测的，需要try…catch…或者throws，否则会报错。</li>
+<li><code>uncheckedExceptions</code> : 编译器不要求强制处理的异常。</li>
+</ul>
+<p><em><strong>Q：什么时候要往上层抛异常？</strong></em></p>
+<p>一般如果程序中出现<code>checkedException</code>，编译器会提示进行异常处理。而抛异常一般指向上一层方法抛异常(因为本层如果可以处理就try…catch…捕获了)。而向上抛异常一般可能有以下两点考虑：</p>
+<ul>
+<li>传递一个具体的危险信号，让调用方知道；（catch后抛出一个新的类型的异常）</li>
+<li>本层方法没有能力处理，返回给调用方处理；(当前层方法被不只一个地方调用，业务逻辑并不一致，不能做同一处理，需要向上层抛出；)</li>
+</ul>
+<p><em><strong>Q：怎么抛异常？</strong></em></p>
+<p>在方法里可以throw一个异常，或者在方法签名throws若干异常。</p>
+<h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><!-- todo -->
+
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p><em><strong>序列化</strong></em>是指把一个Java对象变成二进制内容，本质上就是一个byte[]数组。</p>
 <p>一个Java对象要能序列化，必须实现一个特殊的<code>java.io.Serializable</code>接口。</p>
 <p>把一个Java对象变为byte[]数组，需要使用<code>ObjectOutputStream</code>，从一个字节流读取Java对象用<code>ObjectInputStream</code>。</p>
 <h2 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h2><p>todo</p>
