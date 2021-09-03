@@ -314,8 +314,7 @@
 </ol>
 <p><em><strong>通信过程</strong></em></p>
 <p>Redis集群中的每个节点会定期向其他节点发送PING，如果超过规定时间（node_timeout）没有收到PONG，就会标记为疑似下线状态（PFAIL）。在PING的时候，会广播其他节点当前节点知道的其他节点的信息（包括疑似挂了的节点），当其他节点收到这些疑似挂了的节点之后，会做失效报告（failure report）。如果当前节点已经PFAIL了某个节点，并且大部分节点认为PFAIL的节点PFAIL了，那么当前节点就改PFAIL为FAIL并广播出去。</p>
-<h3 id="故障迁移"><a href="#故障迁移" class="headerlink" title="故障迁移"></a>故障迁移</h3><p>Redis引入了一个<em>epoch</em>的概念。在Redis集群中主要有两种epoch：<em>curentEpoch</em> 和 <em>configEpoch</em>。</p>
-<p><em><strong>currentEpoch</strong></em></p>
+<h3 id="故障迁移"><a href="#故障迁移" class="headerlink" title="故障迁移"></a>故障迁移</h3><h1 id="Redis引入了一个epoch的概念。在Redis集群中主要有两种epoch：curentEpoch-和-configEpoch。"><a href="#Redis引入了一个epoch的概念。在Redis集群中主要有两种epoch：curentEpoch-和-configEpoch。" class="headerlink" title="Redis引入了一个epoch的概念。在Redis集群中主要有两种epoch：curentEpoch 和 configEpoch。"></a>Redis引入了一个<em>epoch</em>的概念。在Redis集群中主要有两种epoch：<em>curentEpoch</em> 和 <em>configEpoch</em>。</h1><p><em><strong>currentEpoch</strong></em></p>
 <p>这是一个集群状态相关的概念，可以当做记录集群状态变更的递增版本号。每个集群节点，都会通过 server.cluster-&gt;currentEpoch 记录当前的 currentEpoch。</p>
 <p>集群节点创建时，不管是 master 还是 slave，都置 currentEpoch 为 0。当前节点接收到来自其他节点的包时，如果发送者的 currentEpoch（消息头部会包含发送者的 currentEpoch）大于当前节点的currentEpoch，那么当前节点会更新 currentEpoch 为发送者的 currentEpoch。因此，集群中所有节点的 currentEpoch 最终会达成一致，相当于对集群状态的认知达成了一致。</p>
 <p><em><strong>currentEpoch的作用</strong></em></p>

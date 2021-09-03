@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      92
+      93
        分钟
     </span>
   
@@ -284,6 +284,7 @@
 <li>static方法不能引用非static资源，但非static方法可以引用static资源；</li>
 <li>static修饰内部类也可以被外部类的实例访问，因为static作用的成分属于公共资源；</li>
 </ol>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/28197253">静态内部类</a></p>
 <h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>final修饰在不同成分上表现出不同的特征。</p>
 <ol>
 <li>修饰类：不可以被继承；</li>
@@ -291,8 +292,10 @@
 <li>修饰变量：获得初始值，就不可以被修改。</li>
 </ol>
 <p>被final修饰的常见的类：八大封装类，void，字符串类(String, Stringbuffer, StringBuilder)，Array等。</p>
-<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><h2 id="泛型定义"><a href="#泛型定义" class="headerlink" title="泛型定义"></a>泛型定义</h2><p>泛型是jdk5引入的新特性，本质为了参数化类型，提供了类型安全检测机制，实现了一次编写模板，多次复用。<!--类型安全检测机制？--></p>
-<p>以List为例，List的底层实现是Object[]，传不同的数据类型，要进行强制转换，这会导致容易产生类型转换错误等。如果对不同类型都编写一套模板显然太复杂，这时候泛型就可以解决以上问题。</p>
+<h2 id="抽象类-amp-接口"><a href="#抽象类-amp-接口" class="headerlink" title="抽象类 &amp; 接口"></a>抽象类 &amp; 接口</h2><h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p><em><strong>Q：java为什么要有抽象类？</strong></em></p>
+<p>提供实现不同子类公用的方法。</p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><h3 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h3><h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><h2 id="泛型定义"><a href="#泛型定义" class="headerlink" title="泛型定义"></a>泛型定义</h2><p>泛型是jdk5引入的新特性，本质为了<strong>参数化类型</strong>，提供了类型安全检测机制，实现了一次编写模板，多次复用。<!--类型安全检测机制？--></p>
+<p>List里可以装不同类型的元素，在编写底层List底层代码时，如果不使用泛型，对于每个方法都要根据不同如参类型进行重载，代码重用性极差；<br>同时，底层实现是Object[]，传不同的数据类型，要进行强制转换，这会导致容易产生类型转换错误等。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayList</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">private</span> T[] array;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> size;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(T e)</span> </span>&#123;...&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>&#123;...&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>&#123;...&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>❗️❗️泛型<T>不是一种基本类型，不能通过<code>getClass()</code>方法获取Class类型。</p>
@@ -667,7 +670,7 @@
 <li>传递一个具体的危险信号，让调用方知道；（catch后抛出一个新的类型的异常）</li>
 <li>本层方法没有能力处理，返回给调用方处理；(当前层方法被不只一个地方调用，业务逻辑并不一致，不能做同一处理，需要向上层抛出；)</li>
 </ul>
-<p><em><strong>Q：怎么抛异常？</strong></em></p>
+<p><em><strong>Q：怎么抛异常？</strong></em>                       </p>
 <p>在方法里可以throw一个异常，或者在方法签名throws若干异常。</p>
 <h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><!-- todo -->
 
