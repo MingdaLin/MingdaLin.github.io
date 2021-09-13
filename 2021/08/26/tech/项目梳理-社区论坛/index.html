@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>项目梳理-社区论坛系统 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="项目梳理-社区论坛系统">
+              
+                项目梳理-社区论坛系统
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-26 09:18" pubdate>
+        2021年8月26日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      803 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">项目梳理-社区论坛系统</h1>
+            
+            <div class="markdown-body">
+              <h1 id="登录模块"><a href="#登录模块" class="headerlink" title="登录模块"></a>登录模块</h1><p><img src="/img/2021/login_module.png" srcset="/img/loading.gif" lazyload alt="登录模块"></p>
+<h2 id="登录页面（未登录）"><a href="#登录页面（未登录）" class="headerlink" title="登录页面（未登录）"></a>登录页面（未登录）</h2><h3 id="开发内容"><a href="#开发内容" class="headerlink" title="开发内容"></a>开发内容</h3><ol>
+<li>账号、密码、验证码的显示；</li>
+<li>颁发登录凭证（登录凭证是要落库的（ticket））</li>
+<li>页面跳转</li>
+</ol>
+<h3 id="开发实现"><a href="#开发实现" class="headerlink" title="开发实现"></a>开发实现</h3><p>登录：</p>
+<ol>
+<li>验证账号、密码、验证码</li>
+<li>成功：给客户端颁发登录凭证</li>
+<li>失败：跳转到登录页面</li>
+</ol>
+<p>退出登录：</p>
+<ol>
+<li>将登录凭证的状态改为失效</li>
+<li>跳转至网页首页</li>
+</ol>
+<p><em><strong>controller</strong></em></p>
+<ol>
+<li>检测验证码[起初用session来存，后期用redis优化]</li>
+<li>检测账号密码[查库 mapper(User_table)][在内部service层颁发了ticket][ticket起初存库，后用redis优化]</li>
+<li>使用cookie为client颁发ticket</li>
+<li>success -&gt; ‘/index’ ; false -&gt; ‘/site/login’</li>
+</ol>
+<p><em><strong>service</strong></em></p>
+<ol>
+<li>在<code>UserService.login</code>里进行[验证码、账号、密码]的校验，设置用户的登录状态，以及创建[凭证]，设置登录状态；</li>
+<li>在<code>UserService.loginout</code>里修改[凭证]里的登录状态；</li>
+</ol>
+<p><em><strong>entity</strong></em></p>
+<p>ticket要封装为一个实体类，包含[用户id、登录状态、过期时间]等属性信息。</p>
+<h3 id="技术盘点"><a href="#技术盘点" class="headerlink" title="技术盘点"></a>技术盘点</h3><ol>
+<li>redis数据结构的选用</li>
+<li>URL重定向</li>
+<li>cookie &amp; session</li>
+</ol>
+<h2 id="登录页面展示（已登录）"><a href="#登录页面展示（已登录）" class="headerlink" title="登录页面展示（已登录）"></a>登录页面展示（已登录）</h2><h3 id="开发内容-1"><a href="#开发内容-1" class="headerlink" title="开发内容"></a>开发内容</h3><p>在论坛的任何动态页面，都要在导航栏的头像下拉菜单里显示登录信息。</p>
+<ol>
+<li>需要自定义一个登录拦截器，并重写拦截器方法；</li>
+<li>对拦截器进行配置；</li>
+</ol>
+<h3 id="开发实现-1"><a href="#开发实现-1" class="headerlink" title="开发实现"></a>开发实现</h3><p>通过拦截器对所有请求进行拦截，在整个登录周期内，对用户登录状态进行校验，并以线程隔离的方式持有用户信息。</p>
+<ol>
+<li>定义一个拦截器<ul>
+<li>prehandler：进行ticket验证，并使用threadlocal将User实体 保存在hostHolder实体里；</li>
+<li>posthandler: 返回一个User实体的modelAndView；</li>
+<li>aftercompletion: 清除hostHolder；</li>
+</ul>
+</li>
+<li>对拦截器进行配置<ul>
+<li>对静态页面不进行拦截，只对动态页面的请求进行拦截；</li>
+<li>对所有controller的请求都进行拦截；</li>
+</ul>
+</li>
+</ol>
+<h2 id="权限校验"><a href="#权限校验" class="headerlink" title="权限校验"></a>权限校验</h2><h3 id="开发内容-2"><a href="#开发内容-2" class="headerlink" title="开发内容"></a>开发内容</h3><ol>
+<li>自定义注解，在需要拦截的方法里加上这个自定义注解</li>
+<li>定义一个拦截器，重写方法（需要对handler进行判断，捕获HandlerMethod的handler -&gt; 获取handler的method -&gt; 反射获取自定义注解的方法）</li>
+<li>对拦截器进行配置</li>
+</ol>
+<h1 id="question"><a href="#question" class="headerlink" title="question"></a>question</h1><ol>
+<li>过完拦截器登录页面的展示 &amp; aop实现日志记录，回过头对比下这两个，interceptor &amp; aop ，为什么登录页面用的是拦截器，日志记录用的是aop？</li>
+<li>interceptor 的@Override 一定程度上反映了MVC的工作原理，需要对Spring MVC相关知识点进行关联掌握；</li>
+<li>interceptor 在何时进行拦截的？（以登陆信息拦截为例）</li>
+<li>为什么在[拦截登录信息-持有用户信息]的时候要使用threadlocal？</li>
+<li>为什么用hostHolder代替session对象？可以在请求结束后清除？</li>
+<li><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1347180610715681">拦截器原理</a></li>
+</ol>
+<h1 id="点赞、关注"><a href="#点赞、关注" class="headerlink" title="点赞、关注"></a>点赞、关注</h1><p><img src="/img/2021/like_service.png" srcset="/img/loading.gif" lazyload alt="点赞业务逻辑关系"></p>
+<p><img src="/img/2021/follow_service.png" srcset="/img/loading.gif" lazyload alt="关注业务逻辑关系"></p>
+<h1 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h1><h3 id="Q1：为什么要用kafka？"><a href="#Q1：为什么要用kafka？" class="headerlink" title="Q1：为什么要用kafka？"></a>Q1：为什么要用kafka？</h3><ol>
+<li>主要考虑的是kafka高吞吐，处理数据速度比较快，单机tps能达到百万级；</li>
+<li>时延低，ms级以内，在众多mq里比较突出；</li>
+<li>经过参数配置，消息可以做到零丢失；</li>
+</ol>
+<h1 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h1><ol>
+<li>把权限验证进行梳理 [done]</li>
+<li>spring mvc 执行过程进行梳理 [todo] </li>
+<li>拦截器原理进行梳理 [todo]</li>
+<li></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/%E9%A1%B9%E7%9B%AE%E6%A2%B3%E7%90%86/">项目梳理</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/27/tech/%E9%A1%B9%E7%9B%AE%E6%A2%B3%E7%90%86-%E5%95%86%E5%9F%8E%E7%A7%92%E6%9D%80/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">项目梳理-商城秒杀系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/25/tech/Spring%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/">
+                        <span class="hidden-mobile">Spring知识点梳理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

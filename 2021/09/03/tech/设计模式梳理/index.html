@@ -1,0 +1,610 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/turing.png">
+  <link rel="icon" href="/img/turing.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="丰碑无语，行胜于言">
+  <meta name="author" content="Mingda">
+  <meta name="keywords" content="">
+  
+  <title>设计模式梳理 - Mingda&#39;s Life</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>A day is a miniature of eternity.   一天是永恒的缩影</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="设计模式梳理">
+              
+                设计模式梳理
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-03 14:53" pubdate>
+        2021年9月3日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">设计模式梳理</h1>
+            
+            <div class="markdown-body">
+              <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904125721772039#heading-2">总参考资料</a></p>
+<h1 id="设计模式分类"><a href="#设计模式分类" class="headerlink" title="设计模式分类"></a>设计模式分类</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuziteng0228/article/details/54847317">Reference</a></p>
+<ol>
+<li>创建型模式：主要用于处理对象的创建，实例化对象；</li>
+<li>结构型模式：处理类或对象间的组合。</li>
+<li>行为型模式：描述类或对象怎么进行交互和职责分配；</li>
+</ol>
+<h1 id="设计模式的七大原则"><a href="#设计模式的七大原则" class="headerlink" title="设计模式的七大原则"></a>设计模式的七大原则</h1><ol>
+<li>单一职责原则：一个类负责一项职责；</li>
+<li>里氏替换原则：子类扩展而非修改父类功能；</li>
+<li>依赖倒置原则：面向接口编程，尽量依赖上层抽象，而非依赖具体；</li>
+<li>接口隔离原则：建立单一接口，不要建立庞大臃肿的接口，尽量细化接口，接口中的方法尽量少；</li>
+<li>迪米特法则：类间解耦；</li>
+<li>开闭原则：尽量通过扩展代码解决需求变化，而非修改之前代码；</li>
+<li>组合复用原则：尽量使用组合少使用继承的关系来达到复用的原则。 </li>
+</ol>
+<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="什么是单例模式"><a href="#什么是单例模式" class="headerlink" title="什么是单例模式"></a>什么是单例模式</h2><p>单例模式就是确保某一个类只有一个实例，并且提供一个全局访问点(static修饰一个变量)。</p>
+<h2 id="单例模式的使用场景"><a href="#单例模式的使用场景" class="headerlink" title="单例模式的使用场景"></a>单例模式的使用场景</h2><p>线程池的设计采用的就是单例模式，只有一个线程池实例方便对多线程的管理。</p>
+<h2 id="单例模式的优缺点及注意事项"><a href="#单例模式的优缺点及注意事项" class="headerlink" title="单例模式的优缺点及注意事项"></a>单例模式的优缺点及注意事项</h2><p><em><strong>优点</strong></em></p>
+<p>对单例类的实例化都得到同一个实例，系统内存只存了单例类的一个对象，节约了系统资源；提供了共享资源的唯一实例的受控访问；</p>
+<h2 id="单例模式的实现方式"><a href="#单例模式的实现方式" class="headerlink" title="单例模式的实现方式"></a>单例模式的实现方式</h2><h3 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h3><p>初试化时就创建单例，实现方式为static修饰一个变量，指向new的一个单例对象；</p>
+<!--序列化的弊端  compare 枚举-->
+
+<h3 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h3><p>初试化时就创建单例，最佳实践。可以避免反序列化新建对象实例，和反射攻击。</p>
+<blockquote>
+<p>Java在序列化枚举类时，只是将name属性输出到结果中，反序列化时通过<code>java.lang.Enum</code> 的<code>valueOf</code>方法根据name查找对象，因此枚举类在序列化后还是单例的；</p>
+<p>Enum是一个抽象类，不能实例化。因此在反射时，不能通过 <code>setAccessible()</code>将private的构造方法改为public，继而反复实例化对象。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/54chensongxia/p/11581555.html">Reference</a></p>
+</blockquote>
+<h3 id="懒汉式（线程不安全）"><a href="#懒汉式（线程不安全）" class="headerlink" title="懒汉式（线程不安全）"></a>懒汉式（线程不安全）</h3><p>延迟初始化，在使用的时候再调用方法进行单例对象的初始化，如果不加锁，会导致线程不安全。</p>
+<h3 id="同步锁（懒汉式线程安全）"><a href="#同步锁（懒汉式线程安全）" class="headerlink" title="同步锁（懒汉式线程安全）"></a>同步锁（懒汉式线程安全）</h3><p>对整个调用的静态方法加锁(synchronized)，锁的是整个类，实现单例对象的初始化操作；</p>
+<h3 id="双重校验锁"><a href="#双重校验锁" class="headerlink" title="双重校验锁"></a>双重校验锁</h3><p>在静态方法的内部，对初始化代码块进行加锁(synchronized)，第一次判断是对单例变量进行判断，如果没有初始化进行初始化；第二次判断是加锁后再次进行判断，因为多线程执行时，对于</p>
+<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><p>当单例对象的类加载时，并没有对其进行实例化。而在调用其静态内部类里的属性或者方法时，jvm才会动态加载，得到实例对象。</p>
+<!-- 双重校验锁比懒汉式(线程安全)的方法有什么优势？ -->
+
+
+<h2 id="各种实现方式的比较"><a href="#各种实现方式的比较" class="headerlink" title="各种实现方式的比较"></a>各种实现方式的比较</h2><table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>原理</th>
+<th>优点</th>
+<th>缺点</th>
+<th>应用场景</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>饿汉式</td>
+<td>使用jvm类加载机制，保证单例只被创建一次</td>
+<td>线程安全；初始化速度快；占用内存小</td>
+<td>单例创建时机不可控</td>
+<td>初始化时就需要创建单例；要求初始化速度快，占用内存小。</td>
+<td></td>
+</tr>
+<tr>
+<td>枚举类型</td>
+<td>final不可被继承；枚举元素是类静态常量，依赖jvm加载，只创建一次；</td>
+<td>线程安全；自由序列化；实现简单</td>
+<td>单例创建时机不可控</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>懒汉式</td>
+<td>类加载时，先不加载单例，需要通过手动创建单例</td>
+<td>按需加载单例；节约资源</td>
+<td>线程不安全</td>
+<td>需要按需，延迟创建单例；单例初始化的操作耗时长，要求启动速度快；</td>
+<td></td>
+</tr>
+<tr>
+<td>同步锁</td>
+<td>使用同步锁保证手动创建单例时是线程安全的</td>
+<td>按需加载单例；节约资源；同时线程安全</td>
+<td>有同步的资源开销</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>双重校验锁</td>
+<td>锁1: 若单例已创建直接返回，无需加锁；锁2: 防止多次创建单例</td>
+<td>线程安全；节省资源（不需要过多的同步开销）</td>
+<td>实现复杂；jvm会对指令重排序，导致可能初始化多次。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>静态内部类</td>
+<td>按需加载：在程序实例化内部类时才会创建单例；由jvm加载，类只会加载一遍，可以保证只有一个单例。</td>
+<td>线程安全；节省资源（不需要过多的同步开销）；实现简单。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><em><strong>各实现方式的具体实现</strong></em></p>
+<ul>
+<li><p>懒汉式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton uniqueInstance = <span class="hljs-keyword">new</span> Singleton();<br></code></pre></td></tr></table></figure></li>
+<li><p>枚举类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Singleton</span> </span>&#123;<br>    uniqueInstance;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>懒汉式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton uniqueInstance;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton</span><span class="hljs-params">()</span> </span>&#123;<br>    &#125;<br>    <span class="hljs-comment">// 线程不安全</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getUniqueInstance</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (uniqueInstance == <span class="hljs-keyword">null</span>) &#123;<br>            uniqueInstance = <span class="hljs-keyword">new</span> Singleton();<br>        &#125;<br>        <span class="hljs-keyword">return</span> uniqueInstance;<br>    &#125;<br>    <span class="hljs-comment">// 线程安全</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> Singleton <span class="hljs-title">getUniqueInstance</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-comment">//就多了一个synchronized关键字</span><br>        <span class="hljs-keyword">if</span> (uniqueInstance == <span class="hljs-keyword">null</span>) &#123;<br>            uniqueInstance = <span class="hljs-keyword">new</span> Singleton();<br>        &#125;<br>        <span class="hljs-keyword">return</span> uniqueInstance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>双重校验锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">static</span> Singleton uniqueInstance;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton</span><span class="hljs-params">()</span> </span>&#123;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getUniqueInstance</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (uniqueInstance == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">synchronized</span> (Singleton.class) &#123;<br>                <span class="hljs-keyword">if</span> (uniqueInstance == <span class="hljs-keyword">null</span>) &#123;<br>                    uniqueInstance = <span class="hljs-keyword">new</span> Singleton();<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> uniqueInstance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>静态内部类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton</span><span class="hljs-params">()</span> </span>&#123;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonHolder</span> </span>&#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Singleton INSTANCE = <span class="hljs-keyword">new</span> Singleton();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getUniqueInstance</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> SingletonHolder.INSTANCE;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="什么是工厂模式"><a href="#什么是工厂模式" class="headerlink" title="什么是工厂模式"></a>什么是工厂模式</h2><p>工厂模式提供了一种创建对象的最佳方式。在创建对象时不会对客户端暴露创建逻辑，并且通过使用一种共同的接口指向新创建的对象，实现了创建者和调用者的分离。</p>
+<h2 id="工厂模式的优势"><a href="#工厂模式的优势" class="headerlink" title="工厂模式的优势"></a>工厂模式的优势</h2><p>用工厂方法代替new一个对象，对创建对象进行统一管理，可以降低程序的耦合性，为后期程序的维护提供便利。</p>
+<h2 id="工厂模式的分类"><a href="#工厂模式的分类" class="headerlink" title="工厂模式的分类"></a>工厂模式的分类</h2><h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p>简单工厂模式是由一个核心类来创建工厂内的产品，客户无需知道具体产品的名称，只需要知道产品类所对应的参数即可，缺点在于当产品过多，核心类的创建工作不容易维护。</p>
+<h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p>工厂方法模式Factory Method，又称多态性工厂模式。在工厂方法模式中，核心的工厂类不再负责所有的产品的创建，而是将具体创建的工作交给子类去做。该核心类成为一个抽象工厂角色，仅负责给出具体工厂子类必须实现的接口，而不接触哪一个产品类应当被实例化这种细节。</p>
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p>抽象工厂简单地说是工厂的工厂，抽象工厂可以创建具体工厂，由具体工厂来产生具体产品。</p>
+<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><h2 id="什么是代理模式"><a href="#什么是代理模式" class="headerlink" title="什么是代理模式"></a>什么是代理模式</h2><p>代理模式是通过代理控制对象的访问，可以在对象调用方法前后进行额外的处理，同时可以在不改变原有业务流程的情况下，切入新的功能。</p>
+<h2 id="为什么要使用代理模式"><a href="#为什么要使用代理模式" class="headerlink" title="为什么要使用代理模式"></a>为什么要使用代理模式</h2><h2 id="代理模式的使用场景"><a href="#代理模式的使用场景" class="headerlink" title="代理模式的使用场景"></a>代理模式的使用场景</h2><p>Spring AOP、日志打印、异常处理、事务控制、权限控制等。</p>
+<h2 id="代理模式的分类"><a href="#代理模式的分类" class="headerlink" title="代理模式的分类"></a>代理模式的分类</h2><h3 id="静态代理模式"><a href="#静态代理模式" class="headerlink" title="静态代理模式"></a>静态代理模式</h3><p>代理类和委托类的关系在程序运行前就已经在程序写好了，而动态代理事程序发布后，动态地创建代理对象。</p>
+<p>静态代理的缺点在于需要代理的对象自己重复编写代理。</p>
+<h3 id="JDK动态代理模式"><a href="#JDK动态代理模式" class="headerlink" title="JDK动态代理模式"></a>JDK动态代理模式</h3><p><em><strong>使用JDK生成动态代理的步骤</strong></em></p>
+<ol>
+<li>定义一个接口类</li>
+<li>定义一个实现类实现接口类的方法</li>
+<li>定义一个子类实现<code>InvocationHandler</code>接口，重写``invoke<code>方法，在</code>invoke`方法植入代理对象的扩展功能；</li>
+<li>在上层函数里，通过调用静态方法<code>Proxy.newProxyInstance</code>传入接口类的类加载器，被代理的接口类列表，<code>InvocationHandler</code>子类的实例，可以创建出代理对象。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;<br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><span class="hljs-keyword">import</span> java.lang.reflect.Proxy;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-comment">// 1. 定义一个接口类</span><br>    <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Iservice</span> </span>&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">m1</span><span class="hljs-params">()</span></span>;<br>        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">m2</span><span class="hljs-params">()</span></span>;<br>        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">m3</span><span class="hljs-params">()</span></span>;<br>    &#125;<br>    <span class="hljs-comment">// 2. 接口的实现类</span><br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyServce</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Iservice</span></span>&#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m1</span><span class="hljs-params">()</span> </span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;method1 executed.&quot;</span>);<br>        &#125;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m2</span><span class="hljs-params">()</span> </span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;method2 executed.&quot;</span>);<br>        &#125;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m3</span><span class="hljs-params">()</span> </span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;method3 executed.&quot;</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 3. 自定义的InvocationHandler的子类，重写invoke方法（当然也可以在调用的时候使用匿名类重写方法）</span><br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyInvocationHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;<br>        <span class="hljs-keyword">private</span> Object target;<br>        <span class="hljs-comment">// 通过构造方法传入被代理类的实例</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyInvocationHandler</span><span class="hljs-params">(Object target)</span> </span>&#123;<br>            <span class="hljs-keyword">this</span>.target = target;<br>        &#125;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;<br>            System.out.println(method.getName() + <span class="hljs-string">&quot; start&quot;</span>);<br>            <span class="hljs-comment">// 通过调用method的invoke方法，执行被代理类方法</span><br>            method.invoke(target, args);<br>            System.out.println(method.getName() + <span class="hljs-string">&quot; end&quot;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// 4. 通过Proxy的静态方法newProxyInstance，传入接口类的类加载器，接口类列表，InvocationHandler实例，得到一个与接口相同类型的代理对象</span><br>        Iservice proxyIservice = (Iservice) Proxy.newProxyInstance(Iservice.class.getClassLoader(), <span class="hljs-keyword">new</span> Class[]&#123;Iservice.class&#125;, <span class="hljs-keyword">new</span> MyInvocationHandler(<span class="hljs-keyword">new</span> MyServce()));<br>        <span class="hljs-comment">// 5. 调用接口方法，执行代理对象</span><br>        proxyIservice.m1();<br>        proxyIservice.m2();<br>        proxyIservice.m3();·<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        Test test = <span class="hljs-keyword">new</span> Test();<br>        test.method();<br>    &#125;<br>    <span class="hljs-comment">// output：</span><br>    <span class="hljs-comment">// m1 start</span><br>    <span class="hljs-comment">// method1 executed.</span><br>    <span class="hljs-comment">// m1 end</span><br>    <span class="hljs-comment">// m2 start</span><br>    <span class="hljs-comment">// method2 executed.</span><br>    <span class="hljs-comment">// m2 end</span><br>    <span class="hljs-comment">// m3 start</span><br>    <span class="hljs-comment">// method3 executed.</span><br>    <span class="hljs-comment">// m3 end</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><em><strong>实现方式</strong></em></p>
+<p>利用拦截器(拦截器必须实现``InvocationHanlder`)加上反射机制生成一个实现代理接口的匿名类，</p>
+<p>在调用具体方法前调用<code>InvokeHandler</code>来处理。</p>
+<p><em><strong>实现原理</strong></em></p>
+<!--todo-->
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yhl_jxy/article/details/80586785">https://blog.csdn.net/yhl_jxy/article/details/80586785</a></p>
+<h3 id="CGLib动态代理模式"><a href="#CGLib动态代理模式" class="headerlink" title="CGLib动态代理模式"></a>CGLib动态代理模式</h3><p><em><strong>使用CGLib生成动态代理的步骤</strong></em></p>
+<ol>
+<li>定义一个子类实现<code>MethodInterceptor</code>接口；</li>
+<li>定义一个创建代理对象实例的方法，在方法里：创建一个<code>enhancer</code>实例，把代理对象的类信息及当前对象注入到<code>enhancer</code>属性里，调用<code>create</code>方法创建一个代理类的实例；</li>
+<li>通过重写<code>intercept</code>方法，编写扩展功能；</li>
+<li>在上层函数里分别创建代理类实例和类实例对象，通过调用创建代理类的方法，传入实例对象，就可以获得代理对象实例。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><br><span class="hljs-keyword">import</span> net.sf.cglib.proxy.Enhancer;<br><span class="hljs-keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;<br><span class="hljs-keyword">import</span> net.sf.cglib.proxy.MethodProxy;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br><br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCGLibProxy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MethodInterceptor</span> </span>&#123;<br><br>        <span class="hljs-keyword">private</span> Object target;<br><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getInstance</span><span class="hljs-params">(Object target)</span> </span>&#123;<br>            <span class="hljs-keyword">this</span>.target = target;<br>            <span class="hljs-comment">// enhancer对象的这些方法是在干嘛？</span><br>            Enhancer enhancer = <span class="hljs-keyword">new</span> Enhancer();<br>            enhancer.setSuperclass(target.getClass());<br>            enhancer.setCallback(<span class="hljs-keyword">this</span>);<br>            <span class="hljs-keyword">return</span> (Object) enhancer.create();<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">intercept</span><span class="hljs-params">(Object proxy, Method method, Object[] args, MethodProxy methodProxy)</span> <span class="hljs-keyword">throws</span> Throwable</span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;intercept start&quot;</span>);<br>            <span class="hljs-comment">// 通过method.invoke方法调用被代理对象方法</span><br>            method.invoke(target, args);<br>            System.out.println(<span class="hljs-string">&quot;intercept end&quot;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyServiceImpl</span> </span>&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m1</span><span class="hljs-params">()</span> </span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;method1 executing&quot;</span>);<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m2</span><span class="hljs-params">()</span> </span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;method2 executing&quot;</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// 创建被代理对象实例</span><br>        MyServiceImpl myService = <span class="hljs-keyword">new</span> MyServiceImpl();<br>        <span class="hljs-comment">// 创建代理对象</span><br>        MyCGLibProxy proxy = <span class="hljs-keyword">new</span> MyCGLibProxy();<br>        <span class="hljs-comment">// 通过传入代理对象获得被代理类实例</span><br>        Object ob = proxy.getInstance(myService);<br>        MyServiceImpl myServiceObject = (MyServiceImpl) ob;<br>        <span class="hljs-comment">// 执行代理对象方法</span><br>        myServiceObject.m1();<br>        myServiceObject.m2();<br>    &#125;<br><br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        Test test = <span class="hljs-keyword">new</span> Test();<br>        test.method();<br>    &#125;<br>    <span class="hljs-comment">// intercept start</span><br>    <span class="hljs-comment">// method1 executing</span><br>    <span class="hljs-comment">// intercept end</span><br>    <span class="hljs-comment">// intercept start</span><br>    <span class="hljs-comment">// method2 executing</span><br>    <span class="hljs-comment">// intercept end</span><br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><em><strong>实现方式</strong></em></p>
+<p>利用ASM开源包，对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。</p>
+<p><em><strong>实现原理</strong></em></p>
+<!--todo-->
+
+<h3 id="JDK和CGLIB的区别"><a href="#JDK和CGLIB的区别" class="headerlink" title="JDK和CGLIB的区别"></a>JDK和CGLIB的区别</h3><p>JDK动态代理只能对实现了接口的类生成代理，而不能针对类。JDK只能为接口创建代理类。<br>CGLIB是针对类实现代理，主要是对指定的类生成一个子类，覆盖其中的方法。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>JDK动态代理</th>
+<th>CGLib动态代理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>代理对象</td>
+<td>基于接口，有对应的实现类</td>
+<td>直接基于类</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>基于JDK原生，不需要依赖第三方；通过反射<strong>生成</strong>代理类比操作字节码速度要快。</td>
+<td>不需要基于接口实现，方法的执行效率要比JDK动态代理高</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>被代理的类必须是接口的实现类；执行代理方法的时候，通过反射机制回调，方法的执行效率更低。</td>
+<td>CGLIB代理类使用的是继承，因此不能对private，final修饰的类进行代理；生成代理类速度比JDK慢。</td>
+</tr>
+<tr>
+<td>原理</td>
+<td>基于JDK原生包，通过反射实现</td>
+<td>通过操作字节码实现</td>
+</tr>
+</tbody></table>
+<h3 id="Spring-AOP-动态代理的模式切换"><a href="#Spring-AOP-动态代理的模式切换" class="headerlink" title="Spring AOP 动态代理的模式切换"></a>Spring AOP 动态代理的模式切换</h3><!--todo：如何配置-->
+
+<h1 id="模版方法模式"><a href="#模版方法模式" class="headerlink" title="模版方法模式"></a>模版方法模式</h1><p>AQS设计模式</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/">技术沉淀</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%B2%89%E6%B7%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/06/tech/Java-usage/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java-usage</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/27/tech/%E9%A1%B9%E7%9B%AE%E6%A2%B3%E7%90%86-%E5%95%86%E5%9F%8E%E7%A7%92%E6%9D%80/">
+                        <span class="hidden-mobile">项目梳理-商城秒杀系统</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
